@@ -1,0 +1,12 @@
+included:
+  - QuizTrain
+  - QuizTrainTests
+disabled_rules:
+  - empty_enum_arguments
+  - file_length
+  - function_body_length
+  - identifier_name
+  - line_length
+  - nesting
+  - type_body_length
+  - type_name
