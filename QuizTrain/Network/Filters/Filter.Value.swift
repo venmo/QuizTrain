@@ -50,7 +50,7 @@ extension Filter.Value {
         case .int(let int):
             return String(int)
         case .intList(let intList):
-            return intList.flatMap({String($0)}).joined(separator: ",") // [38, 208, 21, 324] ---> "38,208,21,324"
+            return intList.compactMap({String($0)}).joined(separator: ",") // [38, 208, 21, 324] ---> "38,208,21,324"
         case .timestamp(let date):
             return String(date.secondsSince1970) // Unix Timestamp as a whole number
         }

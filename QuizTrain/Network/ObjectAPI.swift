@@ -1032,10 +1032,10 @@ extension ObjectAPI {
                 completionHandler(.failed(ErrorContainer(error)))
             case .succeeded(let projects):
 
-                let projectIds = Set(projects.flatMap({ $0.id }))
+                let projectIds = Set(projects.compactMap({ $0.id }))
                 self?.getConfigurationGroups(inProjectsWithIds: projectIds) { (configurationGroupsOutcomes) in
 
-                    let outcomes = configurationGroupsOutcomes.flatMap { $1 } // Discard projectId keys.
+                    let outcomes = configurationGroupsOutcomes.compactMap { $1 } // Discard projectId keys.
                     var allConfigurationGroups = [ConfigurationGroup]()
                     var allErrors = [GetError]()
 
@@ -2234,10 +2234,10 @@ extension ObjectAPI {
                 completionHandler(.failed(ErrorContainer(error)))
             case .succeeded(let projects):
 
-                let projectIds = Set(projects.flatMap({ $0.id }))
+                let projectIds = Set(projects.compactMap({ $0.id }))
                 self?.getTemplates(inProjectsWithIds: projectIds) { (templatesOutcomes) in
 
-                    let outcomes = templatesOutcomes.flatMap { $1 } // Discard projectId keys.
+                    let outcomes = templatesOutcomes.compactMap { $1 } // Discard projectId keys.
                     var allTemplates = [Template]()
                     var allErrors = [GetError]()
 

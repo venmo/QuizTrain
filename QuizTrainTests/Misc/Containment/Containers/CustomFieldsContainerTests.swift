@@ -120,7 +120,7 @@ class CustomFieldsContainerTests: XCTestCase {
         objectB.customFields.removeValue(forKey: "custom_addingANewCustomField")
         XCTAssertEqual(objectA, objectB)
 
-        let key = customFieldsKeys.first!
+        let key = customFieldsKeys.sorted().first!
         objectB.customFields[key] = "New Value"
         XCTAssertNotEqual(objectA, objectB)
         objectB.customFields[key] = customFields[key]
@@ -149,7 +149,7 @@ class CustomFieldsContainerTests: XCTestCase {
         // Overwrite
 
         var objectC = Object(json: customFields)
-        let key = customFieldsKeys.first!
+        let key = customFieldsKeys.sorted().first!
         objectC.customFields[key] = "New Value"
 
         XCTAssertEqual(objectC.customFields.count, customFields.count)
@@ -183,7 +183,7 @@ class CustomFieldsContainerTests: XCTestCase {
     func testRemovingCustomFields() {
 
         var object = Object(json: customFields)
-        let key = customFieldsKeys.first!
+        let key = customFieldsKeys.sorted().first!
 
         object.customFields.removeValue(forKey: key)
 
@@ -194,7 +194,7 @@ class CustomFieldsContainerTests: XCTestCase {
     func testRemovingAndAddingCustomFields() {
 
         var object = Object(json: customFields)
-        let key = customFieldsKeys.first!
+        let key = customFieldsKeys.sorted().first!
         let value = object.customFields[key]!
 
         object.customFields.removeValue(forKey: key)

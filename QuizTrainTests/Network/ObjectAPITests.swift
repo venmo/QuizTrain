@@ -428,7 +428,7 @@ extension ObjectAPITests {
             let suiteCaseIds = testProject.cases.filter { $0.suiteId == suite.id }
 
             newPlanEntry.assignedtoId = testProject.user.id
-            newPlanEntry.caseIds = suiteCaseIds.flatMap { $0.id }
+            newPlanEntry.caseIds = suiteCaseIds.compactMap { $0.id }
             newPlanEntry.description = "Test Add: Plan Entry Description"
             newPlanEntry.includeAll = false
             newPlanEntry.name = "Test Add: Plan Entry Name"
@@ -437,7 +437,7 @@ extension ObjectAPITests {
             var groupedConfigIds = [Int: [Int]]()
             for i in 0..<testProject.configurationGroups.count {
                 let group = testProject.configurationGroups[i]
-                let configIds = testProject.configurations.filter({ $0.groupId == group.id }).flatMap { $0.id }
+                let configIds = testProject.configurations.filter({ $0.groupId == group.id }).compactMap { $0.id }
                 groupedConfigIds[i] = configIds
             }
 
@@ -452,7 +452,7 @@ extension ObjectAPITests {
                 }
 
                 let suite = testProject.suites[i]
-                let caseIds = testProject.cases.filter({ $0.suiteId == suite.id }).flatMap { $0.id }
+                let caseIds = testProject.cases.filter({ $0.suiteId == suite.id }).compactMap { $0.id }
                 let milestone = testProject.milestones[i]
 
                 var newPlanEntryRun = self.newPlanEntryRun()
@@ -627,7 +627,7 @@ extension ObjectAPITests {
         precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
 
         var newRun = NewRun(assignedtoId: nil,
-                            caseIds: testProject.cases.flatMap { $0.id },
+                            caseIds: testProject.cases.compactMap { $0.id },
                             description: nil,
                             includeAll: false,
                             milestoneId: nil,
@@ -1672,7 +1672,7 @@ extension ObjectAPITests {
             randomTemplates.append(contentsOf: allTemplates)
         }
 
-        let randomTemplateIds = randomTemplates.flatMap({ $0.id })
+        let randomTemplateIds = randomTemplates.compactMap { $0.id }
 
         assertGetTemplatesMatchingIds(randomTemplateIds)
     }
