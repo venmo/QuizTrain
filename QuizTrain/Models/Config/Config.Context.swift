@@ -1,19 +1,8 @@
 extension Config {
 
-    public struct Context {
+    public struct Context: Equatable {
         public let isGlobal: Bool                                               // True indicates all projects.
         public let projectIds: [Project.Id]?                                    // Applies only if isGlobal is false. Can include projectIds for projects you do not have at least Read-only access to.
-    }
-
-}
-
-// MARK: - Equatable
-
-extension Config.Context: Equatable {
-
-    public static func==(lhs: Config.Context, rhs: Config.Context) -> Bool {
-        return (lhs.isGlobal == rhs.isGlobal &&
-            lhs.projectIds?.sorted() == rhs.projectIds?.sorted())
     }
 
 }

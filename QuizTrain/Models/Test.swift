@@ -1,4 +1,4 @@
-public struct Test: CustomFields, Identifiable {
+public struct Test: CustomFields, Identifiable, Equatable {
     public typealias Id = Int
     public let assignedtoId: User.Id?
     public let caseId: Case.Id
@@ -50,29 +50,6 @@ extension Test {
 
     public func type(_ objectAPI: ObjectAPI, completionHandler: @escaping (Outcome<CaseType, ObjectAPI.MatchError<SingleMatchError<Test.Id>, ObjectAPI.GetError>>) -> Void) {
         objectAPI.type(self, completionHandler: completionHandler)
-    }
-
-}
-
-// MARK: - Equatable
-
-extension Test: Equatable {
-
-    public static func==(lhs: Test, rhs: Test) -> Bool {
-        return (lhs.assignedtoId == rhs.assignedtoId &&
-            lhs.caseId == rhs.caseId &&
-            lhs.estimate == rhs.estimate &&
-            lhs.estimateForecast == rhs.estimateForecast &&
-            lhs.id == rhs.id &&
-            lhs.milestoneId == rhs.milestoneId &&
-            lhs.priorityId == rhs.priorityId &&
-            lhs.refs == rhs.refs &&
-            lhs.runId == rhs.runId &&
-            lhs.statusId == rhs.statusId &&
-            lhs.templateId == rhs.templateId &&
-            lhs.title == rhs.title &&
-            lhs.typeId == rhs.typeId &&
-            lhs.customFieldsContainer == rhs.customFieldsContainer)
     }
 
 }

@@ -1,4 +1,4 @@
-public struct Section: Identifiable {
+public struct Section: Identifiable, Equatable {
     public typealias Id = Int
     public let depth: Int
     public var description: String?
@@ -19,22 +19,6 @@ extension Section {
 
     public func suite(_ objectAPI: ObjectAPI, completionHandler: @escaping (Outcome<Suite?, ObjectAPI.GetError>) -> Void) {
         objectAPI.suite(self, completionHandler: completionHandler)
-    }
-
-}
-
-// MARK: - Equatable
-
-extension Section: Equatable {
-
-    public static func==(lhs: Section, rhs: Section) -> Bool {
-        return (lhs.depth == rhs.depth &&
-            lhs.description == rhs.description &&
-            lhs.displayOrder == rhs.displayOrder &&
-            lhs.id == rhs.id &&
-            lhs.name == rhs.name &&
-            lhs.parentId == rhs.parentId &&
-            lhs.suiteId == rhs.suiteId)
     }
 
 }

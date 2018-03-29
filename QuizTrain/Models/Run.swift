@@ -1,4 +1,4 @@
-public struct Run: Identifiable {
+public struct Run: Identifiable, Equatable {
     public typealias Id = Int
     public let assignedtoId: User.Id?
     public let blockedCount: Int
@@ -60,43 +60,6 @@ extension Run {
 
     public func suite(_ objectAPI: ObjectAPI, completionHandler: @escaping (Outcome<Suite?, ObjectAPI.GetError>) -> Void) {
         objectAPI.suite(self, completionHandler: completionHandler)
-    }
-
-}
-
-// MARK: - Equatable
-
-extension Run: Equatable {
-
-    public static func==(lhs: Run, rhs: Run) -> Bool {
-        return (lhs.assignedtoId == rhs.assignedtoId &&
-            lhs.blockedCount == rhs.blockedCount &&
-            lhs.completedOn?.secondsSince1970 == rhs.completedOn?.secondsSince1970 &&
-            lhs.config == rhs.config &&
-            lhs.configIds?.sorted() == rhs.configIds?.sorted() &&
-            lhs.createdBy == rhs.createdBy &&
-            lhs.createdOn.secondsSince1970 == rhs.createdOn.secondsSince1970 &&
-            lhs.customStatus1Count == rhs.customStatus1Count &&
-            lhs.customStatus2Count == rhs.customStatus2Count &&
-            lhs.customStatus3Count == rhs.customStatus3Count &&
-            lhs.customStatus4Count == rhs.customStatus4Count &&
-            lhs.customStatus5Count == rhs.customStatus5Count &&
-            lhs.customStatus6Count == rhs.customStatus6Count &&
-            lhs.customStatus7Count == rhs.customStatus7Count &&
-            lhs.description == rhs.description &&
-            lhs.failedCount == rhs.failedCount &&
-            lhs.id == rhs.id &&
-            lhs.includeAll == rhs.includeAll &&
-            lhs.isCompleted == rhs.isCompleted &&
-            lhs.milestoneId == rhs.milestoneId &&
-            lhs.name == rhs.name &&
-            lhs.planId == rhs.planId &&
-            lhs.passedCount == rhs.passedCount &&
-            lhs.projectId == rhs.projectId &&
-            lhs.retestCount == rhs.retestCount &&
-            lhs.suiteId == rhs.suiteId &&
-            lhs.untestedCount == rhs.untestedCount &&
-            lhs.url == rhs.url)
     }
 
 }

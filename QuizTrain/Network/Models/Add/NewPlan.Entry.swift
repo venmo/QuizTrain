@@ -1,6 +1,6 @@
 extension NewPlan {
 
-    public struct Entry {
+    public struct Entry: Equatable {
 
         public var assignedtoId: User.Id?                                       // Default for all runs with a nil assignedtoId.
         public var caseIds: [Case.Id]?                                          // Default for all runs with a nil or empty caseIds.
@@ -50,23 +50,6 @@ extension NewPlan {
 
             return ids
         }
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewPlan.Entry: Equatable {
-
-    public static func==(lhs: NewPlan.Entry, rhs: NewPlan.Entry) -> Bool {
-        return (lhs.assignedtoId == rhs.assignedtoId &&
-            lhs.caseIds?.sorted() == rhs.caseIds?.sorted() &&
-            lhs.configIds?.sorted() == rhs.configIds?.sorted() &&
-            lhs.description == rhs.description &&
-            lhs.includeAll == rhs.includeAll &&
-            lhs.name == rhs.name &&
-            Array.contentsAreEqual(lhs.runs, rhs.runs) &&
-            lhs.suiteId == rhs.suiteId)
     }
 
 }

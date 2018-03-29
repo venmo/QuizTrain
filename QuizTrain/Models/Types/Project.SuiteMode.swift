@@ -1,5 +1,5 @@
 extension Project {
-    public enum SuiteMode: Int {
+    public enum SuiteMode: Int, Equatable {
         case singleSuite = 1
         case singleSuitePlusBaselines = 2
         case multipleSuites = 3

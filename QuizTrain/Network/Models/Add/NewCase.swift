@@ -1,4 +1,4 @@
-public struct NewCase: MutableCustomFields {
+public struct NewCase: MutableCustomFields, Equatable {
 
     // MARK: Properties
 
@@ -24,23 +24,6 @@ public struct NewCase: MutableCustomFields {
         if let customFields = customFields {
             customFieldsContainer.customFields = customFields
         }
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewCase: Equatable {
-
-    public static func==(lhs: NewCase, rhs: NewCase) -> Bool {
-        return (lhs.estimate == rhs.estimate &&
-            lhs.milestoneId == rhs.milestoneId &&
-            lhs.priorityId == rhs.priorityId &&
-            lhs.refs == rhs.refs &&
-            lhs.templateId == rhs.templateId &&
-            lhs.title == rhs.title &&
-            lhs.typeId == rhs.typeId &&
-            lhs.customFieldsContainer == rhs.customFieldsContainer)
     }
 
 }

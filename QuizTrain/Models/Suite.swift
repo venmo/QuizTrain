@@ -1,4 +1,4 @@
-public struct Suite: Identifiable {
+public struct Suite: Identifiable, Equatable {
     public typealias Id = Int
     public let completedOn: Date?
     public var description: String?
@@ -17,24 +17,6 @@ extension Suite {
 
     public func project(_ objectAPI: ObjectAPI, completionHandler: @escaping (Outcome<Project, ObjectAPI.GetError>) -> Void) {
         objectAPI.project(self, completionHandler: completionHandler)
-    }
-
-}
-
-// MARK: - Equatable
-
-extension Suite: Equatable {
-
-    public static func==(lhs: Suite, rhs: Suite) -> Bool {
-        return (lhs.completedOn?.secondsSince1970 == rhs.completedOn?.secondsSince1970 &&
-            lhs.description == rhs.description &&
-            lhs.id == rhs.id &&
-            lhs.isBaseline == rhs.isBaseline &&
-            lhs.isCompleted == rhs.isCompleted &&
-            lhs.isMaster == rhs.isMaster &&
-            lhs.name == rhs.name &&
-            lhs.projectId == rhs.projectId &&
-            lhs.url == rhs.url)
     }
 
 }

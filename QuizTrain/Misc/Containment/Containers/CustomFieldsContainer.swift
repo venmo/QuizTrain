@@ -5,7 +5,7 @@
  omittedKeys. Any keys violating those rules will be silently omitted from being
  added to customFields.
  */
-struct CustomFieldsContainer: JSONDeserializable, JSONSerializable {
+struct CustomFieldsContainer: JSONDeserializable, JSONSerializable, Equatable {
 
     // MARK: - Properties
 
@@ -46,14 +46,6 @@ struct CustomFieldsContainer: JSONDeserializable, JSONSerializable {
         var jsonFiltered = json.filter { pair in pair.key.hasPrefix(requiredKeyPrefix) }
         jsonFiltered = jsonFiltered.filter { pair in !omittedKeys.contains(pair.key) }
         return jsonFiltered
-    }
-
-}
-
-extension CustomFieldsContainer: Equatable {
-
-    static func==(lhs: CustomFieldsContainer, rhs: CustomFieldsContainer) -> Bool {
-        return lhs.container == rhs.container
     }
 
 }

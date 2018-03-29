@@ -1,20 +1,8 @@
-public struct Template: Identifiable {
+public struct Template: Identifiable, Equatable {
     public typealias Id = Int
     public let isDefault: Bool
     public let id: Id
     public let name: String
-}
-
-// MARK: - Equatable
-
-extension Template: Equatable {
-
-    public static func==(lhs: Template, rhs: Template) -> Bool {
-        return (lhs.isDefault == rhs.isDefault &&
-            lhs.id == rhs.id &&
-            lhs.name == rhs.name)
-    }
-
 }
 
 // MARK: - JSON Keys

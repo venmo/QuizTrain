@@ -25,7 +25,7 @@
  */
 extension NewPlan.Entry {
 
-    public struct Run {
+    public struct Run: Equatable {
 
         public var assignedtoId: User.Id?                                       // Overrides NewPlan.Entry.assignedtoId.
         public var caseIds: [Case.Id]?                                          // Overrides NewPlan.Entry.caseIds.
@@ -47,23 +47,6 @@ extension NewPlan.Entry {
             self.suiteId = suiteId
         }
 
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewPlan.Entry.Run: Equatable {
-
-    public static func==(lhs: NewPlan.Entry.Run, rhs: NewPlan.Entry.Run) -> Bool {
-        return (lhs.assignedtoId == rhs.assignedtoId &&
-            lhs.caseIds?.sorted() == rhs.caseIds?.sorted() &&
-            lhs.configIds?.sorted() == rhs.configIds?.sorted() &&
-            lhs.description == rhs.description &&
-            lhs.includeAll == rhs.includeAll &&
-            lhs.milestoneId == rhs.milestoneId &&
-            lhs.name == rhs.name &&
-            lhs.suiteId == rhs.suiteId)
     }
 
 }

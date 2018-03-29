@@ -1,4 +1,4 @@
-public struct ConfigurationGroup: Identifiable {
+public struct ConfigurationGroup: Identifiable, Equatable {
     public typealias Id = Int
     public let configs: [Configuration]
     public let id: Id
@@ -12,19 +12,6 @@ extension ConfigurationGroup {
 
     public func project(_ objectAPI: ObjectAPI, completionHandler: @escaping (Outcome<Project, ObjectAPI.GetError>) -> Void) {
         objectAPI.project(self, completionHandler: completionHandler)
-    }
-
-}
-
-// MARK: - Equatable
-
-extension ConfigurationGroup: Equatable {
-
-    public static func==(lhs: ConfigurationGroup, rhs: ConfigurationGroup) -> Bool {
-        return (lhs.configs.contentsAreEqual(to: rhs.configs) &&
-            lhs.id == rhs.id &&
-            lhs.name == rhs.name &&
-            lhs.projectId == rhs.projectId)
     }
 
 }

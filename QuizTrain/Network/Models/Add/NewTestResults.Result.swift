@@ -1,6 +1,6 @@
 extension NewTestResults {
 
-    public struct Result: MutableCustomFields {
+    public struct Result: MutableCustomFields, Equatable {
 
         // MARK: Properties
 
@@ -28,23 +28,6 @@ extension NewTestResults {
             }
         }
 
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewTestResults.Result: Equatable {
-
-    public static func==(lhs: NewTestResults.Result, rhs: NewTestResults.Result) -> Bool {
-        return (lhs.assignedtoId == rhs.assignedtoId &&
-            lhs.comment == rhs.comment &&
-            lhs.defects == rhs.defects &&
-            lhs.elapsed == rhs.elapsed &&
-            lhs.statusId == rhs.statusId &&
-            lhs.testId == rhs.testId &&
-            lhs.version == rhs.version &&
-            lhs.customFieldsContainer == rhs.customFieldsContainer)
     }
 
 }

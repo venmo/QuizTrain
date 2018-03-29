@@ -1,4 +1,4 @@
-public enum CustomFieldType: Int {
+public enum CustomFieldType: Int, Equatable {
     case string = 1
     case integer = 2
     case text = 3

@@ -1,4 +1,4 @@
-public struct Milestone: Identifiable {
+public struct Milestone: Identifiable, Equatable {
     public typealias Id = Int
     public let completedOn: Date?
     public var description: String?
@@ -25,28 +25,6 @@ extension Milestone {
 
     public func project(_ objectAPI: ObjectAPI, completionHandler: @escaping (Outcome<Project, ObjectAPI.GetError>) -> Void) {
         objectAPI.project(self, completionHandler: completionHandler)
-    }
-
-}
-
-// MARK: - Equatable
-
-extension Milestone: Equatable {
-
-    public static func==(lhs: Milestone, rhs: Milestone) -> Bool {
-        return (lhs.completedOn?.secondsSince1970 == rhs.completedOn?.secondsSince1970 &&
-            lhs.description == rhs.description &&
-            lhs.dueOn?.secondsSince1970 == rhs.dueOn?.secondsSince1970 &&
-            lhs.id == rhs.id &&
-            lhs.isCompleted == rhs.isCompleted &&
-            lhs.isStarted == rhs.isStarted &&
-            Array.contentsAreEqual(lhs.milestones, rhs.milestones) &&
-            lhs.name == rhs.name &&
-            lhs.parentId == rhs.parentId &&
-            lhs.projectId == rhs.projectId &&
-            lhs.startOn?.secondsSince1970 == rhs.startOn?.secondsSince1970 &&
-            lhs.startedOn?.secondsSince1970 == rhs.startedOn?.secondsSince1970 &&
-            lhs.url == rhs.url)
     }
 
 }

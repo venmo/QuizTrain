@@ -1,20 +1,8 @@
-public struct CaseType: Identifiable {
+public struct CaseType: Identifiable, Equatable {
     public typealias Id = Int
     public let id: Id
     public let isDefault: Bool
     public let name: String
-}
-
-// MARK: - Equatable
-
-extension CaseType: Equatable {
-
-    public static func==(lhs: CaseType, rhs: CaseType) -> Bool {
-        return (lhs.id == rhs.id &&
-            lhs.isDefault == rhs.isDefault &&
-            lhs.name == rhs.name)
-    }
-
 }
 
 // MARK: - JSON Keys

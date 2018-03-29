@@ -1,22 +1,12 @@
 /*
  Use to bulk-add multiple results associated with Cases.
  */
-public struct NewCaseResults {
+public struct NewCaseResults: Equatable {
 
     public var results: [NewCaseResults.Result]
 
     public init(results: [NewCaseResults.Result]) {
         self.results = results
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewCaseResults: Equatable {
-
-    public static func==(lhs: NewCaseResults, rhs: NewCaseResults) -> Bool {
-        return (lhs.results.contentsAreEqual(to: rhs.results))
     }
 
 }

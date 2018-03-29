@@ -1,4 +1,4 @@
-public struct NewMilestone {
+public struct NewMilestone: Equatable {
 
     public var description: String?
     public var dueOn: Date?
@@ -12,20 +12,6 @@ public struct NewMilestone {
         self.name = name
         self.parentId = parentId
         self.startOn = startOn
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewMilestone: Equatable {
-
-    public static func==(lhs: NewMilestone, rhs: NewMilestone) -> Bool {
-        return (lhs.description == rhs.description &&
-            lhs.dueOn?.secondsSince1970 == rhs.dueOn?.secondsSince1970 &&
-            lhs.name == rhs.name &&
-            lhs.parentId == rhs.parentId &&
-            lhs.startOn?.secondsSince1970 == rhs.startOn?.secondsSince1970)
     }
 
 }

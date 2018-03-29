@@ -1,24 +1,10 @@
-public struct Priority: Identifiable {
+public struct Priority: Identifiable, Equatable {
     public typealias Id = Int
     public let id: Id
     public let isDefault: Bool
     public let name: String
     public let priority: Int
     public let shortName: String
-}
-
-// MARK: - Equatable
-
-extension Priority: Equatable {
-
-    public static func==(lhs: Priority, rhs: Priority) -> Bool {
-        return (lhs.id == rhs.id &&
-            lhs.isDefault == rhs.isDefault &&
-            lhs.name == rhs.name &&
-            lhs.priority == rhs.priority &&
-            lhs.shortName == rhs.shortName)
-    }
-
 }
 
 // MARK: - JSON Keys

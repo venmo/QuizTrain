@@ -1,4 +1,4 @@
-public struct NewSection {
+public struct NewSection: Equatable {
 
     public var description: String?
     public var name: String
@@ -10,19 +10,6 @@ public struct NewSection {
         self.name = name
         self.parentId = parentId
         self.suiteId = suiteId
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewSection: Equatable {
-
-    public static func==(lhs: NewSection, rhs: NewSection) -> Bool {
-        return (lhs.description == rhs.description &&
-            lhs.name == rhs.name &&
-            lhs.parentId == rhs.parentId &&
-            lhs.suiteId == rhs.suiteId)
     }
 
 }

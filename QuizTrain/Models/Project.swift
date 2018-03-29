@@ -1,4 +1,4 @@
-public struct Project: Identifiable {
+public struct Project: Identifiable, Equatable {
     public typealias Id = Int
     public var announcement: String?
     public let completedOn: Date?
@@ -8,23 +8,6 @@ public struct Project: Identifiable {
     public var showAnnouncement: Bool
     public var suiteMode: Project.SuiteMode
     public let url: URL
-}
-
-// MARK: - Equatable
-
-extension Project: Equatable {
-
-    public static func==(lhs: Project, rhs: Project) -> Bool {
-        return (lhs.announcement == rhs.announcement &&
-            lhs.completedOn?.secondsSince1970 == rhs.completedOn?.secondsSince1970 &&
-            lhs.id == rhs.id &&
-            lhs.isCompleted == rhs.isCompleted &&
-            lhs.name == rhs.name &&
-            lhs.showAnnouncement == rhs.showAnnouncement &&
-            lhs.suiteMode == rhs.suiteMode &&
-            lhs.url == rhs.url)
-    }
-
 }
 
 // MARK: - JSON Keys

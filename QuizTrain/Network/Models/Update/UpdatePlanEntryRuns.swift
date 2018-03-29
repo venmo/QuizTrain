@@ -1,7 +1,7 @@
 /*
  Applies to all Run's within Plan.Entry.runs.
  */
-public struct UpdatePlanEntryRuns {
+public struct UpdatePlanEntryRuns: Equatable {
 
     public var assignedtoId: User.Id?
     public var caseIds: [Case.Id]?
@@ -13,19 +13,6 @@ public struct UpdatePlanEntryRuns {
         self.caseIds = caseIds
         self.description = description
         self.includeAll = includeAll
-    }
-
-}
-
-// MARK: - Equatable
-
-extension UpdatePlanEntryRuns: Equatable {
-
-    public static func==(lhs: UpdatePlanEntryRuns, rhs: UpdatePlanEntryRuns) -> Bool {
-        return (lhs.assignedtoId == rhs.assignedtoId &&
-            lhs.caseIds == rhs.caseIds &&
-            lhs.description == rhs.description &&
-            lhs.includeAll == rhs.includeAll)
     }
 
 }

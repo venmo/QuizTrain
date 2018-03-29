@@ -1,19 +1,9 @@
-public struct NewConfiguration {
+public struct NewConfiguration: Equatable {
 
     public var name: String
 
     public init(name: String) {
         self.name = name
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewConfiguration: Equatable {
-
-    public static func==(lhs: NewConfiguration, rhs: NewConfiguration) -> Bool {
-        return (lhs.name == rhs.name)
     }
 
 }
