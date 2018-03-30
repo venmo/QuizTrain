@@ -1,4 +1,4 @@
-public struct Config: Identifiable {
+public struct Config: Identifiable, Equatable {
     public typealias Id = String
     typealias OptionsContainer = JSONDictionaryContainer
     public let context: Config.Context
@@ -17,18 +17,6 @@ extension Config {
 
     public func projects(_ objectAPI: ObjectAPI, completionHandler: @escaping(Outcome<[Project]?, ObjectAPI.MatchError<MultipleMatchError<Project, Project.Id>, ErrorContainer<ObjectAPI.GetError>>>) -> Void) {
         objectAPI.projects(self, completionHandler: completionHandler)
-    }
-
-}
-
-// MARK: - Equatable
-
-extension Config: Equatable {
-
-    public static func==(lhs: Config, rhs: Config) -> Bool {
-        return (lhs.context == rhs.context &&
-            lhs.id == rhs.id &&
-            lhs.optionsContainer == rhs.optionsContainer)
     }
 
 }

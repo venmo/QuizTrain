@@ -202,7 +202,7 @@ final public class API {
         }
 
         if let filters = filters {
-            _ = filters.flatMap { queryItems.append($0.queryItem) }
+            _ = filters.compactMap { queryItems.append($0.queryItem) }
         }
 
         return get("get_cases/\(projectId)", queryItems: queryItems, completionHandler: completionHandler)

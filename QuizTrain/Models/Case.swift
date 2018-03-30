@@ -1,4 +1,4 @@
-public struct Case: Identifiable, MutableCustomFields {
+public struct Case: Identifiable, MutableCustomFields, Equatable {
     public typealias Id = Int
     public let createdBy: User.Id
     public let createdOn: Date
@@ -52,31 +52,6 @@ extension Case {
 
     public func updatedBy(_ objectAPI: ObjectAPI, completionHandler: @escaping (Outcome<User, ObjectAPI.GetError>) -> Void) {
         objectAPI.updatedBy(self, completionHandler: completionHandler)
-    }
-
-}
-
-// MARK: - Equatable
-
-extension Case: Equatable {
-
-    public static func==(lhs: Case, rhs: Case) -> Bool {
-        return (lhs.createdBy == rhs.createdBy &&
-            lhs.createdOn.secondsSince1970 == rhs.createdOn.secondsSince1970 &&
-            lhs.estimate == rhs.estimate &&
-            lhs.estimateForecast == rhs.estimateForecast &&
-            lhs.id == rhs.id &&
-            lhs.milestoneId == rhs.milestoneId &&
-            lhs.priorityId == rhs.priorityId &&
-            lhs.refs == rhs.refs &&
-            lhs.sectionId == rhs.sectionId &&
-            lhs.suiteId == rhs.suiteId &&
-            lhs.templateId == rhs.templateId &&
-            lhs.title == rhs.title &&
-            lhs.typeId == rhs.typeId &&
-            lhs.updatedBy == rhs.updatedBy &&
-            lhs.updatedOn.secondsSince1970 == rhs.updatedOn.secondsSince1970 &&
-            lhs.customFieldsContainer == rhs.customFieldsContainer)
     }
 
 }

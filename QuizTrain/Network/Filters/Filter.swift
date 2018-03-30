@@ -4,7 +4,7 @@
  See TestRail's API documentation for allowed name/value pairs, chaining of
  filters, and general usage: http://docs.gurock.com/testrail-api2/start
  */
-public struct Filter {
+public struct Filter: Equatable {
 
     public var name: String
     public var value: Filter.Value
@@ -32,15 +32,6 @@ extension Filter {
 
     public init(named name: String, matching value: [Int]) {
         self.init(name: name, value: .intList(value))
-    }
-
-}
-
-extension Filter: Equatable {
-
-    public static func==(lhs: Filter, rhs: Filter) -> Bool {
-        return (lhs.name == rhs.name &&
-            lhs.value == rhs.value)
     }
 
 }

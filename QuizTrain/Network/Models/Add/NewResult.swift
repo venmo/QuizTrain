@@ -1,7 +1,7 @@
 /*
  Used to add a single result.
  */
-public struct NewResult: MutableCustomFields {
+public struct NewResult: MutableCustomFields, Equatable {
 
     // MARK: Properties
 
@@ -25,22 +25,6 @@ public struct NewResult: MutableCustomFields {
         if let customFields = customFields {
             customFieldsContainer.customFields = customFields
         }
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewResult: Equatable {
-
-    public static func==(lhs: NewResult, rhs: NewResult) -> Bool {
-        return (lhs.assignedtoId == rhs.assignedtoId &&
-            lhs.comment == rhs.comment &&
-            lhs.defects == rhs.defects &&
-            lhs.elapsed == rhs.elapsed &&
-            lhs.statusId == rhs.statusId &&
-            lhs.version == rhs.version &&
-            lhs.customFieldsContainer == rhs.customFieldsContainer)
     }
 
 }

@@ -1,4 +1,4 @@
-public struct CaseField: Identifiable {
+public struct CaseField: Identifiable, Equatable {
     public typealias Id = Int
     public let configs: [Config]
     public let description: String?
@@ -19,26 +19,6 @@ extension CaseField {
 
     public func templates(_ objectAPI: ObjectAPI, completionHandler: @escaping (Outcome<[Template], ObjectAPI.MatchError<MultipleMatchError<Template, Template.Id>, ErrorContainer<ObjectAPI.GetError>>>) -> Void) {
         objectAPI.templates(self, completionHandler: completionHandler)
-    }
-
-}
-
-// MARK: - Equatable
-
-extension CaseField: Equatable {
-
-    public static func==(lhs: CaseField, rhs: CaseField) -> Bool {
-        return (lhs.configs.contentsAreEqual(to: rhs.configs) &&
-            lhs.description == rhs.description &&
-            lhs.displayOrder == rhs.displayOrder &&
-            lhs.id == rhs.id &&
-            lhs.includeAll == rhs.includeAll &&
-            lhs.isActive == rhs.isActive &&
-            lhs.label == rhs.label &&
-            lhs.name == rhs.name &&
-            lhs.systemName == rhs.systemName &&
-            lhs.templateIds.sorted() == rhs.templateIds.sorted() &&
-            lhs.typeId == rhs.typeId)
     }
 
 }

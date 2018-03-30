@@ -1,4 +1,4 @@
-public struct Plan: Identifiable {
+public struct Plan: Identifiable, Equatable {
     public typealias Id = Int
     public let assignedtoId: User.Id?
     public let blockedCount: Int
@@ -44,39 +44,6 @@ extension Plan {
 
     public func project(_ objectAPI: ObjectAPI, completionHandler: @escaping (Outcome<Project, ObjectAPI.GetError>) -> Void) {
         objectAPI.project(self, completionHandler: completionHandler)
-    }
-
-}
-
-// MARK: - Equatable
-
-extension Plan: Equatable {
-
-    public static func==(lhs: Plan, rhs: Plan) -> Bool {
-        return (lhs.assignedtoId == rhs.assignedtoId &&
-            lhs.blockedCount == rhs.blockedCount &&
-            lhs.completedOn?.secondsSince1970 == rhs.completedOn?.secondsSince1970 &&
-            lhs.createdBy == rhs.createdBy &&
-            lhs.createdOn.secondsSince1970 == rhs.createdOn.secondsSince1970 &&
-            lhs.customStatus1Count == rhs.customStatus1Count &&
-            lhs.customStatus2Count == rhs.customStatus2Count &&
-            lhs.customStatus3Count == rhs.customStatus3Count &&
-            lhs.customStatus4Count == rhs.customStatus4Count &&
-            lhs.customStatus5Count == rhs.customStatus5Count &&
-            lhs.customStatus6Count == rhs.customStatus6Count &&
-            lhs.customStatus7Count == rhs.customStatus7Count &&
-            lhs.description == rhs.description &&
-            Array.contentsAreEqual(lhs.entries, rhs.entries) &&
-            lhs.failedCount == rhs.failedCount &&
-            lhs.id == rhs.id &&
-            lhs.isCompleted == rhs.isCompleted &&
-            lhs.milestoneId == rhs.milestoneId &&
-            lhs.name == rhs.name &&
-            lhs.passedCount == rhs.passedCount &&
-            lhs.projectId == rhs.projectId &&
-            lhs.retestCount == rhs.retestCount &&
-            lhs.untestedCount == rhs.untestedCount &&
-            lhs.url == rhs.url)
     }
 
 }

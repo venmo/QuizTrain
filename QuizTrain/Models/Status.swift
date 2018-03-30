@@ -1,4 +1,4 @@
-public struct Status: Identifiable {
+public struct Status: Identifiable, Equatable {
     public typealias Id = Int
     public let colorBright: Int
     public let colorDark: Int
@@ -9,24 +9,6 @@ public struct Status: Identifiable {
     public let isUntested: Bool
     public let label: String
     public let name: String
-}
-
-// MARK: - Equatable
-
-extension Status: Equatable {
-
-    public static func==(lhs: Status, rhs: Status) -> Bool {
-        return (lhs.colorBright == rhs.colorBright &&
-            lhs.colorDark == rhs.colorDark &&
-            lhs.colorMedium == rhs.colorMedium &&
-            lhs.id == rhs.id &&
-            lhs.isFinal == rhs.isFinal &&
-            lhs.isSystem == rhs.isSystem &&
-            lhs.isUntested == rhs.isUntested &&
-            lhs.label == rhs.label &&
-            lhs.name == rhs.name)
-    }
-
 }
 
 // MARK: - JSON Keys

@@ -8,11 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FE018DC71F85708C001A2FEF /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE018DC61F85708C001A2FEF /* ModelTests.swift */; };
-		FE0B15471FED689F0009B570 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
-		FE0B15481FED68A00009B570 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
-		FE0B15491FED68A00009B570 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
 		FE11181C1F6C3A4B00D24A5F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11181B1F6C3A4B00D24A5F /* Config.swift */; };
-		FE1474D61FAA475A0049DA84 /* Equatable+OptionalArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1474D51FAA475A0049DA84 /* Equatable+OptionalArrayTests.swift */; };
 		FE1474DA1FAA698F0049DA84 /* ObjectAPI.RequestErrorDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1474D91FAA698F0049DA84 /* ObjectAPI.RequestErrorDebug.swift */; };
 		FE1474DC1FAA69AA0049DA84 /* ObjectAPI.DataRequestErrorDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1474DB1FAA69AA0049DA84 /* ObjectAPI.DataRequestErrorDebug.swift */; };
 		FE1474DE1FAA69B70049DA84 /* ObjectAPI.UpdateRequestErrorDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1474DD1FAA69B70049DA84 /* ObjectAPI.UpdateRequestErrorDebug.swift */; };
@@ -39,6 +35,9 @@
 		FE23A96F1F59F4D9007E946D /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE23A96E1F59F4D9007E946D /* Template.swift */; };
 		FE23A9711F59F4E2007E946D /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE23A9701F59F4E2007E946D /* Test.swift */; };
 		FE23A9731F59F4EB007E946D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE23A9721F59F4EB007E946D /* User.swift */; };
+		FE246D79206D9A310003E6C0 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
+		FE246D7A206D9A310003E6C0 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
+		FE246D7B206D9A320003E6C0 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
 		FE2877EC1FBB979C004503FB /* ValidatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2877EB1FBB979C004503FB /* ValidatableTests.swift */; };
 		FE2877EE1FBB9803004503FB /* AssertValidatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2877ED1FBB9803004503FB /* AssertValidatable.swift */; };
 		FE2877F01FBB9A80004503FB /* ValidatableObjectProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2877EF1FBB9A80004503FB /* ValidatableObjectProvider.swift */; };
@@ -87,7 +86,6 @@
 		FE549C421FBE5147008CDFCE /* NewPlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3795B71FA799520030C395 /* NewPlanTests.swift */; };
 		FE549C431FBE514A008CDFCE /* NewPlan.EntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3795B91FA7996F0030C395 /* NewPlan.EntryTests.swift */; };
 		FE549C441FBE514C008CDFCE /* NewPlan.Entry.RunTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE64D1571FBD0C3700ABA133 /* NewPlan.Entry.RunTests.swift */; };
-		FE549C461FBE60F3008CDFCE /* Array+ContentComparisonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE549C451FBE60F3008CDFCE /* Array+ContentComparisonTests.swift */; };
 		FE5869D71F7478D600BE5C5C /* CustomFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5869D61F7478D600BE5C5C /* CustomFields.swift */; };
 		FE58F5481F7EBF04009A1B4E /* AssertProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE58F5471F7EBF04009A1B4E /* AssertProperties.swift */; };
 		FE58F54A1F7EBF12009A1B4E /* AssertCustomFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE58F5491F7EBF12009A1B4E /* AssertCustomFields.swift */; };
@@ -120,7 +118,6 @@
 		FE75B2E01F83078A00DF367A /* CustomFieldsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE22458B1F75BECC009F2B2B /* CustomFieldsContainerTests.swift */; };
 		FE77BB761FA9132800E23865 /* NewRunTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3795C31FA799D10030C395 /* NewRunTests.swift */; };
 		FE791A251F7D9FFA00D7E870 /* Project.SuiteModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE791A241F7D9FFA00D7E870 /* Project.SuiteModeTests.swift */; };
-		FE7B53931FBF5BB1003C26BD /* Array+ContentComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7B53921FBF5BB1003C26BD /* Array+ContentComparison.swift */; };
 		FE7CD3E41F9ABDC300C6108E /* NewPlan.Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7CD3E31F9ABDC300C6108E /* NewPlan.Entry.swift */; };
 		FE813A181F73126F00265569 /* JSONDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE813A171F73126F00265569 /* JSONDictionary.swift */; };
 		FE8C2D5A1FBA391F005A4150 /* Date+Seconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C2D591FBA391F005A4150 /* Date+Seconds.swift */; };
@@ -167,16 +164,9 @@
 		FEAE99B31FEC42EC00B52CA9 /* MultipleMatchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDFF2761FE1B0A000AEB3D6 /* MultipleMatchError.swift */; };
 		FEAE99B41FEC42ED00B52CA9 /* MultipleMatchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDFF2761FE1B0A000AEB3D6 /* MultipleMatchError.swift */; };
 		FEAE99B61FEC42EE00B52CA9 /* MultipleMatchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDFF2761FE1B0A000AEB3D6 /* MultipleMatchError.swift */; };
-		FEAE99B71FEC42F100B52CA9 /* Array+ContentComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7B53921FBF5BB1003C26BD /* Array+ContentComparison.swift */; };
-		FEAE99B81FEC42F200B52CA9 /* Array+ContentComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7B53921FBF5BB1003C26BD /* Array+ContentComparison.swift */; };
-		FEAE99BA1FEC42F300B52CA9 /* Array+ContentComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7B53921FBF5BB1003C26BD /* Array+ContentComparison.swift */; };
 		FEAE99BB1FEC42F500B52CA9 /* Date+Seconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C2D591FBA391F005A4150 /* Date+Seconds.swift */; };
 		FEAE99BC1FEC42F600B52CA9 /* Date+Seconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C2D591FBA391F005A4150 /* Date+Seconds.swift */; };
 		FEAE99BD1FEC42F700B52CA9 /* Date+Seconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C2D591FBA391F005A4150 /* Date+Seconds.swift */; };
-		FEAE99BE1FEC42FA00B52CA9 /* Equatable+OptionalArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E774A1F85923F00EF5E54 /* Equatable+OptionalArray.swift */; };
-		FEAE99BF1FEC42FA00B52CA9 /* Equatable+OptionalArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E774A1F85923F00EF5E54 /* Equatable+OptionalArray.swift */; };
-		FEAE99C01FEC42FB00B52CA9 /* Equatable+OptionalArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E774A1F85923F00EF5E54 /* Equatable+OptionalArray.swift */; };
-		FEAE99C11FEC42FC00B52CA9 /* Equatable+OptionalArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E774A1F85923F00EF5E54 /* Equatable+OptionalArray.swift */; };
 		FEAE99C21FEC42FE00B52CA9 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE20D03E1FD876820057A45C /* Identifiable.swift */; };
 		FEAE99C31FEC42FF00B52CA9 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE20D03E1FD876820057A45C /* Identifiable.swift */; };
 		FEAE99C41FEC430000B52CA9 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE20D03E1FD876820057A45C /* Identifiable.swift */; };
@@ -449,12 +439,8 @@
 		FEAE9AD01FEC500200B52CA9 /* CustomFieldsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE22458B1F75BECC009F2B2B /* CustomFieldsContainerTests.swift */; };
 		FEAE9AD11FEC500200B52CA9 /* ErrorContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2140A1FD7533000036B17 /* ErrorContainerTests.swift */; };
 		FEAE9AD21FEC500200B52CA9 /* JSONDictionaryContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51EFA11F882454007012E0 /* JSONDictionaryContainerTests.swift */; };
-		FEAE9AD31FEC500600B52CA9 /* Array+ContentComparisonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE549C451FBE60F3008CDFCE /* Array+ContentComparisonTests.swift */; };
 		FEAE9AD41FEC500600B52CA9 /* Array+RandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE7FE1FD9E1AE00968EA3 /* Array+RandomTests.swift */; };
-		FEAE9AD51FEC500600B52CA9 /* Equatable+OptionalArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1474D51FAA475A0049DA84 /* Equatable+OptionalArrayTests.swift */; };
-		FEAE9AD61FEC500700B52CA9 /* Array+ContentComparisonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE549C451FBE60F3008CDFCE /* Array+ContentComparisonTests.swift */; };
 		FEAE9AD71FEC500700B52CA9 /* Array+RandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE7FE1FD9E1AE00968EA3 /* Array+RandomTests.swift */; };
-		FEAE9AD81FEC500700B52CA9 /* Equatable+OptionalArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1474D51FAA475A0049DA84 /* Equatable+OptionalArrayTests.swift */; };
 		FEAE9AD91FEC500900B52CA9 /* AsyncOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2140D1FD7537800036B17 /* AsyncOperationTests.swift */; };
 		FEAE9ADA1FEC500A00B52CA9 /* AsyncOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2140D1FD7537800036B17 /* AsyncOperationTests.swift */; };
 		FEAE9ADB1FEC500D00B52CA9 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE018DC61F85708C001A2FEF /* ModelTests.swift */; };
@@ -619,7 +605,6 @@
 		FE09FFB31FE320CA0009FB2F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		FE09FFCF1FE325CE0009FB2F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FE11181B1F6C3A4B00D24A5F /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		FE1474D51FAA475A0049DA84 /* Equatable+OptionalArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Equatable+OptionalArrayTests.swift"; sourceTree = "<group>"; };
 		FE1474D91FAA698F0049DA84 /* ObjectAPI.RequestErrorDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAPI.RequestErrorDebug.swift; sourceTree = "<group>"; };
 		FE1474DB1FAA69AA0049DA84 /* ObjectAPI.DataRequestErrorDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAPI.DataRequestErrorDebug.swift; sourceTree = "<group>"; };
 		FE1474DD1FAA69B70049DA84 /* ObjectAPI.UpdateRequestErrorDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAPI.UpdateRequestErrorDebug.swift; sourceTree = "<group>"; };
@@ -666,7 +651,6 @@
 		FE2877EF1FBB9A80004503FB /* ValidatableObjectProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableObjectProvider.swift; sourceTree = "<group>"; };
 		FE2877F91FBBC47B004503FB /* FilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTests.swift; sourceTree = "<group>"; };
 		FE2D018A1FBCE70B00473B84 /* NewPlan.Entry.Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlan.Entry.Run.swift; sourceTree = "<group>"; };
-		FE2E774A1F85923F00EF5E54 /* Equatable+OptionalArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Equatable+OptionalArray.swift"; sourceTree = "<group>"; };
 		FE2F1AD61F844FCD00FF9E0C /* JSONSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		FE30A6521F7C261400CE7D6B /* Plan.EntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.EntryTests.swift; sourceTree = "<group>"; };
 		FE331C1B1F6B406300F9A653 /* CustomFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFieldType.swift; sourceTree = "<group>"; };
@@ -703,7 +687,6 @@
 		FE4F8F3A1F8437DE00447F9E /* JSONDeserializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDeserializable.swift; sourceTree = "<group>"; };
 		FE51EFA11F882454007012E0 /* JSONDictionaryContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDictionaryContainerTests.swift; sourceTree = "<group>"; };
 		FE5259111F82D1AD00E0DDB7 /* JSONKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONKey.swift; sourceTree = "<group>"; };
-		FE549C451FBE60F3008CDFCE /* Array+ContentComparisonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ContentComparisonTests.swift"; sourceTree = "<group>"; };
 		FE5869D61F7478D600BE5C5C /* CustomFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFields.swift; sourceTree = "<group>"; };
 		FE58F5471F7EBF04009A1B4E /* AssertProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssertProperties.swift; sourceTree = "<group>"; };
 		FE58F5491F7EBF12009A1B4E /* AssertCustomFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssertCustomFields.swift; sourceTree = "<group>"; };
@@ -738,7 +721,6 @@
 		FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAPITests.swift; sourceTree = "<group>"; };
 		FE6C8AE11F8BEA2E00F45642 /* MutableCustomFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCustomFields.swift; sourceTree = "<group>"; };
 		FE791A241F7D9FFA00D7E870 /* Project.SuiteModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.SuiteModeTests.swift; sourceTree = "<group>"; };
-		FE7B53921FBF5BB1003C26BD /* Array+ContentComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+ContentComparison.swift"; sourceTree = "<group>"; };
 		FE7CD3E31F9ABDC300C6108E /* NewPlan.Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlan.Entry.swift; sourceTree = "<group>"; };
 		FE813A171F73126F00265569 /* JSONDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDictionary.swift; sourceTree = "<group>"; };
 		FE8464621FE307B1006CB58F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -884,9 +866,7 @@
 		FE1474D71FAA484D0049DA84 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				FE7B53921FBF5BB1003C26BD /* Array+ContentComparison.swift */,
 				FE8C2D591FBA391F005A4150 /* Date+Seconds.swift */,
-				FE2E774A1F85923F00EF5E54 /* Equatable+OptionalArray.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -894,9 +874,7 @@
 		FE1474D81FAA48900049DA84 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				FE549C451FBE60F3008CDFCE /* Array+ContentComparisonTests.swift */,
 				FECFE7FE1FD9E1AE00968EA3 /* Array+RandomTests.swift */,
-				FE1474D51FAA475A0049DA84 /* Equatable+OptionalArrayTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1815,7 +1793,6 @@
 				FE20D03F1FD876820057A45C /* Identifiable.swift in Sources */,
 				FECF66701FDF05DB00015CC4 /* GetProjectOperation.swift in Sources */,
 				FEDCBEFF1F96BF730083AD46 /* NewSuite.swift in Sources */,
-				FE7B53931FBF5BB1003C26BD /* Array+ContentComparison.swift in Sources */,
 				FEAE7F921F7C5ABE00906FE1 /* Config.Context.swift in Sources */,
 				FED295471FA10E9300746DAB /* Status.swift in Sources */,
 				FE3899171FCF2BDE0032E265 /* GetTemplatesOperation.swift in Sources */,
@@ -1849,7 +1826,6 @@
 				FE6989211FA39B99006CC783 /* UpdatePlanEntryRuns.swift in Sources */,
 				FE23A96B1F59F4C3007E946D /* Section.swift in Sources */,
 				FE978CED1F9532BA0005D181 /* URLRequestDebug.swift in Sources */,
-				FEAE99C01FEC42FB00B52CA9 /* Equatable+OptionalArray.swift in Sources */,
 				FE331C1A1F6B3C0200F9A653 /* Case.swift in Sources */,
 				FEB546881F9170A900AA6DA5 /* Outcome.swift in Sources */,
 				FE208DEB1FBB69B80065BE88 /* NewTestResults.Result.swift in Sources */,
@@ -1886,7 +1862,6 @@
 				FECFE7FF1FD9E1AE00968EA3 /* Array+RandomTests.swift in Sources */,
 				FE3795B21FA799270030C395 /* NewConfigurationTests.swift in Sources */,
 				FE3795AA1FA7915C0030C395 /* AssertUpdateRequestJSON.swift in Sources */,
-				FE1474D61FAA475A0049DA84 /* Equatable+OptionalArrayTests.swift in Sources */,
 				FE3795C21FA799B70030C395 /* NewTestResults.ResultTests.swift in Sources */,
 				FE3795E41FA7E1770030C395 /* NewCaseTests.swift in Sources */,
 				FEF172631F857F53004FFFFF /* AssertJSONSerializing.swift in Sources */,
@@ -1901,6 +1876,7 @@
 				FE549C431FBE514A008CDFCE /* NewPlan.EntryTests.swift in Sources */,
 				FE3795D61FA7C7B60030C395 /* JSONSerializingTests.swift in Sources */,
 				FE6A6D271F75908100DF1039 /* CaseTests.swift in Sources */,
+				FE246D79206D9A310003E6C0 /* ObjectAPITests.swift in Sources */,
 				FE5A24F41FE099BD00198848 /* Array+Random.swift in Sources */,
 				FEC2140E1FD7537800036B17 /* AsyncOperationTests.swift in Sources */,
 				FE2877FA1FBBC47B004503FB /* FilterTests.swift in Sources */,
@@ -1927,7 +1903,6 @@
 				FE3795BE1FA7999C0030C395 /* NewResultTests.swift in Sources */,
 				FE549C421FBE5147008CDFCE /* NewPlanTests.swift in Sources */,
 				FE6A6D371F7590E500DF1039 /* ResultTests.swift in Sources */,
-				FE549C461FBE60F3008CDFCE /* Array+ContentComparisonTests.swift in Sources */,
 				FE77BB761FA9132800E23865 /* NewRunTests.swift in Sources */,
 				FE58F5481F7EBF04009A1B4E /* AssertProperties.swift in Sources */,
 				FE3795D81FA7C7D00030C395 /* JSONTwoWaySerializationTests.swift in Sources */,
@@ -1937,7 +1912,6 @@
 				FE6A6D3F1F75910E00DF1039 /* TemplateTests.swift in Sources */,
 				FEF172661F858880004FFFFF /* AssertJSONTwoWaySerialization.swift in Sources */,
 				FE496B5F1F7D9BCF00AE9454 /* ResultFieldTests.swift in Sources */,
-				FE0B15471FED689F0009B570 /* ObjectAPITests.swift in Sources */,
 				FE3795C81FA799F50030C395 /* NewSuiteTests.swift in Sources */,
 				FE2877F41FBBBC50004503FB /* NewCaseResultsTests.swift in Sources */,
 				FECF66761FDF593600015CC4 /* UniqueSelectionTests.swift in Sources */,
@@ -1964,7 +1938,6 @@
 				FEAE9A5A1FEC4F1400B52CA9 /* NewMilestone.swift in Sources */,
 				FEAE9A151FEC4EFA00B52CA9 /* ResultField.swift in Sources */,
 				FEAE9A871FEC4F1800B52CA9 /* UpdatePlanEntryRuns.swift in Sources */,
-				FEAE99BA1FEC42F300B52CA9 /* Array+ContentComparison.swift in Sources */,
 				FEAE99D71FEC431900B52CA9 /* UpdateRequestJSONKeys.swift in Sources */,
 				FEAE9A3B1FEC4F0A00B52CA9 /* ObjectAPI.UpdateRequestErrorDebug.swift in Sources */,
 				FEAE9A8B1FEC4F1D00B52CA9 /* GetProjectOperation.swift in Sources */,
@@ -2007,7 +1980,6 @@
 				FEAE9A5E1FEC4F1400B52CA9 /* NewProject.swift in Sources */,
 				FEAE9A601FEC4F1400B52CA9 /* NewCaseResults.swift in Sources */,
 				FEAE9A181FEC4EFF00B52CA9 /* Run.swift in Sources */,
-				FEAE99BE1FEC42FA00B52CA9 /* Equatable+OptionalArray.swift in Sources */,
 				FEAE99CE1FEC430E00B52CA9 /* JSONSerializable.swift in Sources */,
 				FEAE99EA1FEC433100B52CA9 /* Project.SuiteMode.swift in Sources */,
 				FEAE99C51FEC430200B52CA9 /* JSONKey.swift in Sources */,
@@ -2056,7 +2028,6 @@
 				FEAE9A6A1FEC4F1500B52CA9 /* NewMilestone.swift in Sources */,
 				FEAE9A161FEC4EFB00B52CA9 /* ResultField.swift in Sources */,
 				FEAE9A881FEC4F1900B52CA9 /* UpdatePlanEntryRuns.swift in Sources */,
-				FEAE99B81FEC42F200B52CA9 /* Array+ContentComparison.swift in Sources */,
 				FEAE99D81FEC431900B52CA9 /* UpdateRequestJSONKeys.swift in Sources */,
 				FEAE9A451FEC4F0B00B52CA9 /* ObjectAPI.UpdateRequestErrorDebug.swift in Sources */,
 				FEAE9A901FEC4F1E00B52CA9 /* GetProjectOperation.swift in Sources */,
@@ -2099,7 +2070,6 @@
 				FEAE9A6E1FEC4F1500B52CA9 /* NewProject.swift in Sources */,
 				FEAE9A701FEC4F1500B52CA9 /* NewCaseResults.swift in Sources */,
 				FEAE9A1F1FEC4F0000B52CA9 /* Run.swift in Sources */,
-				FEAE99BF1FEC42FA00B52CA9 /* Equatable+OptionalArray.swift in Sources */,
 				FEAE99CF1FEC430F00B52CA9 /* JSONSerializable.swift in Sources */,
 				FEAE99EB1FEC433200B52CA9 /* Project.SuiteMode.swift in Sources */,
 				FEAE99C61FEC430300B52CA9 /* JSONKey.swift in Sources */,
@@ -2140,7 +2110,6 @@
 				FEAE9B161FEC501F00B52CA9 /* NewMilestoneTests.swift in Sources */,
 				FEAE9ADA1FEC500A00B52CA9 /* AsyncOperationTests.swift in Sources */,
 				FEAE9B151FEC501F00B52CA9 /* NewConfigurationTests.swift in Sources */,
-				FEAE9AD31FEC500600B52CA9 /* Array+ContentComparisonTests.swift in Sources */,
 				FEAE9AB81FEC4FF900B52CA9 /* JSONDataProvider.swift in Sources */,
 				FEAE9B1D1FEC501F00B52CA9 /* NewCaseResults.ResultTests.swift in Sources */,
 				FEAE9AEB1FEC501400B52CA9 /* PlanTests.swift in Sources */,
@@ -2169,6 +2138,7 @@
 				FEAE9ACE1FEC500200B52CA9 /* ErrorContainerTests.swift in Sources */,
 				FEAE9B181FEC501F00B52CA9 /* NewPlan.EntryTests.swift in Sources */,
 				FEAE9AB01FEC4FF500B52CA9 /* AssertProperties.swift in Sources */,
+				FE246D7B206D9A320003E6C0 /* ObjectAPITests.swift in Sources */,
 				FEAE9B201FEC501F00B52CA9 /* NewRunTests.swift in Sources */,
 				FEAE9B131FEC501F00B52CA9 /* NewCaseTests.swift in Sources */,
 				FEAE9ABD1FEC4FFE00B52CA9 /* InitTests.swift in Sources */,
@@ -2198,14 +2168,12 @@
 				FEAE9AF31FEC501400B52CA9 /* StatusTests.swift in Sources */,
 				FEAE9AE91FEC501400B52CA9 /* ConfigurationGroupTests.swift in Sources */,
 				FEAE9B171FEC501F00B52CA9 /* NewPlanTests.swift in Sources */,
-				FEAE9AD51FEC500600B52CA9 /* Equatable+OptionalArrayTests.swift in Sources */,
 				FEAE9AE81FEC501400B52CA9 /* ConfigurationTests.swift in Sources */,
 				FEAE9ACD1FEC500200B52CA9 /* CustomFieldsContainerTests.swift in Sources */,
 				FEAE9AC31FEC4FFE00B52CA9 /* VariablePropertyTests.swift in Sources */,
 				FEAE9B351FEC502300B52CA9 /* UpdatePlanEntryRunsTests.swift in Sources */,
 				FEAE9AF41FEC501400B52CA9 /* SuiteTests.swift in Sources */,
 				FEAE9AAB1FEC4FF500B52CA9 /* AssertCustomFields.swift in Sources */,
-				FE0B15491FED68A00009B570 /* ObjectAPITests.swift in Sources */,
 				FEAE9AF71FEC501400B52CA9 /* UserTests.swift in Sources */,
 				FEAE9AF51FEC501400B52CA9 /* TemplateTests.swift in Sources */,
 				FEAE9AB91FEC4FF900B52CA9 /* ObjectProvider.swift in Sources */,
@@ -2232,7 +2200,6 @@
 				FEAE9A7A1FEC4F1500B52CA9 /* NewMilestone.swift in Sources */,
 				FEAE9A171FEC4EFB00B52CA9 /* ResultField.swift in Sources */,
 				FEAE9A891FEC4F1A00B52CA9 /* UpdatePlanEntryRuns.swift in Sources */,
-				FEAE99B71FEC42F100B52CA9 /* Array+ContentComparison.swift in Sources */,
 				FEAE99DA1FEC431B00B52CA9 /* UpdateRequestJSONKeys.swift in Sources */,
 				FEAE9A4F1FEC4F0B00B52CA9 /* ObjectAPI.UpdateRequestErrorDebug.swift in Sources */,
 				FEAE9A951FEC4F1E00B52CA9 /* GetProjectOperation.swift in Sources */,
@@ -2275,7 +2242,6 @@
 				FEAE9A7E1FEC4F1500B52CA9 /* NewProject.swift in Sources */,
 				FEAE9A801FEC4F1500B52CA9 /* NewCaseResults.swift in Sources */,
 				FEAE9A261FEC4F0000B52CA9 /* Run.swift in Sources */,
-				FEAE99C11FEC42FC00B52CA9 /* Equatable+OptionalArray.swift in Sources */,
 				FEAE99D01FEC430F00B52CA9 /* JSONSerializable.swift in Sources */,
 				FEAE99EC1FEC433200B52CA9 /* Project.SuiteMode.swift in Sources */,
 				FEAE99C71FEC430300B52CA9 /* JSONKey.swift in Sources */,
@@ -2316,7 +2282,6 @@
 				FEAE9B261FEC502000B52CA9 /* NewMilestoneTests.swift in Sources */,
 				FEAE9AD91FEC500900B52CA9 /* AsyncOperationTests.swift in Sources */,
 				FEAE9B251FEC502000B52CA9 /* NewConfigurationTests.swift in Sources */,
-				FEAE9AD61FEC500700B52CA9 /* Array+ContentComparisonTests.swift in Sources */,
 				FEAE9AB41FEC4FF800B52CA9 /* JSONDataProvider.swift in Sources */,
 				FEAE9B2D1FEC502000B52CA9 /* NewCaseResults.ResultTests.swift in Sources */,
 				FEAE9B001FEC501400B52CA9 /* PlanTests.swift in Sources */,
@@ -2345,6 +2310,7 @@
 				FEAE9AD11FEC500200B52CA9 /* ErrorContainerTests.swift in Sources */,
 				FEAE9B281FEC502000B52CA9 /* NewPlan.EntryTests.swift in Sources */,
 				FEAE9AA71FEC4FF500B52CA9 /* AssertProperties.swift in Sources */,
+				FE246D7A206D9A310003E6C0 /* ObjectAPITests.swift in Sources */,
 				FEAE9B301FEC502000B52CA9 /* NewRunTests.swift in Sources */,
 				FEAE9B231FEC502000B52CA9 /* NewCaseTests.swift in Sources */,
 				FEAE9AC61FEC4FFF00B52CA9 /* InitTests.swift in Sources */,
@@ -2374,14 +2340,12 @@
 				FEAE9B081FEC501400B52CA9 /* StatusTests.swift in Sources */,
 				FEAE9AFE1FEC501400B52CA9 /* ConfigurationGroupTests.swift in Sources */,
 				FEAE9B271FEC502000B52CA9 /* NewPlanTests.swift in Sources */,
-				FEAE9AD81FEC500700B52CA9 /* Equatable+OptionalArrayTests.swift in Sources */,
 				FEAE9AFD1FEC501400B52CA9 /* ConfigurationTests.swift in Sources */,
 				FEAE9AD01FEC500200B52CA9 /* CustomFieldsContainerTests.swift in Sources */,
 				FEAE9ACC1FEC4FFF00B52CA9 /* VariablePropertyTests.swift in Sources */,
 				FEAE9B331FEC502300B52CA9 /* UpdatePlanEntryRunsTests.swift in Sources */,
 				FEAE9B091FEC501400B52CA9 /* SuiteTests.swift in Sources */,
 				FEAE9AA21FEC4FF500B52CA9 /* AssertCustomFields.swift in Sources */,
-				FE0B15481FED68A00009B570 /* ObjectAPITests.swift in Sources */,
 				FEAE9B0C1FEC501400B52CA9 /* UserTests.swift in Sources */,
 				FEAE9B0A1FEC501400B52CA9 /* TemplateTests.swift in Sources */,
 				FEAE9AB51FEC4FF800B52CA9 /* ObjectProvider.swift in Sources */,

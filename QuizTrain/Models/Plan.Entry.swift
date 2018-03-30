@@ -1,6 +1,6 @@
 extension Plan {
 
-    public struct Entry: Identifiable {
+    public struct Entry: Identifiable, Equatable {
         public typealias Id = String
         public let id: Id
         public var name: String
@@ -16,19 +16,6 @@ extension Plan.Entry {
 
     public func suite(_ objectAPI: ObjectAPI, completionHandler: @escaping (Outcome<Suite, ObjectAPI.GetError>) -> Void) {
         objectAPI.suite(self, completionHandler: completionHandler)
-    }
-
-}
-
-// MARK: - Equatable
-
-extension Plan.Entry: Equatable {
-
-    public static func==(lhs: Plan.Entry, rhs: Plan.Entry) -> Bool {
-        return (lhs.id == rhs.id &&
-            lhs.name == rhs.name &&
-            lhs.runs.contentsAreEqual(to: rhs.runs) &&
-            lhs.suiteId == rhs.suiteId)
     }
 
 }

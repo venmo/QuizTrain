@@ -1,22 +1,12 @@
 /*
  Use to bulk-add multiple results associated with Tests.
  */
-public struct NewTestResults {
+public struct NewTestResults: Equatable {
 
     public var results: [NewTestResults.Result]
 
     public init(results: [NewTestResults.Result]) {
         self.results = results
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewTestResults: Equatable {
-
-    public static func==(lhs: NewTestResults, rhs: NewTestResults) -> Bool {
-        return (lhs.results.contentsAreEqual(to: rhs.results))
     }
 
 }

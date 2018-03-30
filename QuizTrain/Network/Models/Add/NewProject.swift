@@ -1,4 +1,4 @@
-public struct NewProject {
+public struct NewProject: Equatable {
 
     public var announcement: String?
     public var name: String
@@ -10,19 +10,6 @@ public struct NewProject {
         self.name = name
         self.showAnnouncement = showAnnouncement
         self.suiteMode = suiteMode
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewProject: Equatable {
-
-    public static func==(lhs: NewProject, rhs: NewProject) -> Bool {
-        return (lhs.announcement == rhs.announcement &&
-            lhs.name == rhs.name &&
-            lhs.showAnnouncement == rhs.showAnnouncement &&
-            lhs.suiteMode == rhs.suiteMode)
     }
 
 }

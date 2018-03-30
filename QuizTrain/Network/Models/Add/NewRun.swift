@@ -1,4 +1,4 @@
-public struct NewRun {
+public struct NewRun: Equatable {
 
     public var assignedtoId: User.Id?
     public var caseIds: [Case.Id]?
@@ -16,22 +16,6 @@ public struct NewRun {
         self.milestoneId = milestoneId
         self.name = name
         self.suiteId = suiteId
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewRun: Equatable {
-
-    public static func==(lhs: NewRun, rhs: NewRun) -> Bool {
-        return (lhs.assignedtoId == rhs.assignedtoId &&
-            lhs.caseIds?.sorted() == rhs.caseIds?.sorted() &&
-            lhs.description == rhs.description &&
-            lhs.includeAll == rhs.includeAll &&
-            lhs.milestoneId == rhs.milestoneId &&
-            lhs.name == rhs.name &&
-            lhs.suiteId == rhs.suiteId)
     }
 
 }

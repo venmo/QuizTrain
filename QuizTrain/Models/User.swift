@@ -1,22 +1,9 @@
-public struct User: Identifiable {
+public struct User: Identifiable, Equatable {
     public typealias Id = Int
     public let email: String
     public let id: Id
     public let isActive: Bool
     public let name: String
-}
-
-// MARK: - Equatable
-
-extension User: Equatable {
-
-    public static func==(lhs: User, rhs: User) -> Bool {
-        return (lhs.email == rhs.email &&
-            lhs.id == rhs.id &&
-            lhs.isActive == rhs.isActive &&
-            lhs.name == rhs.name)
-    }
-
 }
 
 // MARK: - JSON Keys

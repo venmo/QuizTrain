@@ -1,4 +1,4 @@
-public struct NewPlan {
+public struct NewPlan: Equatable {
 
     public var description: String?
     public var entries: [NewPlan.Entry]?
@@ -10,19 +10,6 @@ public struct NewPlan {
         self.entries = entries
         self.milestoneId = milestoneId
         self.name = name
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewPlan: Equatable {
-
-    public static func==(lhs: NewPlan, rhs: NewPlan) -> Bool {
-        return (lhs.description == rhs.description &&
-            Array.contentsAreEqual(lhs.entries, rhs.entries) &&
-            lhs.milestoneId == rhs.milestoneId &&
-            lhs.name == rhs.name)
     }
 
 }

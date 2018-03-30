@@ -1,4 +1,4 @@
-public struct NewSuite {
+public struct NewSuite: Equatable {
 
     public var description: String?
     public var name: String
@@ -6,17 +6,6 @@ public struct NewSuite {
     public init(description: String? = nil, name: String) {
         self.description = description
         self.name = name
-    }
-
-}
-
-// MARK: - Equatable
-
-extension NewSuite: Equatable {
-
-    public static func==(lhs: NewSuite, rhs: NewSuite) -> Bool {
-        return (lhs.description == rhs.description &&
-            lhs.name == rhs.name)
     }
 
 }
