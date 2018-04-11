@@ -1,0 +1,3 @@
+[submodule "Carthage/Checkouts/QuizTrain"]
+	path = Example/Carthage/Checkouts/QuizTrain
+	url = ssh://git@github.com/venmo/QuizTrain.git

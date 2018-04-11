@@ -26,7 +26,7 @@ Alternatively you can use `API` directly if you would rather work with basic Swi
 
 ## Examples
 
-Below shows a limited number of examples. For all examples see [ObjectAPITests.swift](QuizTrainTests/Network/ObjectAPITests.swift).
+Below shows a limited number of examples. For all examples see [ObjectAPITests.swift](QuizTrainTests/Network/ObjectAPITests.swift). There is also an [example project](Example/) in this repository.
 
 #### Get all Cases in a Project
 
