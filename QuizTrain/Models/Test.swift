@@ -14,6 +14,9 @@ public struct Test: CustomFields, Identifiable, Equatable {
     public let title: String
     public let typeId: CaseType.Id
     let customFieldsContainer: CustomFieldsContainer
+    public var customFields: JSONDictionary {
+        return self.customFieldsContainer.customFields
+    }
 }
 
 // MARK: - Foward Relationships (ObjectAPI)

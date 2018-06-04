@@ -12,6 +12,10 @@ extension NewTestResults {
         public var testId: Test.Id
         public var version: String?
         var customFieldsContainer = CustomFieldsContainer.empty()
+        public var customFields: JSONDictionary {
+            get { return self.customFieldsContainer.customFields }
+            set { customFieldsContainer.customFields = newValue }
+        }
 
         // MARK: Init
 
