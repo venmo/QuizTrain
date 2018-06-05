@@ -10,6 +10,10 @@ public struct NewCase: MutableCustomFields, Equatable {
     public var title: String
     public var typeId: CaseType.Id?
     var customFieldsContainer = CustomFieldsContainer.empty()
+    public var customFields: JSONDictionary {
+        get { return self.customFieldsContainer.customFields }
+        set { customFieldsContainer.customFields = newValue }
+    }
 
     // MARK: Init
 

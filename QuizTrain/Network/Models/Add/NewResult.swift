@@ -12,6 +12,10 @@ public struct NewResult: MutableCustomFields, Equatable {
     public var statusId: Status.Id?
     public var version: String?
     var customFieldsContainer = CustomFieldsContainer.empty()
+    public var customFields: JSONDictionary {
+        get { return self.customFieldsContainer.customFields }
+        set { customFieldsContainer.customFields = newValue }
+    }
 
     // MARK: Init
 

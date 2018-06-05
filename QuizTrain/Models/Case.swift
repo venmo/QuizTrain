@@ -16,6 +16,10 @@ public struct Case: Identifiable, MutableCustomFields, Equatable {
     public let updatedBy: User.Id
     public let updatedOn: Date
     var customFieldsContainer: CustomFieldsContainer
+    public var customFields: JSONDictionary {
+        get { return self.customFieldsContainer.customFields }
+        set { customFieldsContainer.customFields = newValue }
+    }
 }
 
 // MARK: - Foward Relationships (ObjectAPI)
