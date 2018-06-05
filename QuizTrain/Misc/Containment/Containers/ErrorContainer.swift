@@ -19,17 +19,17 @@ public struct ErrorContainer <ErrorType: Error>: Error {
 
 }
 
-extension ErrorContainer: DebugDescription {
+extension ErrorContainer: CustomDebugStringConvertible {
 
-    var debugDescription: String {
+    public var debugDescription: String {
         return "\(errors)"
     }
 
 }
 
-extension ErrorContainer where ErrorType: DebugDescription {
+extension ErrorContainer where ErrorType: CustomDebugStringConvertible {
 
-    var debugDescription: String {
+    public var debugDescription: String {
         var description = ""
         for error in errors {
             if description.count == 0 {

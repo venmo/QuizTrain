@@ -1,4 +1,4 @@
-extension ObjectAPI.DataProcessingError: DebugDescription {
+extension ObjectAPI.DataProcessingError: CustomDebugStringConvertible {
 
     public var debugDescription: String {
         var description = "ObjectAPI.DataProcessingError"

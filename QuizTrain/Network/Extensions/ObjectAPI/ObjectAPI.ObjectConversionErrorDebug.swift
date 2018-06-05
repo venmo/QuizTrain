@@ -1,4 +1,4 @@
-extension ObjectAPI.ObjectConversionError: DebugDescription {
+extension ObjectAPI.ObjectConversionError: CustomDebugStringConvertible {
 
     public var debugDescription: String {
         var description = "ObjectAPI.ObjectConversionError"

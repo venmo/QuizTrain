@@ -11,13 +11,13 @@ class ErrorContainerTests: XCTestCase {
         case errorCaseC
     }
 
-    enum TestErrorDebugDescription: String, Error, DebugDescription {
+    enum TestErrorCustomDebugStringConvertible: String, Error, CustomDebugStringConvertible {
 
         case errorCaseA
         case errorCaseB
         case errorCaseC
 
-        var debugDescription: String {
+        public var debugDescription: String {
             return self.rawValue
         }
     }
@@ -54,7 +54,7 @@ class ErrorContainerTests: XCTestCase {
         XCTAssertNil(container)
     }
 
-    func testDebugDescription() {
+    func testCustomDebugStringConvertible() {
 
         // Simple Errors
 
@@ -66,17 +66,17 @@ class ErrorContainerTests: XCTestCase {
 
         XCTAssertGreaterThan(containerA.debugDescription.count, 0)
 
-        // Errors conforming to DebugDescription
+        // Errors conforming to CustomDebugStringConvertible
 
-        let debugDescriptionErrors = [TestErrorDebugDescription.errorCaseC, TestErrorDebugDescription.errorCaseB]
-        guard let containerB = ErrorContainer(debugDescriptionErrors) else {
+        let customDebugStringConvertibleErrors = [TestErrorCustomDebugStringConvertible.errorCaseC, TestErrorCustomDebugStringConvertible.errorCaseB]
+        guard let containerB = ErrorContainer(customDebugStringConvertibleErrors) else {
             XCTFail("Container cannot be nil.")
             return
         }
 
         XCTAssertGreaterThan(containerB.debugDescription.count, 0)
 
-        for debugDescriptionError in debugDescriptionErrors {
+        for debugDescriptionError in customDebugStringConvertibleErrors {
             XCTAssertNotNil(containerB.debugDescription.range(of: debugDescriptionError.rawValue))
         }
     }

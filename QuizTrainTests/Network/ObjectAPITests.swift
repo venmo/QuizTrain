@@ -2277,7 +2277,7 @@ extension ObjectAPITests {
 
     // MARK: Outcome
 
-    func assertOutcomeSucceeded<ObjectType, ErrorType: DebugDescription>(_ outcome: Outcome<ObjectType, ErrorType>) -> ObjectType? {
+    func assertOutcomeSucceeded<ObjectType, ErrorType: CustomDebugStringConvertible>(_ outcome: Outcome<ObjectType, ErrorType>) -> ObjectType? {
         let object: ObjectType?
         switch outcome {
         case .failed(let error):
@@ -2289,7 +2289,7 @@ extension ObjectAPITests {
         return object
     }
 
-    func assertOutcomeSucceeded<ObjectType, ErrorType: DebugDescription>(_ outcome: Outcome<ObjectType?, ErrorType>) -> ObjectType? {
+    func assertOutcomeSucceeded<ObjectType, ErrorType: CustomDebugStringConvertible>(_ outcome: Outcome<ObjectType?, ErrorType>) -> ObjectType? {
         let object: ObjectType?
         switch outcome {
         case .failed(let error):
