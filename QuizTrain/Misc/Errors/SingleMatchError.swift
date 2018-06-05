@@ -2,9 +2,9 @@ public enum SingleMatchError<QueryType>: Error {
     case noMatchFound(missing: QueryType)
 }
 
-extension SingleMatchError: DebugDescription {
+extension SingleMatchError: CustomDebugStringConvertible {
 
-    var debugDescription: String {
+    public var debugDescription: String {
         var description = "ObjectAPI.SingleMatchError"
         switch self {
         case .noMatchFound:
@@ -17,7 +17,7 @@ extension SingleMatchError: DebugDescription {
 
 extension SingleMatchError: DebugDetails {
 
-    var debugDetails: String {
+    public var debugDetails: String {
         let details: String
         switch self {
         case .noMatchFound:

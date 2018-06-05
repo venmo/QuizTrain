@@ -157,12 +157,12 @@ Errors are defined here:
 You can handle errors two ways:
 
 1. Simply by using `error.debugDescription` to print a rich description of an error.
-    - *Provided by errors conforming to `DebugDescription`.*
+    - *Provided by errors conforming to `CustomDebugStringConvertible`.*
 2. Advanced by `switch`'ing on an error.
 
 Simple is best for debugging and logging. Advanced is best for everything else.
 
-All API and ObjectAPI errors conform to [`DebugDescription`](QuizTrain/Misc/Debug/DebugDescription.swift). If these errors print a `URLRequest` through this protocol then its `AUTHORIZATION` header will be stripped to avoid exposing your TestRail credentials.
+All API and ObjectAPI errors conform to [`CustomDebugStringConvertible`](https://developer.apple.com/documentation/swift/customdebugstringconvertible). If these errors print a `URLRequest` through this protocol then its `AUTHORIZATION` header will be stripped to avoid exposing your TestRail credentials.
 
 ### Example
 

@@ -1,4 +1,4 @@
-extension API.RequestError: DebugDescription {
+extension API.RequestError: CustomDebugStringConvertible {
 
     public var debugDescription: String {
 

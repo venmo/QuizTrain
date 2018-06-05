@@ -1,6 +1,6 @@
-extension ObjectAPI.MatchError: DebugDescription {
+extension ObjectAPI.MatchError: CustomDebugStringConvertible {
 
-    var debugDescription: String {
+    public var debugDescription: String {
         var description = "ObjectAPI.MatchError"
         switch self {
         case .matchError(_):
@@ -13,9 +13,9 @@ extension ObjectAPI.MatchError: DebugDescription {
 
 }
 
-extension ObjectAPI.MatchError where MatchErrorType: DebugDescription, OtherErrorType: DebugDescription {
+extension ObjectAPI.MatchError where MatchErrorType: CustomDebugStringConvertible, OtherErrorType: CustomDebugStringConvertible {
 
-    var debugDescription: String {
+    public var debugDescription: String {
         var description = "ObjectAPI.MatchError"
         switch self {
         case .matchError(let error):
@@ -30,7 +30,7 @@ extension ObjectAPI.MatchError where MatchErrorType: DebugDescription, OtherErro
 
 extension ObjectAPI.MatchError: DebugDetails {
 
-    var debugDetails: String {
+    public var debugDetails: String {
         let details: String
         switch self {
         case .matchError(let error):
@@ -45,7 +45,7 @@ extension ObjectAPI.MatchError: DebugDetails {
 
 extension ObjectAPI.MatchError where MatchErrorType: DebugDetails, OtherErrorType: DebugDetails {
 
-    var debugDetails: String {
+    public var debugDetails: String {
         let details: String
         switch self {
         case .matchError(let error):

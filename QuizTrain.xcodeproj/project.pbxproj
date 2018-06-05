@@ -35,9 +35,6 @@
 		FE23A96F1F59F4D9007E946D /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE23A96E1F59F4D9007E946D /* Template.swift */; };
 		FE23A9711F59F4E2007E946D /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE23A9701F59F4E2007E946D /* Test.swift */; };
 		FE23A9731F59F4EB007E946D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE23A9721F59F4EB007E946D /* User.swift */; };
-		FE246D79206D9A310003E6C0 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
-		FE246D7A206D9A310003E6C0 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
-		FE246D7B206D9A320003E6C0 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
 		FE2877EC1FBB979C004503FB /* ValidatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2877EB1FBB979C004503FB /* ValidatableTests.swift */; };
 		FE2877EE1FBB9803004503FB /* AssertValidatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2877ED1FBB9803004503FB /* AssertValidatable.swift */; };
 		FE2877F01FBB9A80004503FB /* ValidatableObjectProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2877EF1FBB9A80004503FB /* ValidatableObjectProvider.swift */; };
@@ -77,6 +74,9 @@
 		FE3795E61FA7EA6C0030C395 /* AssertAddRequestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3795E51FA7EA6C0030C395 /* AssertAddRequestJSON.swift */; };
 		FE3795E81FA7EB380030C395 /* AddRequestJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3795E71FA7EB380030C395 /* AddRequestJSONTests.swift */; };
 		FE3899171FCF2BDE0032E265 /* GetTemplatesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3899161FCF2BDE0032E265 /* GetTemplatesOperation.swift */; };
+		FE4668A120C7467A003BA033 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
+		FE4668A220C7467A003BA033 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
+		FE4668A320C7467A003BA033 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
 		FE496B5F1F7D9BCF00AE9454 /* ResultFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4A1F75914E00DF1039 /* ResultFieldTests.swift */; };
 		FE4E11D71F7C4112004A315E /* Plan.Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4E11D61F7C4112004A315E /* Plan.Entry.swift */; };
 		FE4F8F391F84361F00447F9E /* NewCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4F8F381F84361F00447F9E /* NewCase.swift */; };
@@ -152,9 +152,6 @@
 		FEAE99A51FEC42DB00B52CA9 /* JSONDictionaryContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5E1A2F1F8804E3001E479B /* JSONDictionaryContainer.swift */; };
 		FEAE99A61FEC42DB00B52CA9 /* JSONDictionaryContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5E1A2F1F8804E3001E479B /* JSONDictionaryContainer.swift */; };
 		FEAE99A71FEC42DC00B52CA9 /* JSONDictionaryContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5E1A2F1F8804E3001E479B /* JSONDictionaryContainer.swift */; };
-		FEAE99A81FEC42DE00B52CA9 /* DebugDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC214061FD741F700036B17 /* DebugDescription.swift */; };
-		FEAE99A91FEC42DF00B52CA9 /* DebugDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC214061FD741F700036B17 /* DebugDescription.swift */; };
-		FEAE99AB1FEC42E000B52CA9 /* DebugDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC214061FD741F700036B17 /* DebugDescription.swift */; };
 		FEAE99AC1FEC42E400B52CA9 /* DebugDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC214081FD7420300036B17 /* DebugDetails.swift */; };
 		FEAE99AD1FEC42E500B52CA9 /* DebugDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC214081FD7420300036B17 /* DebugDetails.swift */; };
 		FEAE99AE1FEC42E500B52CA9 /* DebugDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC214081FD7420300036B17 /* DebugDetails.swift */; };
@@ -543,7 +540,6 @@
 		FEBFEEB91FE2EAAB00E7FE1B /* TestCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFEEB81FE2EAAB00E7FE1B /* TestCredentials.swift */; };
 		FEBFEEBB1FE2EAB900E7FE1B /* TestCredentials.json in Resources */ = {isa = PBXBuildFile; fileRef = FEBFEEBA1FE2EAB900E7FE1B /* TestCredentials.json */; };
 		FEC214001FD7302900036B17 /* ObjectAPI.MatchErrorDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC213FF1FD7302900036B17 /* ObjectAPI.MatchErrorDebug.swift */; };
-		FEC214071FD741F700036B17 /* DebugDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC214061FD741F700036B17 /* DebugDescription.swift */; };
 		FEC214091FD7420300036B17 /* DebugDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC214081FD7420300036B17 /* DebugDetails.swift */; };
 		FEC2140B1FD7533000036B17 /* ErrorContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2140A1FD7533000036B17 /* ErrorContainerTests.swift */; };
 		FEC2140E1FD7537800036B17 /* AsyncOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2140D1FD7537800036B17 /* AsyncOperationTests.swift */; };
@@ -751,7 +747,6 @@
 		FEBFEEB81FE2EAAB00E7FE1B /* TestCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCredentials.swift; sourceTree = "<group>"; };
 		FEBFEEBA1FE2EAB900E7FE1B /* TestCredentials.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestCredentials.json; sourceTree = "<group>"; };
 		FEC213FF1FD7302900036B17 /* ObjectAPI.MatchErrorDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAPI.MatchErrorDebug.swift; sourceTree = "<group>"; };
-		FEC214061FD741F700036B17 /* DebugDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDescription.swift; sourceTree = "<group>"; };
 		FEC214081FD7420300036B17 /* DebugDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDetails.swift; sourceTree = "<group>"; };
 		FEC2140A1FD7533000036B17 /* ErrorContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorContainerTests.swift; sourceTree = "<group>"; };
 		FEC2140D1FD7537800036B17 /* AsyncOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperationTests.swift; sourceTree = "<group>"; };
@@ -1363,7 +1358,6 @@
 		FEC214051FD741ED00036B17 /* Debug */ = {
 			isa = PBXGroup;
 			children = (
-				FEC214061FD741F700036B17 /* DebugDescription.swift */,
 				FEC214081FD7420300036B17 /* DebugDetails.swift */,
 			);
 			path = Debug;
@@ -1769,7 +1763,6 @@
 				FE1474E51FAA6A0D0049DA84 /* ObjectAPI.ServerErrorDebug.swift in Sources */,
 				FE2245851F75AC82009F2B2B /* CustomFieldsContainer.swift in Sources */,
 				FE208DF11FBB6BA10065BE88 /* NewCaseResults.swift in Sources */,
-				FEC214071FD741F700036B17 /* DebugDescription.swift in Sources */,
 				FE63715F1FD61CA500192CED /* GetConfigurationGroupsOperation.swift in Sources */,
 				FE5869D71F7478D600BE5C5C /* CustomFields.swift in Sources */,
 				FE23A9731F59F4EB007E946D /* User.swift in Sources */,
@@ -1876,7 +1869,7 @@
 				FE549C431FBE514A008CDFCE /* NewPlan.EntryTests.swift in Sources */,
 				FE3795D61FA7C7B60030C395 /* JSONSerializingTests.swift in Sources */,
 				FE6A6D271F75908100DF1039 /* CaseTests.swift in Sources */,
-				FE246D79206D9A310003E6C0 /* ObjectAPITests.swift in Sources */,
+				FE4668A120C7467A003BA033 /* ObjectAPITests.swift in Sources */,
 				FE5A24F41FE099BD00198848 /* Array+Random.swift in Sources */,
 				FEC2140E1FD7537800036B17 /* AsyncOperationTests.swift in Sources */,
 				FE2877FA1FBBC47B004503FB /* FilterTests.swift in Sources */,
@@ -1951,7 +1944,6 @@
 				FEAE99F91FEC4EC600B52CA9 /* CaseField.swift in Sources */,
 				FEAE9A361FEC4F0A00B52CA9 /* ObjectAPI.MatchErrorDebug.swift in Sources */,
 				FEAE9A351FEC4F0A00B52CA9 /* ObjectAPI.DataRequestErrorDebug.swift in Sources */,
-				FEAE99AB1FEC42E000B52CA9 /* DebugDescription.swift in Sources */,
 				FEAE9A371FEC4F0A00B52CA9 /* ObjectAPI.ObjectConversionErrorDebug.swift in Sources */,
 				FEAE99A71FEC42DC00B52CA9 /* JSONDictionaryContainer.swift in Sources */,
 				FEAE99FC1FEC4EC900B52CA9 /* CaseType.swift in Sources */,
@@ -2041,7 +2033,6 @@
 				FEAE99F81FEC4EC500B52CA9 /* CaseField.swift in Sources */,
 				FEAE9A401FEC4F0B00B52CA9 /* ObjectAPI.MatchErrorDebug.swift in Sources */,
 				FEAE9A3F1FEC4F0B00B52CA9 /* ObjectAPI.DataRequestErrorDebug.swift in Sources */,
-				FEAE99A91FEC42DF00B52CA9 /* DebugDescription.swift in Sources */,
 				FEAE9A411FEC4F0B00B52CA9 /* ObjectAPI.ObjectConversionErrorDebug.swift in Sources */,
 				FEAE99A61FEC42DB00B52CA9 /* JSONDictionaryContainer.swift in Sources */,
 				FEAE99FB1FEC4EC800B52CA9 /* CaseType.swift in Sources */,
@@ -2138,7 +2129,7 @@
 				FEAE9ACE1FEC500200B52CA9 /* ErrorContainerTests.swift in Sources */,
 				FEAE9B181FEC501F00B52CA9 /* NewPlan.EntryTests.swift in Sources */,
 				FEAE9AB01FEC4FF500B52CA9 /* AssertProperties.swift in Sources */,
-				FE246D7B206D9A320003E6C0 /* ObjectAPITests.swift in Sources */,
+				FE4668A320C7467A003BA033 /* ObjectAPITests.swift in Sources */,
 				FEAE9B201FEC501F00B52CA9 /* NewRunTests.swift in Sources */,
 				FEAE9B131FEC501F00B52CA9 /* NewCaseTests.swift in Sources */,
 				FEAE9ABD1FEC4FFE00B52CA9 /* InitTests.swift in Sources */,
@@ -2213,7 +2204,6 @@
 				FEAE99F71FEC4EC500B52CA9 /* CaseField.swift in Sources */,
 				FEAE9A4A1FEC4F0B00B52CA9 /* ObjectAPI.MatchErrorDebug.swift in Sources */,
 				FEAE9A491FEC4F0B00B52CA9 /* ObjectAPI.DataRequestErrorDebug.swift in Sources */,
-				FEAE99A81FEC42DE00B52CA9 /* DebugDescription.swift in Sources */,
 				FEAE9A4B1FEC4F0B00B52CA9 /* ObjectAPI.ObjectConversionErrorDebug.swift in Sources */,
 				FEAE99A51FEC42DB00B52CA9 /* JSONDictionaryContainer.swift in Sources */,
 				FEAE99FA1FEC4EC800B52CA9 /* CaseType.swift in Sources */,
@@ -2310,7 +2300,7 @@
 				FEAE9AD11FEC500200B52CA9 /* ErrorContainerTests.swift in Sources */,
 				FEAE9B281FEC502000B52CA9 /* NewPlan.EntryTests.swift in Sources */,
 				FEAE9AA71FEC4FF500B52CA9 /* AssertProperties.swift in Sources */,
-				FE246D7A206D9A310003E6C0 /* ObjectAPITests.swift in Sources */,
+				FE4668A220C7467A003BA033 /* ObjectAPITests.swift in Sources */,
 				FEAE9B301FEC502000B52CA9 /* NewRunTests.swift in Sources */,
 				FEAE9B231FEC502000B52CA9 /* NewCaseTests.swift in Sources */,
 				FEAE9AC61FEC4FFF00B52CA9 /* InitTests.swift in Sources */,

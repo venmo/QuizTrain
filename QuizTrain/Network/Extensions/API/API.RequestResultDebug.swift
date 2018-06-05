@@ -1,4 +1,4 @@
-extension API.RequestResult: DebugDescription {
+extension API.RequestResult: CustomDebugStringConvertible {
 
     public var debugDescription: String {
         return "API.RequestResult:\n\n\(debugDetails)\n"

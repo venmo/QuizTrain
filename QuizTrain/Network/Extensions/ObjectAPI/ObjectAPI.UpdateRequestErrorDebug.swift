@@ -1,4 +1,4 @@
-extension ObjectAPI.UpdateRequestError: DebugDescription {
+extension ObjectAPI.UpdateRequestError: CustomDebugStringConvertible {
 
     public var debugDescription: String {
         var description = "ObjectAPI.UpdateRequestError"

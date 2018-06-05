@@ -3,9 +3,9 @@ public enum MultipleMatchError<MatchType, QueryType: Hashable>: Error {
     case partialMatchesFound(matches: [MatchType], missing: Set<QueryType>)
 }
 
-extension MultipleMatchError: DebugDescription {
+extension MultipleMatchError: CustomDebugStringConvertible {
 
-    var debugDescription: String {
+    public var debugDescription: String {
         var description = "ObjectAPI.MultipleMatchError"
         switch self {
         case .noMatchesFound:
@@ -20,7 +20,7 @@ extension MultipleMatchError: DebugDescription {
 
 extension MultipleMatchError: DebugDetails {
 
-    var debugDetails: String {
+    public var debugDetails: String {
         let details: String
         switch self {
         case .noMatchesFound:

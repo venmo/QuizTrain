@@ -1,4 +1,4 @@
-extension ObjectAPI.StatusCodeError: DebugDescription {
+extension ObjectAPI.StatusCodeError: CustomDebugStringConvertible {
 
     public var debugDescription: String {
         var description = "ObjectAPI.StatusCodeError"

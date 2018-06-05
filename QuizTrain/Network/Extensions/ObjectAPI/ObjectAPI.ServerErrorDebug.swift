@@ -1,4 +1,4 @@
-extension ObjectAPI.ServerError: DebugDescription {
+extension ObjectAPI.ServerError: CustomDebugStringConvertible {
 
     public var debugDescription: String {
         return "ObjectAPI.ServerError:\n\n\(debugDetails)\n"
