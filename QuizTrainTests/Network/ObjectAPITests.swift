@@ -2326,7 +2326,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Case")
 
-        var `case`: Case? = nil
+        var `case`: Case?
         objectAPI.addCase(newCase, to: section) { (outcome) in
             `case` = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2371,7 +2371,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Case")
 
-        var `case`: Case? = nil
+        var `case`: Case?
         objectAPI.getCase(caseId) { (outcome) in
             `case` = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2392,7 +2392,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Cases")
 
-        var cases: [Case]? = nil
+        var cases: [Case]?
         objectAPI.getCases(in: project, in: suite, in: section, filteredBy: filters) { (outcome) in
             cases = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2416,7 +2416,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Update Case")
 
-        var updatedCase: Case? = nil
+        var updatedCase: Case?
         objectAPI.updateCase(`case`) { (outcome) in
             updatedCase = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2449,7 +2449,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Case Fields")
 
-        var caseFields: [CaseField]? = nil
+        var caseFields: [CaseField]?
         objectAPI.getCaseFields { (outcome) in
             caseFields = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2468,7 +2468,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Case Types")
 
-        var caseTypes: [CaseType]? = nil
+        var caseTypes: [CaseType]?
         objectAPI.getCaseTypes { (outcome) in
             caseTypes = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2487,7 +2487,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Configuration")
 
-        var configuration: Configuration? = nil
+        var configuration: Configuration?
         objectAPI.addConfiguration(newConfiguration, to: configurationGroup) { (outcome) in
             configuration = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2521,7 +2521,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Update Configuration")
 
-        var updatedConfiguration: Configuration? = nil
+        var updatedConfiguration: Configuration?
         objectAPI.updateConfiguration(configuration) { (outcome) in
             updatedConfiguration = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2547,7 +2547,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Configuration Group")
 
-        var configurationGroup: ConfigurationGroup? = nil
+        var configurationGroup: ConfigurationGroup?
         objectAPI.addConfigurationGroup(newConfigurationGroup, to: project) { (outcome) in
             configurationGroup = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2581,7 +2581,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Configuration Groups")
 
-        var configurationGroups: [ConfigurationGroup]? = nil
+        var configurationGroups: [ConfigurationGroup]?
         objectAPI.getConfigurationGroups { (outcome) in
             configurationGroups = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2598,7 +2598,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Configuration Groups In Project")
 
-        var configurationGroups: [ConfigurationGroup]? = nil
+        var configurationGroups: [ConfigurationGroup]?
         objectAPI.getConfigurationGroups(in: project) { (outcome) in
             configurationGroups = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2621,7 +2621,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Update Configuration Group")
 
-        var updatedConfigurationGroup: ConfigurationGroup? = nil
+        var updatedConfigurationGroup: ConfigurationGroup?
         objectAPI.updateConfigurationGroup(configurationGroup) { (outcome) in
             updatedConfigurationGroup = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2647,7 +2647,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Milestone")
 
-        var milestone: Milestone? = nil
+        var milestone: Milestone?
         objectAPI.addMilestone(newMilestone, to: project) { (outcome) in
             milestone = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2688,7 +2688,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Milestone")
 
-        var milestone: Milestone? = nil
+        var milestone: Milestone?
         objectAPI.getMilestone(milestoneId) { (outcome) in
             milestone = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2709,7 +2709,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Milestones")
 
-        var milestones: [Milestone]? = nil
+        var milestones: [Milestone]?
         objectAPI.getMilestones(in: project, filteredBy: filters) { (outcome) in
             milestones = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2732,7 +2732,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Update Milestone")
 
-        var updatedMilestone: Milestone? = nil
+        var updatedMilestone: Milestone?
         objectAPI.updateMilestone(milestone) { (outcome) in
             updatedMilestone = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2764,7 +2764,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Plan")
 
-        var plan: Plan? = nil
+        var plan: Plan?
         objectAPI.addPlan(newPlan, to: project) { (outcome) in
             plan = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2792,7 +2792,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Close Plan")
 
-        var closedPlan: Plan? = nil
+        var closedPlan: Plan?
         objectAPI.closePlan(plan) { (outcome) in
             closedPlan = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2826,7 +2826,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Plan")
 
-        var plan: Plan? = nil
+        var plan: Plan?
         objectAPI.getPlan(planId) { (outcome) in
             plan = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2847,7 +2847,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Plans")
 
-        var plans: [Plan]? = nil
+        var plans: [Plan]?
         objectAPI.getPlans(in: project, filteredBy: filters) { (outcome) in
             plans = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2870,7 +2870,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Update Plan")
 
-        var updatedPlan: Plan? = nil
+        var updatedPlan: Plan?
         objectAPI.updatePlan(plan) { (outcome) in
             updatedPlan = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2898,7 +2898,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Plan Entry")
 
-        var planEntry: Plan.Entry? = nil
+        var planEntry: Plan.Entry?
         objectAPI.addPlanEntry(newPlanEntry, to: plan) { (outcome) in
             planEntry = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2944,7 +2944,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Update Plan Entry")
 
-        var updatedPlanEntry: Plan.Entry? = nil
+        var updatedPlanEntry: Plan.Entry?
         objectAPI.updatePlanEntry(planEntry, in: plan, with: planEntryRuns) { (outcome) in
             updatedPlanEntry = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2972,7 +2972,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Priorities")
 
-        var priorities: [Priority]? = nil
+        var priorities: [Priority]?
         objectAPI.getPriorities { (outcome) in
             priorities = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -2991,7 +2991,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Project")
 
-        var project: Project? = nil
+        var project: Project?
         objectAPI.addProject(newProject) { (outcome) in
             project = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3030,7 +3030,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Project")
 
-        var project: Project? = nil
+        var project: Project?
         objectAPI.getProject(projectId) { (outcome) in
             project = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3051,7 +3051,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Projects")
 
-        var projects: [Project]? = nil
+        var projects: [Project]?
         objectAPI.getProjects { (outcome) in
             projects = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3068,7 +3068,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Update Projects")
 
-        var updatedProject: Project? = nil
+        var updatedProject: Project?
         objectAPI.updateProject(project) { (outcome) in
             updatedProject = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3098,7 +3098,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Result")
 
-        var result: Result? = nil
+        var result: Result?
         objectAPI.addResult(newResult, to: test) { (outcome) in
             result = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3130,7 +3130,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Result For Case")
 
-        var result: Result? = nil
+        var result: Result?
         objectAPI.addResultForCase(newResult, to: run, to: `case`) { (outcome) in
             result = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3161,7 +3161,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Results")
 
-        var results: [Result]? = nil
+        var results: [Result]?
         objectAPI.addResults(newTestResults, to: run) { (outcome) in
             results = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3182,7 +3182,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Results For Cases")
 
-        var results: [Result]? = nil
+        var results: [Result]?
         objectAPI.addResultsForCases(newCaseResults, to: run) { (outcome) in
             results = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3203,7 +3203,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Results For Test")
 
-        var results: [Result]? = nil
+        var results: [Result]?
         objectAPI.getResultsForTest(test, filteredBy: filters) { (outcome) in
             results = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3220,7 +3220,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Results For Case")
 
-        var results: [Result]? = nil
+        var results: [Result]?
         objectAPI.getResultsForCase(`case`, in: run, filteredBy: filters) { (outcome) in
             results = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3237,7 +3237,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Results For Run")
 
-        var results: [Result]? = nil
+        var results: [Result]?
         objectAPI.getResultsForRun(run, filteredBy: filters) { (outcome) in
             results = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3256,7 +3256,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get ResultFields")
 
-        var resultFields: [ResultField]? = nil
+        var resultFields: [ResultField]?
         objectAPI.getResultFields { (outcome) in
             resultFields = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3275,7 +3275,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Run")
 
-        var run: Run? = nil
+        var run: Run?
         objectAPI.addRun(newRun, to: project) { (outcome) in
             run = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3305,7 +3305,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Close Run")
 
-        var closedRun: Run? = nil
+        var closedRun: Run?
         objectAPI.closeRun(run) { (outcome) in
             closedRun = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3340,7 +3340,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Run")
 
-        var run: Run? = nil
+        var run: Run?
         objectAPI.getRun(runId) { (outcome) in
             run = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3361,7 +3361,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Runs")
 
-        var runs: [Run]? = nil
+        var runs: [Run]?
         objectAPI.getRuns(in: project, filteredBy: filters) { (outcome) in
             runs = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3384,7 +3384,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Update Run")
 
-        var updatedRun: Run? = nil
+        var updatedRun: Run?
         objectAPI.updateRun(run) { (outcome) in
             updatedRun = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3413,7 +3413,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Section")
 
-        var section: Section? = nil
+        var section: Section?
         objectAPI.addSection(newSection, to: project) { (outcome) in
             section = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3458,7 +3458,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Section")
 
-        var section: Section? = nil
+        var section: Section?
         objectAPI.getSection(sectionId) { (outcome) in
             section = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3479,7 +3479,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Sections")
 
-        var sections: [Section]? = nil
+        var sections: [Section]?
         objectAPI.getSections(in: project, in: suite) { (outcome) in
             sections = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3502,7 +3502,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Update Section")
 
-        var updatedSection: Section? = nil
+        var updatedSection: Section?
         objectAPI.updateSection(section) { (outcome) in
             updatedSection = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3529,7 +3529,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Statuses")
 
-        var statuses: [Status]? = nil
+        var statuses: [Status]?
         objectAPI.getStatuses { (outcome) in
             statuses = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3548,7 +3548,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Add Suite")
 
-        var suite: Suite? = nil
+        var suite: Suite?
         objectAPI.addSuite(newSuite, to: project) { (outcome) in
             suite = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3586,7 +3586,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Suite")
 
-        var suite: Suite? = nil
+        var suite: Suite?
         objectAPI.getSuite(suiteId) { (outcome) in
             suite = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3607,7 +3607,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Suites")
 
-        var suites: [Suite]? = nil
+        var suites: [Suite]?
         objectAPI.getSuites(in: project) { (outcome) in
             suites = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3630,7 +3630,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Update Suite")
 
-        var updatedSuite: Suite? = nil
+        var updatedSuite: Suite?
         objectAPI.updateSuite(suite) { (outcome) in
             updatedSuite = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3657,7 +3657,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Templates")
 
-        var templates: [Template]? = nil
+        var templates: [Template]?
         objectAPI.getTemplates { (outcome) in
             templates = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3674,7 +3674,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Templates In Project")
 
-        var templates: [Template]? = nil
+        var templates: [Template]?
         objectAPI.getTemplates(in: project) { (outcome) in
             templates = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3693,7 +3693,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Test")
 
-        var test: Test? = nil
+        var test: Test?
         objectAPI.getTest(testId) { (outcome) in
             test = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3714,7 +3714,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Tests")
 
-        var tests: [Test]? = nil
+        var tests: [Test]?
         objectAPI.getTests(in: run, filteredBy: filters) { (outcome) in
             tests = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3739,7 +3739,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get User")
 
-        var user: User? = nil
+        var user: User?
         objectAPI.getUser(userId) { (outcome) in
             user = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3760,7 +3760,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get User by Email")
 
-        var user: User? = nil
+        var user: User?
         objectAPI.getUserByEmail(email) { (outcome) in
             user = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
@@ -3781,7 +3781,7 @@ extension ObjectAPITests {
 
         let expectation = XCTestExpectation(description: "Get Users")
 
-        var users: [User]? = nil
+        var users: [User]?
         objectAPI.getUsers { (outcome) in
             users = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
