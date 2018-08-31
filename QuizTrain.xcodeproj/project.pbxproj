@@ -2500,7 +2500,6 @@
 				PRODUCT_NAME = QuizTrain;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2522,7 +2521,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrain;
 				PRODUCT_NAME = QuizTrain;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2536,7 +2534,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2550,7 +2547,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2572,7 +2568,6 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
@@ -2595,7 +2590,6 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
@@ -2617,7 +2611,6 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -2639,7 +2632,6 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -2655,7 +2647,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.2;
 			};
@@ -2671,7 +2662,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.2;
 			};
@@ -2696,7 +2686,6 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -2719,7 +2708,6 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -2736,7 +2724,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -2753,7 +2740,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
