@@ -13,7 +13,7 @@ The Example project is open source software released under the MIT License. See 
 
 ## Setup
 
-Before building and running tests there are some placeholder values you must update in code marked as `TODO:`.
+Before building and running tests there are some placeholder values you must update in code marked with Swift `#error` macros. After updating them comment out the macros.
 
 - `TestManager.swift`
     - Update `let objectAPI = QuizTrain.ObjectAPI(...)` with valid credentials and other info for your TestRail instance.

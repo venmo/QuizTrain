@@ -18,12 +18,14 @@ final class TestManager: NSObject {
         defer { print("\n====================================\n") }
 
         print("QuizTrainManager setup started.")
-        let objectAPI = QuizTrain.ObjectAPI(username: "YOUR@TESTRAIL.EMAIL", secret: "YOUR_TESTRAIL_PASSWORD_OR_API_KEY", hostname: "YOURINSTANCE.testrail.net", port: 443, scheme: "https") // TODO: Update these arguments for your TestRail instance.
+        #error("Update these ObjectAPI arguments below for your TestRail instance. Then comment out this macro.")
+        let objectAPI = QuizTrain.ObjectAPI(username: "YOUR@TESTRAIL.EMAIL", secret: "YOUR_TESTRAIL_PASSWORD_OR_API_KEY", hostname: "YOURINSTANCE.testrail.net", port: 443, scheme: "https")
         var quizTrainManager: QuizTrainManager!
         let group = DispatchGroup()
         group.enter()
         DispatchQueue.global().async {
-            QuizTrainProject.populatedProject(forProjectId: 99999, objectAPI: objectAPI) { (outcome) in // TODO: Replace the projectId with one from your TestRail instance.
+            #error("Replace the projectId below with one from your TestRail instance. Then comment out this macro.")
+            QuizTrainProject.populatedProject(forProjectId: 99999, objectAPI: objectAPI) { (outcome) in
                 switch outcome {
                 case .failed(let error):
                     print("QuizTrainManager setup failed: \(error)")
