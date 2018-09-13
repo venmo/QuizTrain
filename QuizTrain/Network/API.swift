@@ -91,7 +91,7 @@ final public class API {
         return request
     }
 
-    // MARL: - Errors
+    // MARK: - Errors
 
     public enum RequestError: Error {
         case error(request: URLRequest, error: Error)

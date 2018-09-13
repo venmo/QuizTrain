@@ -291,7 +291,7 @@ extension QuizTrainManager {
         print("Plan creation completed. \(plan.url)")
 
         guard let planEntries = plan.entries, planEntries.count > 0 else {
-            print("Aborting: There are no entries in the plan: \(plan)")
+            print("Aborting: There are no entries in the plan: \(String(describing: plan))")
             return
         }
 
