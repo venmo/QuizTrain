@@ -12,7 +12,7 @@ QuizTrain is open source software released under the MIT License. See the [LICEN
 
 [Carthage](https://github.com/Carthage/Carthage) is the recommended way to install QuizTrain. Add the following to your `Cartfile` or `Cartfile.private` file:
 
-    github "venmo/QuizTrain" ~> 1.2.0
+    github "venmo/QuizTrain" ~> 1.2.1
 
 See [Adding frameworks to an application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) for further instructions. Once complete `import QuizTrain` in any Swift files you wish to use QuizTrain in.
 

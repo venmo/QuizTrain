@@ -49,8 +49,29 @@ extension CaseField: JSONDeserializable {
 
     init?(json: JSONDictionary) {
 
-        guard let configsJson = json[JSONKeys.configs.rawValue] as? [JSONDictionary],
-            let configs: [Config] = CaseField.deserialized(configsJson),
+        /*
+         The formatting of JSONKeys.configs returned by the API differs:
+
+         - Get requests return a [JSONDictionary].
+         - Add requests return a String which can be converted into a
+           [JSONDictionary].
+         */
+        let configsJson: [JSONDictionary]
+        if let jsonArray = json[JSONKeys.configs.rawValue] as? [JSONDictionary] {
+            configsJson = jsonArray
+        } else if let jsonString = json[JSONKeys.configs.rawValue] as? String {
+            do {
+                guard let data = jsonString.data(using: .utf8) else { return nil }
+                guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [JSONDictionary] else { return nil }
+                configsJson = jsonObject
+            } catch {
+                return nil
+            }
+        } else {
+            return nil
+        }
+
+        guard let configs: [Config] = CaseField.deserialized(configsJson),
             let displayOrder = json[JSONKeys.displayOrder.rawValue] as? Int,
             let id = json[JSONKeys.id.rawValue] as? Id,
             let includeAll = json[JSONKeys.includeAll.rawValue] as? Bool,
