@@ -218,6 +218,13 @@ final public class API {
     // MARK: - Case Fields
 
     /*
+     http://docs.gurock.com/testrail-api2/reference-cases-fields#add_case_field
+     */
+    @discardableResult public func addCaseField(data: Data, completionHandler: @escaping (RequestOutcome) -> Void) -> URLSessionDataTask {
+        return post("add_case_field", data: data, completionHandler: completionHandler)
+    }
+
+    /*
      http://docs.gurock.com/testrail-api2/reference-cases-fields#get_case_fields
      */
     @discardableResult public func getCaseFields(completionHandler: @escaping (RequestOutcome) -> Void) -> URLSessionDataTask {

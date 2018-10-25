@@ -1,8 +1,8 @@
 import XCTest
 @testable import QuizTrain
 
-/*
- ObjectAPI systems tests. These tests run against a real-world TestRail
+/**
+ ObjectAPI end-to-end tests. These tests run against a real-world TestRail
  instance. Sections:
 
  - Initialization, deinit, stored properties.
@@ -25,6 +25,12 @@ import XCTest
  If tests crash rouge test projects may be abandoned in your instance. Their
  names will be prefixed with "QuizTrainTests". It is safe to delete them so long
  as you have no production projects starting with the same name.
+
+ If any testAdd*CaseField() tests are run then you will have to manually remove
+ any CaseField's created by tests using your TestRail administration portal.
+ Tests are unable to remove these automatically because there is no public API
+ endpoint to do so. Because of this these tests are disabled by default in all
+ testing schemes. See the QuizTrainTests README.md for more details.
 
  For tests to run you must populate TestCredentials.json with all properties
  required by TestCredentials.swift.
@@ -345,6 +351,338 @@ extension ObjectAPITests {
         }
 
         return newCase
+    }
+
+    func newCaseFieldString(with properties: Properties) -> NewCaseField<NewCaseFieldStringData> {
+
+        precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
+
+        var newCaseField = NewCaseField<NewCaseFieldStringData>(description: nil,
+                                                                label: "Test Add: String",
+                                                                name: "quiztraintests_\(randomString())",
+                                                                includeAll: true,
+                                                                templateIds: [],
+                                                                isGlobal: true,
+                                                                projectIds: [],
+                                                                isRequired: false,
+                                                                defaultValue: nil)
+
+        switch properties {
+        case .requiredProperties:
+            break
+        case .requiredAndOptionalProperties:
+            newCaseField.description = "Test Add: Description"
+            newCaseField.includeAll = false // Must be false if templateIds is not empty.
+            newCaseField.templateIds = [testProject.templates[0].id]
+            newCaseField.data.configs[0].context.isGlobal = false // Must be false if projectIds is not empty.
+            newCaseField.data.configs[0].context.projectIds = [testProject.project.id]
+            newCaseField.data.configs[0].options.defaultValue = "Hello QuizTrain"
+        }
+
+        return newCaseField
+    }
+
+    func newCaseFieldInteger(with properties: Properties) -> NewCaseField<NewCaseFieldIntegerData> {
+
+        precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
+
+        var newCaseField = NewCaseField<NewCaseFieldIntegerData>(description: nil,
+                                                                 label: "Test Add: Integer",
+                                                                 name: "quiztraintests_\(randomString())",
+                                                                 includeAll: true,
+                                                                 templateIds: [],
+                                                                 isGlobal: true,
+                                                                 projectIds: [],
+                                                                 isRequired: false,
+                                                                 defaultValue: nil)
+
+        switch properties {
+        case .requiredProperties:
+            break
+        case .requiredAndOptionalProperties:
+            newCaseField.description = "Test Add: Description"
+            newCaseField.includeAll = false // Must be false if templateIds is not empty.
+            newCaseField.templateIds = [testProject.templates[0].id]
+            newCaseField.data.configs[0].context.isGlobal = false // Must be false if projectIds is not empty.
+            newCaseField.data.configs[0].context.projectIds = [testProject.project.id]
+            newCaseField.data.configs[0].options.defaultValue = 999
+        }
+
+        return newCaseField
+    }
+
+    func newCaseFieldText(with properties: Properties) -> NewCaseField<NewCaseFieldTextData> {
+
+        precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
+
+        var newCaseField = NewCaseField<NewCaseFieldTextData>(description: nil,
+                                                              label: "Test Add: Text",
+                                                              name: "quiztraintests_\(randomString())",
+                                                              includeAll: true,
+                                                              templateIds: [],
+                                                              isGlobal: true,
+                                                              projectIds: [],
+                                                              isRequired: false,
+                                                              defaultValue: nil,
+                                                              format: .markdown,
+                                                              rows: .unspecified)
+
+        switch properties {
+        case .requiredProperties:
+            break
+        case .requiredAndOptionalProperties:
+            newCaseField.description = "Test Add: Description"
+            newCaseField.includeAll = false // Must be false if templateIds is not empty.
+            newCaseField.templateIds = [testProject.templates[0].id]
+            newCaseField.data.configs[0].context.isGlobal = false // Must be false if projectIds is not empty.
+            newCaseField.data.configs[0].context.projectIds = [testProject.project.id]
+            newCaseField.data.configs[0].options.defaultValue = "Hello QuizTrain"
+            newCaseField.data.configs[0].options.rows = .three
+        }
+
+        return newCaseField
+    }
+
+    func newCaseFieldURL(with properties: Properties) -> NewCaseField<NewCaseFieldURLData> {
+
+        precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
+
+        var newCaseField = NewCaseField<NewCaseFieldURLData>(description: nil,
+                                                             label: "Test Add: URL",
+                                                             name: "quiztraintests_\(randomString())",
+                                                             includeAll: true,
+                                                             templateIds: [],
+                                                             isGlobal: true,
+                                                             projectIds: [],
+                                                             isRequired: false,
+                                                             defaultValue: nil)
+
+        switch properties {
+        case .requiredProperties:
+            break
+        case .requiredAndOptionalProperties:
+            newCaseField.description = "Test Add: Description"
+            newCaseField.includeAll = false // Must be false if templateIds is not empty.
+            newCaseField.templateIds = [testProject.templates[0].id]
+            newCaseField.data.configs[0].context.isGlobal = false // Must be false if projectIds is not empty.
+            newCaseField.data.configs[0].context.projectIds = [testProject.project.id]
+            newCaseField.data.configs[0].options.defaultValue = URL(string: "https://github.com/venmo/QuizTrain/")
+        }
+
+        return newCaseField
+    }
+
+    func newCaseFieldCheckbox(with properties: Properties) -> NewCaseField<NewCaseFieldCheckboxData> {
+
+        precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
+
+        var newCaseField = NewCaseField<NewCaseFieldCheckboxData>(description: nil,
+                                                                  label: "Test Add: Checkbox",
+                                                                  name: "quiztraintests_\(randomString())",
+                                                                  includeAll: true,
+                                                                  templateIds: [],
+                                                                  isGlobal: true,
+                                                                  projectIds: [],
+                                                                  isRequired: false,
+                                                                  defaultValue: false)
+
+        switch properties {
+        case .requiredProperties:
+            break
+        case .requiredAndOptionalProperties:
+            newCaseField.description = "Test Add: Description"
+            newCaseField.includeAll = false // Must be false if templateIds is not empty.
+            newCaseField.templateIds = [testProject.templates[0].id]
+            newCaseField.data.configs[0].context.isGlobal = false // Must be false if projectIds is not empty.
+            newCaseField.data.configs[0].context.projectIds = [testProject.project.id]
+        }
+
+        return newCaseField
+    }
+
+    func newCaseFieldDropdown(with properties: Properties) -> NewCaseField<NewCaseFieldDropdownData> {
+
+        precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
+
+        // Dropdown will throw if `defaultValue` is of out of bounds of `items` or if `items` is empty.
+        var newCaseField: NewCaseField<NewCaseFieldDropdownData>
+        do {
+            let items = ["One", "Two", "Three"]
+            newCaseField = try NewCaseField<NewCaseFieldDropdownData>(description: nil,
+                                                                      label: "Test Add: Dropdown",
+                                                                      name: "quiztraintests_\(randomString())",
+                                                                      includeAll: true,
+                                                                      templateIds: [],
+                                                                      isGlobal: true,
+                                                                      projectIds: [],
+                                                                      isRequired: false,
+                                                                      items: items,
+                                                                      defaultValue: (items.count - 1))
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+
+        switch properties {
+        case .requiredProperties:
+            break
+        case .requiredAndOptionalProperties:
+            newCaseField.description = "Test Add: Description"
+            newCaseField.includeAll = false // Must be false if templateIds is not empty.
+            newCaseField.templateIds = [testProject.templates[0].id]
+            newCaseField.data.configs[0].context.isGlobal = false // Must be false if projectIds is not empty.
+            newCaseField.data.configs[0].context.projectIds = [testProject.project.id]
+        }
+
+        return newCaseField
+    }
+
+    func newCaseFieldUser(with properties: Properties) -> NewCaseField<NewCaseFieldUserData> {
+
+        precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
+
+        var newCaseField = NewCaseField<NewCaseFieldUserData>(description: nil,
+                                                              label: "Test Add: User",
+                                                              name: "quiztraintests_\(randomString())",
+                                                              includeAll: true,
+                                                              templateIds: [],
+                                                              isGlobal: true,
+                                                              projectIds: [],
+                                                              isRequired: false,
+                                                              defaultValue: nil)
+
+        switch properties {
+        case .requiredProperties:
+            break
+        case .requiredAndOptionalProperties:
+            newCaseField.description = "Test Add: Description"
+            newCaseField.includeAll = false // Must be false if templateIds is not empty.
+            newCaseField.templateIds = [testProject.templates[0].id]
+            newCaseField.data.configs[0].context.isGlobal = false // Must be false if projectIds is not empty.
+            newCaseField.data.configs[0].context.projectIds = [testProject.project.id]
+            newCaseField.data.configs[0].options.defaultValue = testProject.user.id
+        }
+
+        return newCaseField
+    }
+
+    func newCaseFieldDate(with properties: Properties) -> NewCaseField<NewCaseFieldDateData> {
+
+        precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
+
+        var newCaseField = NewCaseField<NewCaseFieldDateData>(description: nil,
+                                                              label: "Test Add: Date",
+                                                              name: "quiztraintests_\(randomString())",
+                                                              includeAll: true,
+                                                              templateIds: [],
+                                                              isGlobal: true,
+                                                              projectIds: [],
+                                                              isRequired: false)
+
+        switch properties {
+        case .requiredProperties:
+            break
+        case .requiredAndOptionalProperties:
+            newCaseField.description = "Test Add: Description"
+            newCaseField.includeAll = false // Must be false if templateIds is not empty.
+            newCaseField.templateIds = [testProject.templates[0].id]
+            newCaseField.data.configs[0].context.isGlobal = false // Must be false if projectIds is not empty.
+            newCaseField.data.configs[0].context.projectIds = [testProject.project.id]
+        }
+
+        return newCaseField
+    }
+
+    func newCaseFieldMilestone(with properties: Properties) -> NewCaseField<NewCaseFieldMilestoneData> {
+
+        precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
+
+        var newCaseField = NewCaseField<NewCaseFieldMilestoneData>(description: nil,
+                                                                   label: "Test Add: Milestone",
+                                                                   name: "quiztraintests_\(randomString())",
+                                                                   includeAll: true,
+                                                                   templateIds: [],
+                                                                   isGlobal: true,
+                                                                   projectIds: [],
+                                                                   isRequired: false)
+
+        switch properties {
+        case .requiredProperties:
+            break
+        case .requiredAndOptionalProperties:
+            newCaseField.description = "Test Add: Description"
+            newCaseField.includeAll = false // Must be false if templateIds is not empty.
+            newCaseField.templateIds = [testProject.templates[0].id]
+            newCaseField.data.configs[0].context.isGlobal = false // Must be false if projectIds is not empty.
+            newCaseField.data.configs[0].context.projectIds = [testProject.project.id]
+        }
+
+        return newCaseField
+    }
+
+    func newCaseFieldSteps(with properties: Properties) -> NewCaseField<NewCaseFieldStepsData> {
+
+        precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
+
+        var newCaseField = NewCaseField<NewCaseFieldStepsData>(description: nil,
+                                                               label: "Test Add: Steps",
+                                                               name: "quiztraintests_\(randomString())",
+                                                               includeAll: true,
+                                                               templateIds: [],
+                                                               isGlobal: true,
+                                                               projectIds: [],
+                                                               isRequired: false,
+                                                               format: .markdown,
+                                                               hasExpected: false,
+                                                               rows: .unspecified)
+
+        switch properties {
+        case .requiredProperties:
+            break
+        case .requiredAndOptionalProperties:
+            newCaseField.description = "Test Add: Description"
+            newCaseField.includeAll = false // Must be false if templateIds is not empty.
+            newCaseField.templateIds = [testProject.templates[0].id]
+            newCaseField.data.configs[0].context.isGlobal = false // Must be false if projectIds is not empty.
+            newCaseField.data.configs[0].context.projectIds = [testProject.project.id]
+            newCaseField.data.configs[0].options.hasExpected = true
+            newCaseField.data.configs[0].options.rows = .five
+        }
+
+        return newCaseField
+    }
+
+    func newCaseFieldMultiselect(with properties: Properties) -> NewCaseField<NewCaseFieldMultiselectData> {
+
+        precondition(testProject != nil, "The Test Project must be setup before invoking \(#function)")
+
+        // Multiselect will throw if `items` is empty.
+        var newCaseField: NewCaseField<NewCaseFieldMultiselectData>
+        do {
+            newCaseField = try NewCaseField<NewCaseFieldMultiselectData>(description: nil,
+                                                                         label: "Test Add: Multiselect",
+                                                                         name: "quiztraintests_\(randomString())",
+                                                                         includeAll: true,
+                                                                         templateIds: [],
+                                                                         isGlobal: true,
+                                                                         projectIds: [],
+                                                                         isRequired: false,
+                                                                         items: ["A", "B", "C"])
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+
+        switch properties {
+        case .requiredProperties:
+            break
+        case .requiredAndOptionalProperties:
+            newCaseField.description = "Test Add: Description"
+            newCaseField.includeAll = false // Must be false if templateIds is not empty.
+            newCaseField.templateIds = [testProject.templates[0].id]
+            newCaseField.data.configs[0].context.isGlobal = false // Must be false if projectIds is not empty.
+            newCaseField.data.configs[0].context.projectIds = [testProject.project.id]
+        }
+
+        return newCaseField
     }
 
     func newConfiguration() -> NewConfiguration {
@@ -700,6 +1038,28 @@ extension ObjectAPITests {
 
 }
 
+// MARK: - Data Provider Helpers
+
+extension ObjectAPITests {
+
+    fileprivate func randomString(length: UInt = 8) -> String {
+        let characters = "abcdefghijklmnopqrstuvwxyz"
+        let randomCharacters = (0..<length).map { _ in characters.randomElement()! }
+        return String(randomCharacters)
+    }
+
+}
+
+// MARK: - CaseField Helpers
+
+extension ObjectAPITests {
+
+    struct CaseFieldItemsConverter: ItemsConverter {
+        typealias Item = String
+    }
+
+}
+
 // MARK: - Object Tests
 
 extension ObjectAPITests {
@@ -792,6 +1152,152 @@ extension ObjectAPITests {
     }
 
     // MARK: CaseField
+
+    /// Disabled by default in all testing schemes since this requires manual deletion to cleanup.
+    func testAddCheckboxCaseField() {
+
+        var newCaseField = newCaseFieldCheckbox(with: .requiredProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+
+        newCaseField = newCaseFieldCheckbox(with: .requiredAndOptionalProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+    }
+
+    /// Disabled by default in all testing schemes since this requires manual deletion to cleanup.
+    func testAddDateCaseField() {
+
+        var newCaseField = newCaseFieldDate(with: .requiredProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+
+        newCaseField = newCaseFieldDate(with: .requiredAndOptionalProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+    }
+
+    /// Disabled by default in all testing schemes since this requires manual deletion to cleanup.
+    func testAddDropdownCaseField() {
+
+        var newCaseField = newCaseFieldDropdown(with: .requiredProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+
+        newCaseField = newCaseFieldDropdown(with: .requiredAndOptionalProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+    }
+
+    /// Disabled by default in all testing schemes since this requires manual deletion to cleanup.
+    func testAddIntegerCaseField() {
+
+        var newCaseField = newCaseFieldInteger(with: .requiredProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+
+        newCaseField = newCaseFieldInteger(with: .requiredAndOptionalProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+    }
+
+    /// Disabled by default in all testing schemes since this requires manual deletion to cleanup.
+    func testAddMilestoneCaseField() {
+
+        var newCaseField = newCaseFieldMilestone(with: .requiredProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+
+        newCaseField = newCaseFieldMilestone(with: .requiredAndOptionalProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+    }
+
+    /// Disabled by default in all testing schemes since this requires manual deletion to cleanup.
+    func testAddMultiselectCaseField() {
+
+        var newCaseField = newCaseFieldMultiselect(with: .requiredProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+
+        newCaseField = newCaseFieldMultiselect(with: .requiredAndOptionalProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+    }
+
+    /**
+     Disabled by default in all testing schemes since this requires manual
+     deletion to cleanup.
+
+     You can only have one CaseField of type NewCaseFieldType.steps across your
+     entire TestRail instance. If one of that type already exists you must
+     delete it to run this test successfully (not recommended on production
+     since deleting it will destroy all data associated with it). If you run
+     this test and a CaseField of type NewCaseFieldType.steps already exists
+     then the API will return an error code 400 and this test will fail.
+     */
+    func testAddStepsCaseField() {
+
+        // Uncomment one or the other.
+
+        /*
+        var newCaseField = newCaseFieldSteps(with: .requiredProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+        */
+
+        var newCaseField = newCaseFieldSteps(with: .requiredAndOptionalProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+    }
+
+    /// Disabled by default in all testing schemes since this requires manual deletion to cleanup.
+    func testAddStringCaseField() {
+
+        var newCaseField = newCaseFieldString(with: .requiredProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+
+        newCaseField = newCaseFieldString(with: .requiredAndOptionalProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+    }
+
+    /// Disabled by default in all testing schemes since this requires manual deletion to cleanup.
+    func testAddTextCaseField() {
+
+        var newCaseField = newCaseFieldText(with: .requiredProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+
+        newCaseField = newCaseFieldText(with: .requiredAndOptionalProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+    }
+
+    /// Disabled by default in all testing schemes since this requires manual deletion to cleanup.
+    func testAddURLCaseField() {
+
+        var newCaseField = newCaseFieldURL(with: .requiredProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+
+        newCaseField = newCaseFieldURL(with: .requiredAndOptionalProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+    }
+
+    /// Disabled by default in all testing schemes since this requires manual deletion to cleanup.
+    func testAddUserCaseField() {
+
+        var newCaseField = newCaseFieldUser(with: .requiredProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+
+        newCaseField = newCaseFieldUser(with: .requiredAndOptionalProperties)
+        newCaseField.label = "\(#function)"
+        assertAddCaseField(newCaseField)
+    }
 
     func testGetCaseFields() {
         assertGetCaseFields()
@@ -2460,6 +2966,119 @@ extension ObjectAPITests {
         XCTAssertNotNil(caseFields)
 
         return caseFields
+    }
+
+    // swiftlint:disable:next cyclomatic_complexity
+    @discardableResult func assertAddCaseField<DataType: NewCaseFieldData>(_ newCaseField: NewCaseField<DataType>) -> CaseField? {
+
+        let expectation = XCTestExpectation(description: "Add Case Field")
+
+        var caseField: CaseField?
+        objectAPI.addCaseField(newCaseField) { (outcome) in
+            caseField = self.assertOutcomeSucceeded(outcome)
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: timeout)
+
+        XCTAssertNotNil(caseField)
+
+        if let caseField = caseField {
+
+            // Common
+            XCTAssertEqual(caseField.description, newCaseField.description)
+            XCTAssertEqual(caseField.includeAll, newCaseField.includeAll)
+            XCTAssertEqual(caseField.label, newCaseField.label)
+            XCTAssertEqual(caseField.name, newCaseField.name)
+            XCTAssertEqual(caseField.templateIds, newCaseField.templateIds)
+            XCTAssertTrue(caseField.typeId == newCaseField.type)
+
+            // Common Config.Context
+            XCTAssertEqual(caseField.configs[0].context.isGlobal, newCaseField.configs[0].context.isGlobal)
+            XCTAssertEqual((caseField.configs[0].context.projectIds ?? []), newCaseField.configs[0].context.projectIds)
+
+            // Type Specific Config.Options
+            if caseField.typeId == newCaseField.type {
+                switch newCaseField.type {
+                case .string:
+                    let data = newCaseField.data as! NewCaseFieldStringData
+                    let options = data.configs[0].options
+                    let defaultValue = options.defaultValue ?? ""
+                    XCTAssertEqual(defaultValue, caseField.configs[0].options["default_value"] as? String)
+                    XCTAssertEqual(options.isRequired, caseField.configs[0].options["is_required"] as? Bool)
+                case .integer:
+                    let data = newCaseField.data as! NewCaseFieldIntegerData
+                    let options = data.configs[0].options
+                    let defaultValue = options.defaultValue != nil ? String(options.defaultValue!) : ""
+                    XCTAssertEqual(defaultValue, caseField.configs[0].options["default_value"] as? String)
+                    XCTAssertEqual(options.isRequired, caseField.configs[0].options["is_required"] as? Bool)
+                case .text:
+                    let data = newCaseField.data as! NewCaseFieldTextData
+                    let options = data.configs[0].options
+                    let defaultValue = options.defaultValue ?? ""
+                    XCTAssertEqual(defaultValue, caseField.configs[0].options["default_value"] as? String)
+                    XCTAssertEqual(options.isRequired, caseField.configs[0].options["is_required"] as? Bool)
+                    XCTAssertEqual(options.format.rawValue, caseField.configs[0].options["format"] as? String)
+                    XCTAssertEqual(options.rows.rawValue, caseField.configs[0].options["rows"] as? String)
+                case .url:
+                    let data = newCaseField.data as! NewCaseFieldURLData
+                    let options = data.configs[0].options
+                    let defaultValue = options.defaultValue?.absoluteString ?? ""
+                    XCTAssertEqual(defaultValue, caseField.configs[0].options["default_value"] as? String)
+                    XCTAssertEqual(options.isRequired, caseField.configs[0].options["is_required"] as? Bool)
+                case .checkbox:
+                    let data = newCaseField.data as! NewCaseFieldCheckboxData
+                    let options = data.configs[0].options
+                    XCTAssertEqual(options.defaultValue, caseField.configs[0].options["default_value"] as? Bool)
+                    XCTAssertEqual(options.isRequired, caseField.configs[0].options["is_required"] as? Bool)
+                case .dropdown:
+                    let data = newCaseField.data as! NewCaseFieldDropdownData
+                    let options = data.configs[0].options
+                    let defaultValue = String((options.defaultValue + 1)) // 0 indexed ---> 1 indexed
+                    XCTAssertEqual(defaultValue, caseField.configs[0].options["default_value"] as? String)
+                    if let itemsString = caseField.configs[0].options["items"] as? String,
+                        let items = CaseFieldItemsConverter.items(from: itemsString) {
+                        XCTAssertEqual(options.items, items)
+                    } else {
+                        XCTFail("Invalid items: \(String(describing: caseField.configs[0].options["items"]))")
+                    }
+                    XCTAssertEqual(options.isRequired, caseField.configs[0].options["is_required"] as? Bool)
+                case .user:
+                    let data = newCaseField.data as! NewCaseFieldUserData
+                    let options = data.configs[0].options
+                    let defaultValue = options.defaultValue != nil ? String(options.defaultValue!) : ""
+                    XCTAssertEqual(defaultValue, caseField.configs[0].options["default_value"] as? String)
+                    XCTAssertEqual(options.isRequired, caseField.configs[0].options["is_required"] as? Bool)
+                case .date:
+                    let data = newCaseField.data as! NewCaseFieldDateData
+                    let options = data.configs[0].options
+                    XCTAssertEqual(options.isRequired, caseField.configs[0].options["is_required"] as? Bool)
+                case .milestone:
+                    let data = newCaseField.data as! NewCaseFieldMilestoneData
+                    let options = data.configs[0].options
+                    XCTAssertEqual(options.isRequired, caseField.configs[0].options["is_required"] as? Bool)
+                case .steps:
+                    let data = newCaseField.data as! NewCaseFieldStepsData
+                    let options = data.configs[0].options
+                    XCTAssertEqual(options.isRequired, caseField.configs[0].options["is_required"] as? Bool)
+                    XCTAssertEqual(options.format.rawValue, caseField.configs[0].options["format"] as? String)
+                    XCTAssertEqual(options.hasExpected, caseField.configs[0].options["has_expected"] as? Bool)
+                    XCTAssertEqual(options.rows.rawValue, caseField.configs[0].options["rows"] as? String)
+                case .multiselect:
+                    let data = newCaseField.data as! NewCaseFieldMultiselectData
+                    let options = data.configs[0].options
+                    if let itemsString = caseField.configs[0].options["items"] as? String,
+                        let items = CaseFieldItemsConverter.items(from: itemsString) {
+                        XCTAssertEqual(options.items, items)
+                    } else {
+                        XCTFail("Invalid items: \(String(describing: caseField.configs[0].options["items"]))")
+                    }
+                    XCTAssertEqual(options.isRequired, caseField.configs[0].options["is_required"] as? Bool)
+                }
+            }
+        }
+
+        return caseField
     }
 
     // MARK: CaseType

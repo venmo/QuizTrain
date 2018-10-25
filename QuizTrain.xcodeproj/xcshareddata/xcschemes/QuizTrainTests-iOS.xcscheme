@@ -10,9 +10,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      codeCoverageEnabled = "YES"
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -23,6 +22,41 @@
                BlueprintName = "QuizTrainTests-iOS"
                ReferencedContainer = "container:QuizTrain.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ObjectAPITests/testAddCheckboxCaseField()">
+               </Test>
+               <Test
+                  Identifier = "ObjectAPITests/testAddDateCaseField()">
+               </Test>
+               <Test
+                  Identifier = "ObjectAPITests/testAddDropdownCaseField()">
+               </Test>
+               <Test
+                  Identifier = "ObjectAPITests/testAddIntegerCaseField()">
+               </Test>
+               <Test
+                  Identifier = "ObjectAPITests/testAddMilestoneCaseField()">
+               </Test>
+               <Test
+                  Identifier = "ObjectAPITests/testAddMultiselectCaseField()">
+               </Test>
+               <Test
+                  Identifier = "ObjectAPITests/testAddStepsCaseField()">
+               </Test>
+               <Test
+                  Identifier = "ObjectAPITests/testAddStringCaseField()">
+               </Test>
+               <Test
+                  Identifier = "ObjectAPITests/testAddTextCaseField()">
+               </Test>
+               <Test
+                  Identifier = "ObjectAPITests/testAddURLCaseField()">
+               </Test>
+               <Test
+                  Identifier = "ObjectAPITests/testAddUserCaseField()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <AdditionalOptions>
@@ -32,7 +66,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"

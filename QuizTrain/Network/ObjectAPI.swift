@@ -152,7 +152,7 @@ extension ObjectAPI {
 
     private typealias RequestOutcome = Outcome<API.RequestResult, RequestError>
 
-    /*
+    /**
      Converts an API.RequestOutcome into a more strongly-defined RequestOutcome.
      */
     private static func requestOutcome(from apiRequestOutcome: API.RequestOutcome) -> RequestOutcome {
@@ -191,7 +191,7 @@ extension ObjectAPI {
 
     private typealias JSONOutcome = Outcome<Any, DataRequestError>
 
-    /*
+    /**
      Attempts to extract JSON from `apiRequestOutcome` and return it. If
      extraction fails a failed JSONOutcome is returned.
      */
@@ -227,7 +227,7 @@ extension ObjectAPI {
     private typealias ObjectOutcome<ObjectType> = Outcome<ObjectType, DataRequestError>
     private typealias ObjectsOutcome<ObjectType> = Outcome<[ObjectType], DataRequestError>
 
-    /*
+    /**
      Attempts to deserialize and return an object of ObjectType from
      `apiRequestOutcome`. If deserializing fails a failed ObjectOutcome is
      returned.
@@ -255,7 +255,7 @@ extension ObjectAPI {
         return .succeeded(object)
     }
 
-    /*
+    /**
      Attempts to deserialize and return 0+ objects of ObjectType from
      `apiRequestOutcome`. If deserializing fails a failed ObjectsOutcome is
      returned.
@@ -285,7 +285,7 @@ extension ObjectAPI {
 
     // MARK: Rate Limit
 
-    /*
+    /**
      Helper for processing 429 Too Many Requests errors.
      */
     private struct RateLimitReached {
@@ -303,7 +303,7 @@ extension ObjectAPI {
 
     // MARK: Processing
 
-    /*
+    /**
      These methods handle processing an API.RequestOutcome calling one of the
      handler closures when complete. Swift inference auto-detects which
      process(...) method to call.
@@ -320,7 +320,7 @@ extension ObjectAPI {
      In all other cases the `completionHandler` is called when complete.
      */
 
-    /*
+    /**
      Process API.RequestOutcome's to delete an object.
 
      - Outcome.succeeded receives an API.DataResponse.
@@ -349,7 +349,7 @@ extension ObjectAPI {
         }
     }
 
-    /*
+    /**
      Process API.RequestOutcome's to get a single object.
 
      - Outcome.succeeded receives an object deserialized from
@@ -379,7 +379,7 @@ extension ObjectAPI {
         }
     }
 
-    /*
+    /**
      Process API.RequestOutcome's to get multiple objects.
 
      - Outcome.succeeded receives 0+ object(s) deserialized from
@@ -409,7 +409,7 @@ extension ObjectAPI {
         }
     }
 
-    /*
+    /**
      Process API.RequestOutcome's to add or update an object returning a new
      added/updated object if successful.
 
@@ -444,7 +444,7 @@ extension ObjectAPI {
         }
     }
 
-    /*
+    /**
      Process API.RequestOutcome's to add or update multiple objects returning an
      array of the added/updated objects if successful.
 
@@ -514,7 +514,7 @@ extension ObjectAPI {
         return .succeeded(data)
     }
 
-    /*
+    /**
      Combines JSON from all `objects` and returns Data from it. Any overlapping
      JSON keys are overriden by the last-most object in `objects`.
      */
@@ -544,7 +544,7 @@ extension ObjectAPI {
 
     // MARK: - ConfigurationGroup
 
-    /*
+    /**
      Queries all Project's matching |projectIds| asynchronously to get their
      ConfigurationGroups. Passes a dictionary of outcomes to the
      completionHandler mapping projectIds to each outcome when complete:
@@ -601,7 +601,7 @@ extension ObjectAPI {
 
     // MARK: - Project
 
-    /*
+    /**
      Asynchronously GETs each project in |projectIds|. Passes a dictionary of
      outcomes to the completionHandler mapping projectIds to each outcome when
      complete:
@@ -662,7 +662,7 @@ extension ObjectAPI {
 
     // MARK: - Template
 
-    /*
+    /**
      Queries all Project's matching |projectIds| asynchronously to get their
      Templates. Passes a dictionary of outcomes to the completionHandler
      mapping projectIds to each outcome when complete:
@@ -725,15 +725,15 @@ extension ObjectAPI {
 
     // MARK: - Case
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-cases#add_case
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-cases#add_case)
      */
     public func addCase(_ newCase: NewCase, to section: Section, completionHandler: @escaping (Outcome<Case, AddError>) -> Void) {
         addCase(newCase, toSectionWithId: section.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-cases#add_case
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-cases#add_case)
      */
     public func addCase(_ newCase: NewCase, toSectionWithId sectionId: Section.Id, completionHandler: @escaping (Outcome<Case, AddError>) -> Void) {
 
@@ -756,15 +756,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-cases#delete_case
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-cases#delete_case)
      */
     public func deleteCase(_ case: Case, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         deleteCase(`case`.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-cases#delete_case
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-cases#delete_case)
      */
     public func deleteCase(_ caseId: Case.Id, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         api.deleteCase(caseId: caseId) { [weak self] (apiRequestOutcome) in
@@ -781,8 +781,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-cases#get_case
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-cases#get_case)
      */
     public func getCase(_ caseId: Case.Id, completionHandler: @escaping (Outcome<Case, GetError>) -> Void) {
         api.getCase(caseId: caseId) { [weak self] (apiRequestOutcome) in
@@ -794,8 +794,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-cases#get_cases
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-cases#get_cases)
 
      suite is required if the project is not running in single suite mode.
      */
@@ -803,8 +803,8 @@ extension ObjectAPI {
         getCases(inProjectWithId: project.id, inSuiteWithId: suite?.id, inSectionWithId: section?.id, filteredBy: filters, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-cases#get_cases
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-cases#get_cases)
 
      suiteId is required if the project is not running in single suite mode.
      */
@@ -818,8 +818,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-cases#update_case
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-cases#update_case)
      */
     public func updateCase(_ case: Case, completionHandler: @escaping (Outcome<Case, UpdateError>) -> Void) {
 
@@ -844,8 +844,32 @@ extension ObjectAPI {
 
     // MARK: - CaseField
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-cases-fields#get_case_fields
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-cases-fields#get_case_fields)
+     */
+    public func addCaseField<DataType: NewCaseFieldData>(_ newCaseField: NewCaseField<DataType>, completionHandler: @escaping (Outcome<CaseField, AddError>) -> Void) {
+
+        let dataOutcome = self.data(from: newCaseField)
+        let data: Data
+        switch dataOutcome {
+        case .failed(let error):
+            completionHandler(.failed(.objectConversionError(error)))
+            return
+        case .succeeded(let aData):
+            data = aData
+        }
+
+        api.addCaseField(data: data) { [weak self] (apiRequestOutcome) in
+            self?.process(apiRequestOutcome, retryHandler: {
+                self?.addCaseField(newCaseField, completionHandler: completionHandler)
+            }, completionHandler: { (processedOutcome) in
+                completionHandler(processedOutcome)
+            })
+        }
+    }
+
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-cases-fields#get_case_fields)
      */
     public func getCaseFields(completionHandler: @escaping (Outcome<[CaseField], GetError>) -> Void) {
         api.getCaseFields { [weak self] (apiRequestOutcome) in
@@ -859,8 +883,8 @@ extension ObjectAPI {
 
     // MARK: - CaseType
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-cases-types#get_case_types
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-cases-types#get_case_types)
      */
     public func getCaseTypes(completionHandler: @escaping (Outcome<[CaseType], GetError>) -> Void) {
         api.getCaseTypes { [weak self] (apiRequestOutcome) in
@@ -874,15 +898,15 @@ extension ObjectAPI {
 
     // MARK: - Configuration
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#add_config
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#add_config)
      */
     public func addConfiguration(_ newConfiguration: NewConfiguration, to configurationGroup: ConfigurationGroup, completionHandler: @escaping (Outcome<Configuration, AddError>) -> Void) {
         addConfiguration(newConfiguration, toConfigurationGroupWithId: configurationGroup.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#add_config
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#add_config)
      */
     public func addConfiguration(_ newConfiguration: NewConfiguration, toConfigurationGroupWithId configurationGroupId: ConfigurationGroup.Id, completionHandler: @escaping (Outcome<Configuration, AddError>) -> Void) {
 
@@ -905,15 +929,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#delete_config
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#delete_config)
      */
     public func deleteConfiguration(_ configuration: Configuration, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         deleteConfiguration(configuration.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#delete_config
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#delete_config)
      */
     public func deleteConfiguration(_ configurationId: Configuration.Id, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         api.deleteConfiguration(configurationId: configurationId) { [weak self] (apiRequestOutcome) in
@@ -930,8 +954,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#update_config
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#update_config)
      */
     public func updateConfiguration(_ configuration: Configuration, completionHandler: @escaping (Outcome<Configuration, UpdateError>) -> Void) {
 
@@ -956,15 +980,15 @@ extension ObjectAPI {
 
     // MARK: - ConfigurationGroup
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#add_config_group
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#add_config_group)
      */
     public func addConfigurationGroup(_ newConfigurationGroup: NewConfigurationGroup, to project: Project, completionHandler: @escaping (Outcome<ConfigurationGroup, AddError>) -> Void) {
         addConfigurationGroup(newConfigurationGroup, toProjectWithId: project.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#add_config_group
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#add_config_group)
      */
     public func addConfigurationGroup(_ newConfigurationGroup: NewConfigurationGroup, toProjectWithId projectId: Project.Id, completionHandler: @escaping (Outcome<ConfigurationGroup, AddError>) -> Void) {
 
@@ -987,15 +1011,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#delete_config_group
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#delete_config_group)
      */
     public func deleteConfigurationGroup(_ configurationGroup: ConfigurationGroup, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         deleteConfigurationGroup(configurationGroup.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#delete_config_group
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#delete_config_group)
      */
     public func deleteConfigurationGroup(_ configurationGroupId: ConfigurationGroup.Id, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         api.deleteConfigurationGroup(configurationGroupId: configurationGroupId) { [weak self] (apiRequestOutcome) in
@@ -1012,7 +1036,7 @@ extension ObjectAPI {
         }
     }
 
-    /*
+    /**
      Gets all ConfigurationGroups from all Projects.
 
      - Returns a de-duped array of 0+ ConfigurationGroups from all Projects upon
@@ -1064,15 +1088,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#get_configs
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#get_configs)
      */
     public func getConfigurationGroups(in project: Project, completionHandler: @escaping (Outcome<[ConfigurationGroup], GetError>) -> Void) {
         getConfigurationGroups(inProjectWithId: project.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#get_configs
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#get_configs)
      */
     public func getConfigurationGroups(inProjectWithId projectId: Project.Id, completionHandler: @escaping (Outcome<[ConfigurationGroup], GetError>) -> Void) {
         api.getConfigurations(projectId: projectId) { [weak self] (apiRequestOutcome) in
@@ -1084,8 +1108,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-configs#update_config_group
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-configs#update_config_group)
      */
     public func updateConfigurationGroup(_ configurationGroup: ConfigurationGroup, completionHandler: @escaping (Outcome<ConfigurationGroup, UpdateError>) -> Void) {
 
@@ -1110,15 +1134,15 @@ extension ObjectAPI {
 
     // MARK: - Milestone
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-milestones#add_milestone
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-milestones#add_milestone)
      */
     public func addMilestone(_ newMilestone: NewMilestone, to project: Project, completionHandler: @escaping (Outcome<Milestone, AddError>) -> Void) {
         addMilestone(newMilestone, toProjectWithId: project.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-milestones#add_milestone
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-milestones#add_milestone)
      */
     public func addMilestone(_ newMilestone: NewMilestone, toProjectWithId projectId: Project.Id, completionHandler: @escaping (Outcome<Milestone, AddError>) -> Void) {
 
@@ -1141,15 +1165,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-milestones#delete_milestone
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-milestones#delete_milestone)
      */
     public func deleteMilestone(_ milestone: Milestone, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         deleteMilestone(milestone.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-milestones#delete_milestone
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-milestones#delete_milestone)
      */
     public func deleteMilestone(_ milestoneId: Milestone.Id, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         api.deleteMilestone(milestoneId: milestoneId) { [weak self] (apiRequestOutcome) in
@@ -1166,8 +1190,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-milestones#get_milestone
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-milestones#get_milestone)
      */
     public func getMilestone(_ milestoneId: Milestone.Id, completionHandler: @escaping (Outcome<Milestone, GetError>) -> Void) {
         api.getMilestone(milestoneId: milestoneId) { [weak self] (apiRequestOutcome) in
@@ -1179,8 +1203,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-milestones#get_milestones
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-milestones#get_milestones)
 
      NOTE: This API call does not include .milestones for the Milestone's. For
      that behavior use getMilestone(...).
@@ -1189,8 +1213,8 @@ extension ObjectAPI {
         getMilestones(inProjectWithId: project.id, filteredBy: filters, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-milestones#get_milestones
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-milestones#get_milestones)
 
      NOTE: This API call does not include .milestones for the Milestone's. For
      that behavior use getMilestone(...).
@@ -1205,8 +1229,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-milestones#update_milestone
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-milestones#update_milestone)
      */
     public func updateMilestone(_ milestone: Milestone, completionHandler: @escaping (Outcome<Milestone, UpdateError>) -> Void) {
 
@@ -1231,15 +1255,15 @@ extension ObjectAPI {
 
     // MARK: - Plan
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#add_plan
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#add_plan)
      */
     public func addPlan(_ newPlan: NewPlan, to project: Project, completionHandler: @escaping (Outcome<Plan, AddError>) -> Void) {
         addPlan(newPlan, toProjectWithId: project.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#add_plan
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#add_plan)
      */
     public func addPlan(_ newPlan: NewPlan, toProjectWithId projectId: Project.Id, completionHandler: @escaping (Outcome<Plan, AddError>) -> Void) {
 
@@ -1262,15 +1286,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#close_plan
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#close_plan)
      */
     public func closePlan(_ plan: Plan, completionHandler: @escaping (Outcome<Plan, CloseError>) -> Void) {
         closePlan(plan.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#close_plan
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#close_plan)
      */
     public func closePlan(_ planId: Plan.Id, completionHandler: @escaping (Outcome<Plan, CloseError>) -> Void) {
         api.closePlan(planId: planId) { [weak self] (apiRequestOutcome) in
@@ -1282,15 +1306,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#delete_plan
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#delete_plan)
      */
     public func deletePlan(_ plan: Plan, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         deletePlan(plan.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#delete_plan
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#delete_plan)
      */
     public func deletePlan(_ planId: Plan.Id, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         api.deletePlan(planId: planId) { [weak self] (apiRequestOutcome) in
@@ -1307,8 +1331,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#get_plan
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#get_plan)
      */
     public func getPlan(_ planId: Plan.Id, completionHandler: @escaping (Outcome<Plan, GetError>) -> Void) {
         api.getPlan(planId: planId) { [weak self] (apiRequestOutcome) in
@@ -1320,8 +1344,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#get_plans
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#get_plans)
 
      This API call does not include .entries for the Plan's. For that behavior
      use getPlan(...).
@@ -1330,8 +1354,8 @@ extension ObjectAPI {
         getPlans(inProjectWithId: project.id, filteredBy: filters, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#get_plans
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#get_plans)
 
      This API call does not include .entries for the Plan's. For that behavior
      use getPlan(...).
@@ -1346,8 +1370,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#update_plan
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#update_plan)
      */
     public func updatePlan(_ plan: Plan, completionHandler: @escaping (Outcome<Plan, UpdateError>) -> Void) {
 
@@ -1372,8 +1396,8 @@ extension ObjectAPI {
 
     // MARK: - Plan.Entry
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#add_plan_entry
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#add_plan_entry)
 
      Upon success only the newly added run(s) are included in Plan.Entry.runs.
      Any other runs are not included. To get all runs call getPlan() after this
@@ -1386,8 +1410,8 @@ extension ObjectAPI {
         addPlanEntry(newPlanEntry, toPlanWithId: plan.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#add_plan_entry
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#add_plan_entry)
 
      Upon success only the newly added run(s) are included in Plan.Entry.runs.
      Any other runs are not included. To get all runs call getPlan() after this
@@ -1417,8 +1441,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#delete_plan_entry
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#delete_plan_entry)
 
      Upon success `plan`.entries will be stale; use getPlan() to get a fresh
      Plan.
@@ -1427,8 +1451,8 @@ extension ObjectAPI {
         deletePlanEntry(planEntry.id, fromPlanWithId: plan.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#delete_plan_entry
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#delete_plan_entry)
 
      Upon success Plan.entries for `planId` will be stale; use getPlan() to get
      a fresh Plan.
@@ -1448,8 +1472,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#update_plan_entry
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#update_plan_entry)
 
      Upon success this returns a new Plan.Entry including all of its test Run's.
      `plan`.entries will be stale; use getPlan() to get a fresh Plan.
@@ -1463,8 +1487,8 @@ extension ObjectAPI {
         updatePlanEntry(planEntry, inPlanWithId: plan.id, with: planEntryRuns, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-plans#update_plan_entry
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-plans#update_plan_entry)
 
      Upon success this returns a new Plan.Entry including all of its test Run's.
      Plan.entries for `planId` will be stale; use getPlan() to get a fresh Plan.
@@ -1503,8 +1527,8 @@ extension ObjectAPI {
 
     // MARK: - Priority
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-priorities#get_priorities
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-priorities#get_priorities)
      */
     public func getPriorities(completionHandler: @escaping (Outcome<[Priority], GetError>) -> Void) {
         api.getPriorities { [weak self] (apiRequestOutcome) in
@@ -1518,8 +1542,8 @@ extension ObjectAPI {
 
     // MARK: - Project
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-projects#add_project
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-projects#add_project)
      */
     public func addProject(_ newProject: NewProject, completionHandler: @escaping (Outcome<Project, AddError>) -> Void) {
 
@@ -1542,15 +1566,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-projects#delete_project
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-projects#delete_project)
      */
     public func deleteProject(_ project: Project, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         deleteProject(project.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-projects#delete_project
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-projects#delete_project)
      */
     public func deleteProject(_ projectId: Project.Id, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         api.deleteProject(projectId: projectId) { [weak self] (apiRequestOutcome) in
@@ -1567,8 +1591,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-projects#get_project
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-projects#get_project)
 
      You must have at least Read-only access to the project otherwise a 403
      error will be returned.
@@ -1583,8 +1607,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-projects#get_projects
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-projects#get_projects)
 
      Returns all projects which you have at least Read-only access to. All other
      projects will be silently omitted.
@@ -1603,8 +1627,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-projects#update_project
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-projects#update_project)
      */
     public func updateProject(_ project: Project, completionHandler: @escaping (Outcome<Project, UpdateError>) -> Void) {
 
@@ -1629,15 +1653,15 @@ extension ObjectAPI {
 
     // MARK: - Result
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#add_result
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#add_result)
      */
     public func addResult(_ newResult: NewResult, to test: Test, completionHandler: @escaping (Outcome<Result, AddError>) -> Void) {
         addResult(newResult, toTestWithId: test.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#add_result
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#add_result)
      */
     public func addResult(_ newResult: NewResult, toTestWithId testId: Test.Id, completionHandler: @escaping (Outcome<Result, AddError>) -> Void) {
 
@@ -1660,15 +1684,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#add_result_for_case
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#add_result_for_case)
      */
     public func addResultForCase(_ newResult: NewResult, to run: Run, to case: Case, completionHandler: @escaping (Outcome<Result, AddError>) -> Void) {
         addResultForCase(newResult, toRunWithId: run.id, toCaseWithId: `case`.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#add_result_for_case
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#add_result_for_case)
      */
     public func addResultForCase(_ newResult: NewResult, toRunWithId runId: Run.Id, toCaseWithId caseId: Case.Id, completionHandler: @escaping (Outcome<Result, AddError>) -> Void) {
 
@@ -1691,15 +1715,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#add_results
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#add_results)
      */
     public func addResults(_ newTestResults: NewTestResults, to run: Run, completionHandler: @escaping (Outcome<[Result], AddError>) -> Void) {
         addResults(newTestResults, toRunWithId: run.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#add_results
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#add_results)
      */
     public func addResults(_ newTestResults: NewTestResults, toRunWithId runId: Run.Id, completionHandler: @escaping (Outcome<[Result], AddError>) -> Void) {
 
@@ -1722,15 +1746,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#add_results_for_cases
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#add_results_for_cases)
      */
     public func addResultsForCases(_ newCaseResults: NewCaseResults, to run: Run, completionHandler: @escaping (Outcome<[Result], AddError>) -> Void) {
         addResultsForCases(newCaseResults, toRunWithId: run.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#add_results_for_cases
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#add_results_for_cases)
      */
     public func addResultsForCases(_ newCaseResults: NewCaseResults, toRunWithId runId: Run.Id, completionHandler: @escaping (Outcome<[Result], AddError>) -> Void) {
 
@@ -1753,15 +1777,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#get_results
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#get_results)
      */
     public func getResultsForTest(_ test: Test, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<[Result], GetError>) -> Void) {
         getResultsForTest(test.id, filteredBy: filters, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#get_results
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#get_results)
      */
     public func getResultsForTest(_ testId: Test.Id, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<[Result], GetError>) -> Void) {
         api.getResults(testId: testId, filters: filters) { [weak self] (apiRequestOutcome) in
@@ -1773,15 +1797,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#get_results_for_case
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#get_results_for_case)
      */
     public func getResultsForCase(_ case: Case, in run: Run, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<[Result], GetError>) -> Void) {
         getResultsForCase(`case`.id, inRunWithId: run.id, filteredBy: filters, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#get_results_for_case
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#get_results_for_case)
      */
     public func getResultsForCase(_ caseId: Case.Id, inRunWithId runId: Run.Id, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<[Result], GetError>) -> Void) {
         api.getResultsForCase(runId: runId, caseId: caseId, filters: filters) { [weak self] (apiRequestOutcome) in
@@ -1793,15 +1817,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#get_results_for_run
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#get_results_for_run)
      */
     public func getResultsForRun(_ run: Run, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<[Result], GetError>) -> Void) {
         getResultsForRun(run.id, filteredBy: filters, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results#get_results_for_run
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results#get_results_for_run)
      */
     public func getResultsForRun(_ runId: Run.Id, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<[Result], GetError>) -> Void) {
         api.getResultsForRun(runId: runId, filters: filters) { [weak self] (apiRequestOutcome) in
@@ -1815,8 +1839,8 @@ extension ObjectAPI {
 
     // MARK: - ResultField
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-results-fields#get_result_fields
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-results-fields#get_result_fields)
      */
     public func getResultFields(completionHandler: @escaping (Outcome<[ResultField], GetError>) -> Void) {
         api.getResultFields { [weak self] (apiRequestOutcome) in
@@ -1830,15 +1854,15 @@ extension ObjectAPI {
 
     // MARK: - Run
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-runs#add_run
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-runs#add_run)
      */
     public func addRun(_ newRun: NewRun, to project: Project, completionHandler: @escaping (Outcome<Run, AddError>) -> Void) {
         addRun(newRun, toProjectWithId: project.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-runs#add_run
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-runs#add_run)
      */
     public func addRun(_ newRun: NewRun, toProjectWithId projectId: Project.Id, completionHandler: @escaping (Outcome<Run, AddError>) -> Void) {
 
@@ -1861,15 +1885,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-runs#close_run
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-runs#close_run)
      */
     public func closeRun(_ run: Run, completionHandler: @escaping (Outcome<Run, CloseError>) -> Void) {
         closeRun(run.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-runs#close_run
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-runs#close_run)
      */
     public func closeRun(_ runId: Run.Id, completionHandler: @escaping (Outcome<Run, CloseError>) -> Void) {
         api.closeRun(runId: runId) { [weak self] (apiRequestOutcome) in
@@ -1881,15 +1905,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-runs#delete_run
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-runs#delete_run)
      */
     public func deleteRun(_ run: Run, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         deleteRun(run.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-runs#delete_run
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-runs#delete_run)
      */
     public func deleteRun(_ runId: Run.Id, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         api.deleteRun(runId: runId) { [weak self] (apiRequestOutcome) in
@@ -1906,8 +1930,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-runs#get_run
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-runs#get_run)
      */
     public func getRun(_ runId: Run.Id, completionHandler: @escaping (Outcome<Run, GetError>) -> Void) {
         api.getRun(runId: runId) { [weak self] (apiRequestOutcome) in
@@ -1919,8 +1943,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-runs#get_runs
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-runs#get_runs)
 
      This only returns Runs which are not part of a Plan.
      */
@@ -1928,8 +1952,8 @@ extension ObjectAPI {
         getRuns(inProjectWithId: project.id, filteredBy: filters, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-runs#get_runs
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-runs#get_runs)
 
      This only returns Runs which are not part of a Plan.
      */
@@ -1943,8 +1967,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-runs#update_run
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-runs#update_run)
      */
     public func updateRun(_ run: Run, completionHandler: @escaping (Outcome<Run, UpdateError>) -> Void) {
 
@@ -1969,15 +1993,15 @@ extension ObjectAPI {
 
     // MARK: - Section
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-sections#add_section
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-sections#add_section)
      */
     public func addSection(_ newSection: NewSection, to project: Project, completionHandler: @escaping (Outcome<Section, AddError>) -> Void) {
         addSection(newSection, toProjectWithId: project.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-sections#add_section
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-sections#add_section)
      */
     public func addSection(_ newSection: NewSection, toProjectWithId projectId: Project.Id, completionHandler: @escaping (Outcome<Section, AddError>) -> Void) {
 
@@ -2000,15 +2024,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-sections#delete_section
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-sections#delete_section)
      */
     public func deleteSection(_ section: Section, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         deleteSection(section.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-sections#delete_section
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-sections#delete_section)
      */
     public func deleteSection(_ sectionId: Section.Id, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         api.deleteSection(sectionId: sectionId) { [weak self] (apiRequestOutcome) in
@@ -2025,8 +2049,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-sections#get_section
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-sections#get_section)
      */
     public func getSection(_ sectionId: Section.Id, completionHandler: @escaping (Outcome<Section, GetError>) -> Void) {
         api.getSection(sectionId: sectionId) { [weak self] (apiRequestOutcome) in
@@ -2038,15 +2062,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-sections#get_sections
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-sections#get_sections)
      */
     public func getSections(in project: Project, in suite: Suite? = nil, completionHandler: @escaping (Outcome<[Section], GetError>) -> Void) {
         getSections(inProjectWithId: project.id, inSuiteWithId: suite?.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-sections#get_sections
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-sections#get_sections)
      */
     public func getSections(inProjectWithId projectId: Project.Id, inSuiteWithId suiteId: Suite.Id? = nil, completionHandler: @escaping (Outcome<[Section], GetError>) -> Void) {
         api.getSections(projectId: projectId, suiteId: suiteId) { [weak self] (apiRequestOutcome) in
@@ -2058,8 +2082,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-sections#update_section
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-sections#update_section)
      */
     public func updateSection(_ section: Section, completionHandler: @escaping (Outcome<Section, UpdateError>) -> Void) {
 
@@ -2084,8 +2108,8 @@ extension ObjectAPI {
 
     // MARK: - Status
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-statuses#get_statuses
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-statuses#get_statuses)
      */
     public func getStatuses(completionHandler: @escaping (Outcome<[Status], GetError>) -> Void) {
         api.getStatuses { [weak self] (apiRequestOutcome) in
@@ -2099,15 +2123,15 @@ extension ObjectAPI {
 
     // MARK: - Suite
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-suites#add_suite
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-suites#add_suite)
      */
     public func addSuite(_ newSuite: NewSuite, to project: Project, completionHandler: @escaping (Outcome<Suite, AddError>) -> Void) {
         addSuite(newSuite, toProjectWithId: project.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-suites#add_suite
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-suites#add_suite)
      */
     public func addSuite(_ newSuite: NewSuite, toProjectWithId projectId: Project.Id, completionHandler: @escaping (Outcome<Suite, AddError>) -> Void) {
 
@@ -2130,15 +2154,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-suites#delete_suite
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-suites#delete_suite)
      */
     public func deleteSuite(_ suite: Suite, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         deleteSuite(suite.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-suites#delete_suite
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-suites#delete_suite)
      */
     public func deleteSuite(_ suiteId: Suite.Id, completionHandler: @escaping (Outcome<Void?, DeleteError>) -> Void) {
         api.deleteSuite(suiteId: suiteId) { [weak self] (apiRequestOutcome) in
@@ -2155,8 +2179,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-suites#get_suite
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-suites#get_suite)
      */
     public func getSuite(_ suiteId: Suite.Id, completionHandler: @escaping (Outcome<Suite, GetError>) -> Void) {
         api.getSuite(suiteId: suiteId) { [weak self] (apiRequestOutcome) in
@@ -2168,15 +2192,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-suites#get_suites
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-suites#get_suites)
      */
     public func getSuites(in project: Project, completionHandler: @escaping (Outcome<[Suite], GetError>) -> Void) {
         getSuites(inProjectWithId: project.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-suites#get_suites
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-suites#get_suites)
      */
     public func getSuites(inProjectWithId projectId: Project.Id, completionHandler: @escaping (Outcome<[Suite], GetError>) -> Void) {
         api.getSuites(projectId: projectId) { [weak self] (apiRequestOutcome) in
@@ -2188,8 +2212,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-suites#update_suite
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-suites#update_suite)
      */
     public func updateSuite(_ suite: Suite, completionHandler: @escaping (Outcome<Suite, UpdateError>) -> Void) {
 
@@ -2214,7 +2238,7 @@ extension ObjectAPI {
 
     // MARK: - Template
 
-    /*
+    /**
      Gets all Templates from all Projects. A template may appear in some or all
      projects.
 
@@ -2266,15 +2290,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-templates#get_templates
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-templates#get_templates)
      */
     public func getTemplates(in project: Project, completionHandler: @escaping (Outcome<[Template], GetError>) -> Void) {
         getTemplates(inProjectWithId: project.id, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-templates#get_templates
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-templates#get_templates)
      */
     public func getTemplates(inProjectWithId projectId: Project.Id, completionHandler: @escaping (Outcome<[Template], GetError>) -> Void) {
         api.getTemplates(projectId: projectId) { [weak self] (apiRequestOutcome) in
@@ -2288,8 +2312,8 @@ extension ObjectAPI {
 
     // MARK: - Test
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-tests#get_test
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-tests#get_test)
      */
     public func getTest(_ testId: Test.Id, completionHandler: @escaping (Outcome<Test, GetError>) -> Void) {
         api.getTest(testId: testId) { [weak self] (apiRequestOutcome) in
@@ -2301,15 +2325,15 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-tests#get_tests
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-tests#get_tests)
      */
     public func getTests(in run: Run, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<[Test], GetError>) -> Void) {
         getTests(inRunWithId: run.id, filteredBy: filters, completionHandler: completionHandler)
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-tests#get_tests
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-tests#get_tests)
      */
     public func getTests(inRunWithId runId: Run.Id, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<[Test], GetError>) -> Void) {
         api.getTests(runId: runId, filters: filters) { [weak self] (apiRequestOutcome) in
@@ -2323,8 +2347,8 @@ extension ObjectAPI {
 
     // MARK: - User
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-users#get_user
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-users#get_user)
      */
     public func getUser(_ userId: User.Id, completionHandler: @escaping (Outcome<User, GetError>) -> Void) {
         api.getUser(userId: userId) { [weak self] (apiRequestOutcome) in
@@ -2336,8 +2360,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-users#get_user_by_email
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-users#get_user_by_email)
      */
     public func getUserByEmail(_ email: String, completionHandler: @escaping (Outcome<User, GetError>) -> Void) {
         api.getUserByEmail(email) { [weak self] (apiRequestOutcome) in
@@ -2349,8 +2373,8 @@ extension ObjectAPI {
         }
     }
 
-    /*
-     http://docs.gurock.com/testrail-api2/reference-users#get_users
+    /**
+     [API Reference](http://docs.gurock.com/testrail-api2/reference-users#get_users)
      */
     public func getUsers(completionHandler: @escaping (Outcome<[User], GetError>) -> Void) {
         api.getUsers { [weak self] (apiRequestOutcome) in
@@ -2368,7 +2392,7 @@ extension ObjectAPI {
 
 extension ObjectAPI {
 
-    /*
+    /**
      - Upon success returns an Outcome with items from |items| matching all
        |ids|. Requires every id in |ids| to match an item.
      - Upon failure returns an Outcome indicating if no matches were found, or
@@ -2564,7 +2588,7 @@ extension ObjectAPI {
 
     // MARK: - Config
 
-    /*
+    /**
      Calls the projects() method handling/stripping the MultipleMatchError. Upon
      success this effectively returns all projects accessible to the current API
      user while silently omitting any which are missing. Failure only occurs if
@@ -2591,7 +2615,7 @@ extension ObjectAPI {
         }
     }
 
-    /*
+    /**
      Asynchronously gets and returns projects for a Config. The outcome passed
      to the completionHandler varies based on:
 
