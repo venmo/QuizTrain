@@ -1696,31 +1696,37 @@
 				TargetAttributes = {
 					FE23A91B1F59F39F007E946D = {
 						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					FE23A9241F59F3A0007E946D = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					FEAE99501FEC38BA00B52CA9 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					FEAE995E1FEC3BCD00B52CA9 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					FEAE99661FEC3BCE00B52CA9 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					FEAE997A1FEC3BEB00B52CA9 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					FEAE99821FEC3BEB00B52CA9 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1731,6 +1737,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = FE23A9121F59F39F007E946D;
 			productRefGroup = FE23A91D1F59F3A0007E946D /* Products */;
@@ -2684,6 +2691,7 @@
 				PRODUCT_NAME = QuizTrain;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2705,6 +2713,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrain;
 				PRODUCT_NAME = QuizTrain;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2718,6 +2727,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2731,6 +2741,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2752,6 +2763,7 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
@@ -2774,6 +2786,7 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
@@ -2795,6 +2808,7 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -2816,6 +2830,7 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -2831,6 +2846,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.2;
 			};
@@ -2846,6 +2862,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.2;
 			};
@@ -2870,6 +2887,7 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2892,6 +2910,7 @@
 				PRODUCT_NAME = QuizTrain;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -2908,6 +2927,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2924,6 +2944,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = venmo.QuizTrainTests;
 				PRODUCT_NAME = QuizTrainTests;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
