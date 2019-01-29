@@ -120,7 +120,7 @@ final class QuizTrainManager: NSObject {
         var completed = [NewCaseResults.Result]()
         for caseId in caseIds {
             guard let complete = started.filter({ $0.caseId == caseId }).first,
-                let index = started.index(of: complete) else {
+                let index = started.firstIndex(of: complete) else {
                     fatalError("You cannot complete caseId \(caseId) because it has not been started.")
             }
             completed.append(complete)
