@@ -799,6 +799,7 @@
 		FE6C8AE11F8BEA2E00F45642 /* MutableCustomFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCustomFields.swift; sourceTree = "<group>"; };
 		FE791A241F7D9FFA00D7E870 /* Project.SuiteModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.SuiteModeTests.swift; sourceTree = "<group>"; };
 		FE7CD3E31F9ABDC300C6108E /* NewPlan.Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlan.Entry.swift; sourceTree = "<group>"; };
+		FE7CDC452200CD4200D4BD37 /* ERRORS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ERRORS.md; sourceTree = "<group>"; };
 		FE813A171F73126F00265569 /* JSONDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDictionary.swift; sourceTree = "<group>"; };
 		FE8464621FE307B1006CB58F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FE8464641FE307BB006CB58F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -1035,6 +1036,7 @@
 				FE23A9291F59F3A0007E946D /* QuizTrainTests */,
 				FE23A91D1F59F3A0007E946D /* Products */,
 				FE1F301B1FEC0C890046F99E /* Entities.png */,
+				FE7CDC452200CD4200D4BD37 /* ERRORS.md */,
 				FEB67180200FF7EA006283A6 /* LICENSE */,
 				FE8464621FE307B1006CB58F /* README.md */,
 				FE09FFCF1FE325CE0009FB2F /* .gitignore */,
