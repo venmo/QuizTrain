@@ -32,9 +32,9 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
 
     objectAPI.getCases(inProjectWithId: 5) { (outcome) in
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             print(error.debugDescription)
-        case .succeeded(let cases):
+        case .success(let cases):
             print(cases) // Do something with cases.
         }
     }
@@ -46,9 +46,9 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
     
     objectAPI.addCase(newCase, to: section) { (outcome) in
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             print(error.debugDescription)
-        case .succeeded(let `case`):
+        case .success(let `case`):
             print(`case`.title) // Do something with the newly created `case`.
         }
     }
@@ -61,9 +61,9 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
     
     objectAPI.updateSuite(suite) { (outcome) in
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             print(error.debugDescription)
-        case .succeeded(let updatedSuite):
+        case .success(let updatedSuite):
             print(updatedSuite.description) // "Updated description for this suite."
             print(updatedSuite.name) // "Updated name of this suite."
         }
@@ -75,9 +75,9 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
     
     objectAPI.deleteSection(section) { (outcome) in
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             print(error.debugDescription)
-        case .succeeded(_): // nil on successful deletes
+        case .success(_): // nil on successful deletes
             print("The section has been successfully deleted.")
         }
     }
@@ -88,9 +88,9 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
     
     objectAPI.closePlan(plan) { (outcome) in
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             print(error.debugDescription)
-        case .succeeded(let closedPlan):
+        case .success(let closedPlan):
             print(closedPlan.isCompleted) // true
             print(closedPlan.completedOn) // timestamp
         }
@@ -102,9 +102,9 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
     
     milestone.parent(objectAPI) { (outcome) in
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             print(error.debugDescription)
-        case .succeeded(let optionalParent):
+        case .success(let optionalParent):
             if let parent = optionalParent {
                 print("Milestone \(milestone.id) has a parent with an id of \(parent.id).")
             } else {
@@ -119,9 +119,9 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
     
     objectAPI.getRuns(inProjectWithId: 3, filteredBy: filters) { (outcome) in
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             print(error.debugDescription)
-        case .succeeded(let completedRuns):
+        case .success(let completedRuns):
             for completedRun in completedRuns {
                 print(completedRun.isCompleted) // true
             }
@@ -136,9 +136,9 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
     
     objectAPI.getPlans(in: project, filteredBy: filters) { (outcome) in
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             print(error.debugDescription)
-        case .succeeded(let plans): // There will be 5 or less plans.
+        case .success(let plans): // There will be 5 or less plans.
             for plan in plans {
                 print(plan.name)
             }

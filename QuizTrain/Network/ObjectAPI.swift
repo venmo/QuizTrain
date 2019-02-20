@@ -308,7 +308,7 @@ extension ObjectAPI {
      handler closures when complete. Swift inference auto-detects which
      process(...) method to call.
 
-     The value passed to a Outcome.succeeded and .failed cases varies. See
+     The value passed to a Outcome.success and .failed cases varies. See
      method comments for details.
 
      If handle429TooManyRequestErrors is true and the API returned a 429 Too
@@ -323,8 +323,8 @@ extension ObjectAPI {
     /**
      Process API.RequestOutcome's to delete an object.
 
-     - Outcome.succeeded receives an API.DataResponse.
-     - Outcome.failed receives a RequestError.
+     - Outcome.success receives an API.DataResponse.
+     - Outcome.failure receives a RequestError.
      */
     fileprivate func process(_ apiRequestOutcome: API.RequestOutcome, retryHandler: @escaping (() -> Void), completionHandler: @escaping (Outcome<API.RequestResult, RequestError>) -> Void) {
 
@@ -352,9 +352,9 @@ extension ObjectAPI {
     /**
      Process API.RequestOutcome's to get a single object.
 
-     - Outcome.succeeded receives an object deserialized from
+     - Outcome.success receives an object deserialized from
        API.RequestOutcome.
-     - Outcome.failed receives a DataRequestError.
+     - Outcome.failure receives a DataRequestError.
      */
     fileprivate func process<ObjectType: JSONDeserializable>(_ apiRequestOutcome: API.RequestOutcome, retryHandler: @escaping (() -> Void), completionHandler: @escaping (Outcome<ObjectType, DataRequestError>) -> Void) {
 
@@ -382,9 +382,9 @@ extension ObjectAPI {
     /**
      Process API.RequestOutcome's to get multiple objects.
 
-     - Outcome.succeeded receives 0+ object(s) deserialized from
+     - Outcome.success receives 0+ object(s) deserialized from
        API.RequestOutcome.
-     - Outcome.failed receives a DataRequestError.
+     - Outcome.failure receives a DataRequestError.
      */
     fileprivate func process<ObjectType: JSONDeserializable>(_ apiRequestOutcome: API.RequestOutcome, retryHandler: @escaping (() -> Void), completionHandler: @escaping (Outcome<[ObjectType], DataRequestError>) -> Void) {
 
@@ -413,9 +413,9 @@ extension ObjectAPI {
      Process API.RequestOutcome's to add or update an object returning a new
      added/updated object if successful.
 
-     - Outcome.succeeded receives an object deserialized from
+     - Outcome.success receives an object deserialized from
        API.RequestOutcome.
-     - Outcome.failed receives an UpdateRequestError.
+     - Outcome.failure receives an UpdateRequestError.
      */
     fileprivate func process<ObjectType: JSONDeserializable>(_ apiRequestOutcome: API.RequestOutcome, retryHandler: @escaping (() -> Void), completionHandler: @escaping (Outcome<ObjectType, UpdateRequestError>) -> Void) {
 
@@ -448,9 +448,9 @@ extension ObjectAPI {
      Process API.RequestOutcome's to add or update multiple objects returning an
      array of the added/updated objects if successful.
 
-     - Outcome.succeeded receives an array of objects deserialized from
+     - Outcome.success receives an array of objects deserialized from
        API.RequestOutcome.
-     - Outcome.failed receives an UpdateRequestError.
+     - Outcome.failure receives an UpdateRequestError.
      */
     fileprivate func process<ObjectType: JSONDeserializable>(_ apiRequestOutcome: API.RequestOutcome, retryHandler: @escaping (() -> Void), completionHandler: @escaping (Outcome<[ObjectType], UpdateRequestError>) -> Void) {
 
