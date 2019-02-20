@@ -2786,10 +2786,10 @@ extension ObjectAPITests {
     func assertOutcomeSucceeded<ObjectType, ErrorType: CustomDebugStringConvertible>(_ outcome: Outcome<ObjectType, ErrorType>) -> ObjectType? {
         let object: ObjectType?
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             XCTFail(error.debugDescription)
             object = nil
-        case .succeeded(let _object):
+        case .success(let _object):
             object = _object
         }
         return object
@@ -2798,10 +2798,10 @@ extension ObjectAPITests {
     func assertOutcomeSucceeded<ObjectType, ErrorType: CustomDebugStringConvertible>(_ outcome: Outcome<ObjectType?, ErrorType>) -> ObjectType? {
         let object: ObjectType?
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             XCTFail(error.debugDescription)
             object = nil
-        case .succeeded(let _object):
+        case .success(let _object):
             object = _object
         }
         return object
@@ -4867,7 +4867,7 @@ extension ObjectAPITests {
         // Unpack outcome.
         var projects: [Project]?
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             switch error {
             case .matchError(let matchError):
                 if failOnMatchError {
@@ -4884,7 +4884,7 @@ extension ObjectAPITests {
             default:
                 XCTFail(error.debugDescription)
             }
-        case .succeeded(let _projects):
+        case .success(let _projects):
             projects = _projects
         }
 

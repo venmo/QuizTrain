@@ -159,15 +159,15 @@ extension ObjectAPI {
 
         let requestResult: API.RequestResult
         switch apiRequestOutcome {
-        case .succeeded(let aRequestResult):
+        case .success(let aRequestResult):
             requestResult = aRequestResult
-        case .failed(let error):
-            return .failed(.apiError(error))
+        case .failure(let error):
+            return .failure(.apiError(error))
         }
 
         switch requestResult.response.statusCode {
         case 200...299:
-            return .succeeded(requestResult)
+            return .success(requestResult)
         case 400...499:
             let message: String
             let json = try? JSONSerialization.jsonObject(with: requestResult.data, options: [])
@@ -177,13 +177,13 @@ extension ObjectAPI {
                 message = String(data: requestResult.data, encoding: .utf8) ?? "" // If no JSON error can be extracted attempt to decode as UTF8.
             }
             let clientError = ClientError(message: message, requestResult: requestResult)
-            return .failed(.statusCodeError(.clientError(clientError)))
+            return .failure(.statusCodeError(.clientError(clientError)))
         case 500...599:
             let message = String(data: requestResult.data, encoding: .utf8) ?? ""
             let serverError = ServerError(message: message, requestResult: requestResult)
-            return .failed(.statusCodeError(.serverError(serverError)))
+            return .failure(.statusCodeError(.serverError(serverError)))
         default:
-            return .failed(.statusCodeError(.otherError(requestResult)))
+            return .failure(.statusCodeError(.otherError(requestResult)))
         }
     }
 
@@ -201,14 +201,14 @@ extension ObjectAPI {
 
         let data: Data
         switch requestOutcome {
-        case .failed(let error):
+        case .failure(let error):
             switch error {
             case .apiError(let apiError):
-                return .failed(.apiError(apiError))
+                return .failure(.apiError(apiError))
             case .statusCodeError(let statusCodeError):
-                return .failed(.statusCodeError(statusCodeError))
+                return .failure(.statusCodeError(statusCodeError))
             }
-        case .succeeded(let requestResult):
+        case .success(let requestResult):
             data = requestResult.data
         }
 
@@ -216,10 +216,10 @@ extension ObjectAPI {
         do {
             json = try JSONSerialization.jsonObject(with: data)
         } catch {
-            return .failed(.dataProcessingError(.couldNotConvertDataToJSON(data: data, error: error)))
+            return .failure(.dataProcessingError(.couldNotConvertDataToJSON(data: data, error: error)))
         }
 
-        return .succeeded(json)
+        return .success(json)
     }
 
     // MARK: Object(s)
@@ -238,21 +238,21 @@ extension ObjectAPI {
 
         let json: Any
         switch jsonOutcome {
-        case .failed(let error):
-            return .failed(error)
-        case .succeeded(let aJson):
+        case .failure(let error):
+            return .failure(error)
+        case .success(let aJson):
             json = aJson
         }
 
         guard let jsonDictionary = json as? JSONDictionary else {
-            return .failed(.dataProcessingError(.invalidJSONFormat(json: json)))
+            return .failure(.dataProcessingError(.invalidJSONFormat(json: json)))
         }
 
         guard let object: ObjectType = ObjectType.deserialized(jsonDictionary) else {
-            return .failed(.dataProcessingError(.couldNotDeserializeFromJSON(objectType: ObjectType.self, json: jsonDictionary)))
+            return .failure(.dataProcessingError(.couldNotDeserializeFromJSON(objectType: ObjectType.self, json: jsonDictionary)))
         }
 
-        return .succeeded(object)
+        return .success(object)
     }
 
     /**
@@ -266,21 +266,21 @@ extension ObjectAPI {
 
         let json: Any
         switch jsonOutcome {
-        case .failed(let error):
-            return .failed(error)
-        case .succeeded(let aJson):
+        case .failure(let error):
+            return .failure(error)
+        case .success(let aJson):
             json = aJson
         }
 
         guard let jsonArray = json as? [JSONDictionary] else {
-            return .failed(.dataProcessingError(.invalidJSONFormat(json: json)))
+            return .failure(.dataProcessingError(.invalidJSONFormat(json: json)))
         }
 
         guard let objects: [ObjectType] = ObjectType.deserialized(jsonArray) else {
-            return .failed(.dataProcessingError(.couldNotDeserializeFromJSON(objectType: ObjectType.self, json: jsonArray)))
+            return .failure(.dataProcessingError(.couldNotDeserializeFromJSON(objectType: ObjectType.self, json: jsonArray)))
         }
 
-        return .succeeded(objects)
+        return .success(objects)
     }
 
     // MARK: Rate Limit
@@ -331,7 +331,7 @@ extension ObjectAPI {
         let requestOutcome = ObjectAPI.requestOutcome(from: apiRequestOutcome)
 
         switch requestOutcome {
-        case .failed(let error):
+        case .failure(let error):
             switch error {
             case .statusCodeError(.clientError(let clientError)):
                 if let rateLimitReached = RateLimitReached(clientError: clientError), handle429TooManyRequestErrors {
@@ -339,13 +339,13 @@ extension ObjectAPI {
                         retryHandler()
                     }
                 } else {
-                    completionHandler(.failed(error))
+                    completionHandler(.failure(error))
                 }
             default:
-                completionHandler(.failed(error))
+                completionHandler(.failure(error))
             }
-        case .succeeded(let success):
-            completionHandler(.succeeded(success))
+        case .success(let success):
+            completionHandler(.success(success))
         }
     }
 
@@ -361,7 +361,7 @@ extension ObjectAPI {
         let objectOutcome: ObjectOutcome<ObjectType> = ObjectAPI.object(from: apiRequestOutcome)
 
         switch objectOutcome {
-        case .failed(let error):
+        case .failure(let error):
             switch error {
             case .statusCodeError(.clientError(let clientError)):
                 if let rateLimitReached = RateLimitReached(clientError: clientError), handle429TooManyRequestErrors {
@@ -369,13 +369,13 @@ extension ObjectAPI {
                         retryHandler()
                     }
                 } else {
-                    completionHandler(.failed(error))
+                    completionHandler(.failure(error))
                 }
             default:
-                completionHandler(.failed(error))
+                completionHandler(.failure(error))
             }
-        case .succeeded(let success):
-            completionHandler(.succeeded(success))
+        case .success(let success):
+            completionHandler(.success(success))
         }
     }
 
@@ -391,7 +391,7 @@ extension ObjectAPI {
         let objectOutcome: ObjectOutcome<[ObjectType]> = ObjectAPI.object(from: apiRequestOutcome)
 
         switch objectOutcome {
-        case .failed(let error):
+        case .failure(let error):
             switch error {
             case .statusCodeError(.clientError(let clientError)):
                 if let rateLimitReached = RateLimitReached(clientError: clientError), handle429TooManyRequestErrors {
@@ -399,13 +399,13 @@ extension ObjectAPI {
                         retryHandler()
                     }
                 } else {
-                    completionHandler(.failed(error))
+                    completionHandler(.failure(error))
                 }
             default:
-                completionHandler(.failed(error))
+                completionHandler(.failure(error))
             }
-        case .succeeded(let success):
-            completionHandler(.succeeded(success))
+        case .success(let success):
+            completionHandler(.success(success))
         }
     }
 
@@ -422,25 +422,25 @@ extension ObjectAPI {
         let objectOutcome: ObjectOutcome<ObjectType> = ObjectAPI.object(from: apiRequestOutcome)
 
         switch objectOutcome {
-        case .failed(let error):
+        case .failure(let error):
             switch error {
             case .apiError(let apiError):
-                completionHandler(.failed(.apiError(apiError)))
+                completionHandler(.failure(.apiError(apiError)))
             case .statusCodeError(.clientError(let clientError)):
                 if let rateLimitReached = RateLimitReached(clientError: clientError), handle429TooManyRequestErrors {
                     retryQueue.asyncAfter(deadline: DispatchTime.now() + Double(rateLimitReached.retryAfter)) {
                         retryHandler()
                     }
                 } else {
-                    completionHandler(.failed(.statusCodeError(.clientError(clientError))))
+                    completionHandler(.failure(.statusCodeError(.clientError(clientError))))
                 }
             case .statusCodeError(let statusCodeError):
-                completionHandler(.failed(.statusCodeError(statusCodeError)))
+                completionHandler(.failure(.statusCodeError(statusCodeError)))
             case .dataProcessingError(let dataProcessingError):
-                completionHandler(.failed(.dataProcessingError(dataProcessingError)))
+                completionHandler(.failure(.dataProcessingError(dataProcessingError)))
             }
-        case .succeeded(let success):
-            completionHandler(.succeeded(success))
+        case .success(let success):
+            completionHandler(.success(success))
         }
     }
 
@@ -457,25 +457,25 @@ extension ObjectAPI {
         let objectOutcome: ObjectOutcome<[ObjectType]> = ObjectAPI.object(from: apiRequestOutcome)
 
         switch objectOutcome {
-        case .failed(let error):
+        case .failure(let error):
             switch error {
             case .apiError(let apiError):
-                completionHandler(.failed(.apiError(apiError)))
+                completionHandler(.failure(.apiError(apiError)))
             case .statusCodeError(.clientError(let clientError)):
                 if let rateLimitReached = RateLimitReached(clientError: clientError), handle429TooManyRequestErrors {
                     retryQueue.asyncAfter(deadline: DispatchTime.now() + Double(rateLimitReached.retryAfter)) {
                         retryHandler()
                     }
                 } else {
-                    completionHandler(.failed(.statusCodeError(.clientError(clientError))))
+                    completionHandler(.failure(.statusCodeError(.clientError(clientError))))
                 }
             case .statusCodeError(let statusCodeError):
-                completionHandler(.failed(.statusCodeError(statusCodeError)))
+                completionHandler(.failure(.statusCodeError(statusCodeError)))
             case .dataProcessingError(let dataProcessingError):
-                completionHandler(.failed(.dataProcessingError(dataProcessingError)))
+                completionHandler(.failure(.dataProcessingError(dataProcessingError)))
             }
-        case .succeeded(let success):
-            completionHandler(.succeeded(success))
+        case .success(let success):
+            completionHandler(.success(success))
         }
     }
 }
@@ -494,10 +494,10 @@ extension ObjectAPI {
         do {
             data = try JSONSerialization.data(withJSONObject: json, options: [])
         } catch {
-            return .failed(.couldNotConvertObjectToData(object: object, json: json, error: error))
+            return .failure(.couldNotConvertObjectToData(object: object, json: json, error: error))
         }
 
-        return .succeeded(data)
+        return .success(data)
     }
 
     fileprivate func data(from object: UpdateRequestJSON) -> DataOutcome {
@@ -508,10 +508,10 @@ extension ObjectAPI {
         do {
             data = try JSONSerialization.data(withJSONObject: json, options: [])
         } catch {
-            return .failed(.couldNotConvertObjectToData(object: object, json: json, error: error))
+            return .failure(.couldNotConvertObjectToData(object: object, json: json, error: error))
         }
 
-        return .succeeded(data)
+        return .success(data)
     }
 
     /**
@@ -530,10 +530,10 @@ extension ObjectAPI {
         do {
             data = try JSONSerialization.data(withJSONObject: json, options: [])
         } catch {
-            return .failed(.couldNotConvertObjectsToData(objects: objects, json: json, error: error))
+            return .failure(.couldNotConvertObjectsToData(objects: objects, json: json, error: error))
         }
 
-        return .succeeded(data)
+        return .success(data)
     }
 
 }
@@ -740,10 +740,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newCase)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -772,10 +772,10 @@ extension ObjectAPI {
                 self?.deleteCase(caseId, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 switch processedOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(_):
-                    completionHandler(.succeeded(nil))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(_):
+                    completionHandler(.success(nil))
                 }
             })
         }
@@ -826,10 +826,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: `case`)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -852,10 +852,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newCaseField)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -913,10 +913,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newConfiguration)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -945,10 +945,10 @@ extension ObjectAPI {
                 self?.deleteConfiguration(configurationId, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 switch processedOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(_):
-                    completionHandler(.succeeded(nil))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(_):
+                    completionHandler(.success(nil))
                 }
             })
         }
@@ -962,10 +962,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: configuration)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -995,10 +995,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newConfigurationGroup)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1027,10 +1027,10 @@ extension ObjectAPI {
                 self?.deleteConfigurationGroup(configurationGroupId, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 switch processedOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(_):
-                    completionHandler(.succeeded(nil))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(_):
+                    completionHandler(.success(nil))
                 }
             })
         }
@@ -1052,9 +1052,9 @@ extension ObjectAPI {
         getProjects { [weak self] (projectsOutcome) in
 
             switch projectsOutcome {
-            case .failed(let error):
-                completionHandler(.failed(ErrorContainer(error)))
-            case .succeeded(let projects):
+            case .failure(let error):
+                completionHandler(.failure(ErrorContainer(error)))
+            case .success(let projects):
 
                 let projectIds = Set(projects.compactMap({ $0.id }))
                 self?.getConfigurationGroups(inProjectsWithIds: projectIds) { (configurationGroupsOutcomes) in
@@ -1066,9 +1066,9 @@ extension ObjectAPI {
                     // Extract all ConfigurationGroups/errors from outcomes.
                     for outcome in outcomes {
                         switch outcome {
-                        case .failed(let error):
+                        case .failure(let error):
                             allErrors.append(error)
-                        case .succeeded(let configurationGroups):
+                        case .success(let configurationGroups):
                             for configurationGroup in configurationGroups {
                                 guard allConfigurationGroups.filter({ $0.id == configurationGroup.id }).count == 0 else { // Skip duplicates.
                                     continue
@@ -1079,9 +1079,9 @@ extension ObjectAPI {
                     }
 
                     if let errorContainer = ErrorContainer(allErrors) {
-                        completionHandler(.failed(errorContainer)) // Fail if there are any errors.
+                        completionHandler(.failure(errorContainer)) // Fail if there are any errors.
                     } else {
-                        completionHandler(.succeeded(allConfigurationGroups))
+                        completionHandler(.success(allConfigurationGroups))
                     }
                 }
             }
@@ -1116,10 +1116,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: configurationGroup)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1149,10 +1149,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newMilestone)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1181,10 +1181,10 @@ extension ObjectAPI {
                 self?.deleteMilestone(milestoneId, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 switch processedOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(_):
-                    completionHandler(.succeeded(nil))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(_):
+                    completionHandler(.success(nil))
                 }
             })
         }
@@ -1237,10 +1237,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: milestone)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1270,10 +1270,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newPlan)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1322,10 +1322,10 @@ extension ObjectAPI {
                 self?.deletePlan(planId, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 switch processedOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(_):
-                    completionHandler(.succeeded(nil))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(_):
+                    completionHandler(.success(nil))
                 }
             })
         }
@@ -1378,10 +1378,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: plan)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1425,10 +1425,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newPlanEntry)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1463,10 +1463,10 @@ extension ObjectAPI {
                 self?.deletePlanEntry(planEntryId, fromPlanWithId: planId, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 switch processedOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(_):
-                    completionHandler(.succeeded(nil))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(_):
+                    completionHandler(.success(nil))
                 }
             })
         }
@@ -1509,10 +1509,10 @@ extension ObjectAPI {
 
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1550,10 +1550,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newProject)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1582,10 +1582,10 @@ extension ObjectAPI {
                 self?.deleteProject(projectId, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 switch processedOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(_):
-                    completionHandler(.succeeded(nil))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(_):
+                    completionHandler(.success(nil))
                 }
             })
         }
@@ -1635,10 +1635,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: project)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1668,10 +1668,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newResult)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1699,10 +1699,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newResult)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1730,10 +1730,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newTestResults)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1761,10 +1761,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newCaseResults)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1869,10 +1869,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newRun)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -1921,10 +1921,10 @@ extension ObjectAPI {
                 self?.deleteRun(runId, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 switch processedOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(_):
-                    completionHandler(.succeeded(nil))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(_):
+                    completionHandler(.success(nil))
                 }
             })
         }
@@ -1975,10 +1975,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: run)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -2008,10 +2008,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newSection)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -2040,10 +2040,10 @@ extension ObjectAPI {
                 self?.deleteSection(sectionId, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 switch processedOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(_):
-                    completionHandler(.succeeded(nil))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(_):
+                    completionHandler(.success(nil))
                 }
             })
         }
@@ -2090,10 +2090,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: section)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -2138,10 +2138,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: newSuite)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -2170,10 +2170,10 @@ extension ObjectAPI {
                 self?.deleteSuite(suiteId, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 switch processedOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(_):
-                    completionHandler(.succeeded(nil))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(_):
+                    completionHandler(.success(nil))
                 }
             })
         }
@@ -2220,10 +2220,10 @@ extension ObjectAPI {
         let dataOutcome = self.data(from: suite)
         let data: Data
         switch dataOutcome {
-        case .failed(let error):
-            completionHandler(.failed(.objectConversionError(error)))
+        case .failure(let error):
+            completionHandler(.failure(.objectConversionError(error)))
             return
-        case .succeeded(let aData):
+        case .success(let aData):
             data = aData
         }
 
@@ -2254,9 +2254,9 @@ extension ObjectAPI {
         getProjects { [weak self] (projectsOutcome) in
 
             switch projectsOutcome {
-            case .failed(let error):
-                completionHandler(.failed(ErrorContainer(error)))
-            case .succeeded(let projects):
+            case .failure(let error):
+                completionHandler(.failure(ErrorContainer(error)))
+            case .success(let projects):
 
                 let projectIds = Set(projects.compactMap({ $0.id }))
                 self?.getTemplates(inProjectsWithIds: projectIds) { (templatesOutcomes) in
@@ -2268,9 +2268,9 @@ extension ObjectAPI {
                     // Extract all templates/errors from outcomes.
                     for outcome in outcomes {
                         switch outcome {
-                        case .failed(let error):
+                        case .failure(let error):
                             allErrors.append(error)
-                        case .succeeded(let templates):
+                        case .success(let templates):
                             for template in templates {
                                 guard allTemplates.filter({ $0.id == template.id }).count == 0 else { // Skip duplicates.
                                     continue
@@ -2281,9 +2281,9 @@ extension ObjectAPI {
                     }
 
                     if let errorContainer = ErrorContainer(allErrors) {
-                        completionHandler(.failed(errorContainer)) // Fail if there are any errors.
+                        completionHandler(.failure(errorContainer)) // Fail if there are any errors.
                     } else {
-                        completionHandler(.succeeded(allTemplates))
+                        completionHandler(.success(allTemplates))
                     }
                 }
             }
@@ -2418,14 +2418,14 @@ extension ObjectAPI {
         // Were all matches found?
         guard missing.count == 0 else {
             if matches.count == 0 {
-                return .failed(.noMatchesFound(missing: missing))
+                return .failure(.noMatchesFound(missing: missing))
             } else {
-                return .failed(.partialMatchesFound(matches: matches, missing: missing))
+                return .failure(.partialMatchesFound(matches: matches, missing: missing))
             }
         }
 
         // All matches found.
-        return .succeeded(matches)
+        return .success(matches)
     }
 
 }
@@ -2439,13 +2439,13 @@ extension ObjectAPI {
     public func getCaseType(matching id: CaseType.Id, completionHandler: @escaping (Outcome<CaseType, MatchError<SingleMatchError<CaseType.Id>, GetError>>) -> Void) {
         getCaseTypes { (outcome) in
             switch outcome {
-            case .failed(let error):
-                completionHandler(.failed(.otherError(error)))
-            case .succeeded(let caseTypes):
+            case .failure(let error):
+                completionHandler(.failure(.otherError(error)))
+            case .success(let caseTypes):
                 if let caseType = caseTypes.filter({ $0.id == id }).first {
-                    completionHandler(.succeeded(caseType))
+                    completionHandler(.success(caseType))
                 } else {
-                    completionHandler(.failed(.matchError(.noMatchFound(missing: id))))
+                    completionHandler(.failure(.matchError(.noMatchFound(missing: id))))
                 }
             }
         }
@@ -2456,13 +2456,13 @@ extension ObjectAPI {
     public func getConfigurationGroup(matching id: ConfigurationGroup.Id, completionHandler: @escaping (Outcome<ConfigurationGroup, MatchError<SingleMatchError<ConfigurationGroup.Id>, ErrorContainer<GetError>>>) -> Void) {
         getConfigurationGroups { (outcome) in
             switch outcome {
-            case .failed(let error):
-                completionHandler(.failed(.otherError(error)))
-            case .succeeded(let configurationGroups):
+            case .failure(let error):
+                completionHandler(.failure(.otherError(error)))
+            case .success(let configurationGroups):
                 if let configurationGroup = configurationGroups.filter({ $0.id == id }).first {
-                    completionHandler(.succeeded(configurationGroup))
+                    completionHandler(.success(configurationGroup))
                 } else {
-                    completionHandler(.failed(.matchError(.noMatchFound(missing: id))))
+                    completionHandler(.failure(.matchError(.noMatchFound(missing: id))))
                 }
             }
         }
@@ -2473,13 +2473,13 @@ extension ObjectAPI {
     public func getPriority(matching id: Priority.Id, completionHandler: @escaping (Outcome<Priority, MatchError<SingleMatchError<Priority.Id>, GetError>>) -> Void) {
         getPriorities { (outcome) in
             switch outcome {
-            case .failed(let error):
-                completionHandler(.failed(.otherError(error)))
-            case .succeeded(let priorities):
+            case .failure(let error):
+                completionHandler(.failure(.otherError(error)))
+            case .success(let priorities):
                 if let priority = priorities.filter({ $0.id == id }).first {
-                    completionHandler(.succeeded(priority))
+                    completionHandler(.success(priority))
                 } else {
-                    completionHandler(.failed(.matchError(.noMatchFound(missing: id))))
+                    completionHandler(.failure(.matchError(.noMatchFound(missing: id))))
                 }
             }
         }
@@ -2490,13 +2490,13 @@ extension ObjectAPI {
     public func getStatus(matching id: Status.Id, completionHandler: @escaping (Outcome<Status, MatchError<SingleMatchError<Status.Id>, GetError>>) -> Void) {
         getStatuses { (outcome) in
             switch outcome {
-            case .failed(let error):
-                completionHandler(.failed(.otherError(error)))
-            case .succeeded(let statuses):
+            case .failure(let error):
+                completionHandler(.failure(.otherError(error)))
+            case .success(let statuses):
                 if let status = statuses.filter({ $0.id == id }).first {
-                    completionHandler(.succeeded(status))
+                    completionHandler(.success(status))
                 } else {
-                    completionHandler(.failed(.matchError(.noMatchFound(missing: id))))
+                    completionHandler(.failure(.matchError(.noMatchFound(missing: id))))
                 }
             }
         }
@@ -2507,13 +2507,13 @@ extension ObjectAPI {
     public func getTemplate(matching id: Template.Id, completionHandler: @escaping (Outcome<Template, MatchError<SingleMatchError<Template.Id>, ErrorContainer<GetError>>>) -> Void) {
         getTemplates { (outcome) in
             switch outcome {
-            case .failed(let errors):
-                completionHandler(.failed(.otherError(errors)))
-            case .succeeded(let templates):
+            case .failure(let errors):
+                completionHandler(.failure(.otherError(errors)))
+            case .success(let templates):
                 if let template = templates.filter({ $0.id == id }).first {
-                    completionHandler(.succeeded(template))
+                    completionHandler(.success(template))
                 } else {
-                    completionHandler(.failed(.matchError(.noMatchFound(missing: id))))
+                    completionHandler(.failure(.matchError(.noMatchFound(missing: id))))
                 }
             }
         }
@@ -2526,15 +2526,15 @@ extension ObjectAPI {
     private func getTemplates(matching ids: Set<Template.Id>, completionHandler: @escaping (Outcome<[Template], MatchError<MultipleMatchError<Template, Template.Id>, ErrorContainer<GetError>>>) -> Void) {
         getTemplates { (outcome) in
             switch outcome {
-            case .failed(let errors):
-                completionHandler(.failed(.otherError(errors)))
-            case .succeeded(let templates):
+            case .failure(let errors):
+                completionHandler(.failure(.otherError(errors)))
+            case .success(let templates):
                 let matchesOutcome = ObjectAPI.matches(from: templates, matchingIds: ids)
                 switch matchesOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(.matchError(error)))
-                case .succeeded(let matches):
-                    completionHandler(.succeeded(matches))
+                case .failure(let error):
+                    completionHandler(.failure(.matchError(error)))
+                case .success(let matches):
+                    completionHandler(.success(matches))
                 }
             }
         }
@@ -2597,20 +2597,20 @@ extension ObjectAPI {
     public func accessibleProjects(_ config: Config, completionHandler: @escaping(Outcome<[Project]?, ErrorContainer<GetError>>) -> Void) {
         projects(config) { (outcome) in
             switch outcome {
-            case .failed(let error):
+            case .failure(let error):
                 switch error {
                 case .matchError(let matchError):
                     switch matchError {
                     case .noMatchesFound(_):
-                        completionHandler(.succeeded([]))
+                        completionHandler(.success([]))
                     case .partialMatchesFound(let matches, _):
-                        completionHandler(.succeeded(matches))
+                        completionHandler(.success(matches))
                     }
                 case .otherError(let errorContainer):
-                    completionHandler(.failed(errorContainer))
+                    completionHandler(.failure(errorContainer))
                 }
-            case .succeeded(let projects):
-                completionHandler(.succeeded(projects))
+            case .success(let projects):
+                completionHandler(.success(projects))
             }
         }
     }
@@ -2627,10 +2627,10 @@ extension ObjectAPI {
      it impossible for this method to guarentee all projects will be returned
      for a Config. Possible scenarios for Config.projectIds values:
 
-     - .none always passes .succeeded(nil) to the handler.
-     - .all passes .succeeded(projects) to the handler upon success. This
+     - .none always passes .success(nil) to the handler.
+     - .all passes .success(projects) to the handler upon success. This
         includes all projects the user has access to while silently omitting any
-        they do not. .failed(errorContainer) will be passed if there were any
+        they do not. .failure(errorContainer) will be passed if there were any
         errors.
      - .some is the same as .all except it will fail if any specified projectIds
        return a 403 error.
@@ -2654,14 +2654,14 @@ extension ObjectAPI {
     public func projects(_ config: Config, completionHandler: @escaping(Outcome<[Project]?, MatchError<MultipleMatchError<Project, Project.Id>, ErrorContainer<GetError>>>) -> Void) {
         switch config.projects {
         case .none:
-            completionHandler(.succeeded(nil))
+            completionHandler(.success(nil))
         case .all:
             getProjects { (outcome) in
                 switch outcome {
-                case .failed(let error):
-                    completionHandler(.failed(.otherError(ErrorContainer(error))))
-                case .succeeded(let projects):
-                    completionHandler(.succeeded(projects))
+                case .failure(let error):
+                    completionHandler(.failure(.otherError(ErrorContainer(error))))
+                case .success(let projects):
+                    completionHandler(.success(projects))
                 }
             }
         case .some(let projectIds):
@@ -2673,20 +2673,20 @@ extension ObjectAPI {
 
                 for (projectId, outcome) in outcomes {
                     switch outcome {
-                    case .failed(let getError):
+                    case .failure(let getError):
                         if case let .statusCodeError(.clientError(clientError)) = getError, clientError.statusCode == 403 {
                             inaccessibleProjectIds.insert(projectId) // 403 errors.
                         } else {
                             non403Errors.append(getError)
                         }
-                    case .succeeded(let project):
+                    case .success(let project):
                         projects.append(project)
                     }
                 }
 
                 // Fail if there are any non-403 errors.
                 if let errorContainer = ErrorContainer(non403Errors) {
-                    completionHandler(.failed(.otherError(errorContainer)))
+                    completionHandler(.failure(.otherError(errorContainer)))
                     return
                 }
 
@@ -2694,15 +2694,15 @@ extension ObjectAPI {
                 // all missing.
                 guard inaccessibleProjectIds.count == 0 else {
                     if projects.count == 0 {
-                        completionHandler(.failed(.matchError(.noMatchesFound(missing: inaccessibleProjectIds))))
+                        completionHandler(.failure(.matchError(.noMatchesFound(missing: inaccessibleProjectIds))))
                     } else {
-                        completionHandler(.failed(.matchError(.partialMatchesFound(matches: projects, missing: inaccessibleProjectIds))))
+                        completionHandler(.failure(.matchError(.partialMatchesFound(matches: projects, missing: inaccessibleProjectIds))))
                     }
                     return
                 }
 
                 // All projectIds were found.
-                completionHandler(.succeeded(projects))
+                completionHandler(.success(projects))
             }
         }
     }
@@ -2865,14 +2865,14 @@ extension ObjectAPI {
         if let userId = userId {
             getUser(userId) { (outcome) in
                 switch outcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(let user):
-                    completionHandler(.succeeded(user))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(let user):
+                    completionHandler(.success(user))
                 }
             }
         } else {
-            completionHandler(.succeeded(nil))
+            completionHandler(.success(nil))
         }
     }
 
@@ -2880,24 +2880,24 @@ extension ObjectAPI {
         if let milestoneId = milestoneId {
             getMilestone(milestoneId) { (outcome) in
                 switch outcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(let milestone):
-                    completionHandler(.succeeded(milestone))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(let milestone):
+                    completionHandler(.success(milestone))
                 }
             }
         } else {
-            completionHandler(.succeeded(nil))
+            completionHandler(.success(nil))
         }
     }
 
     private func milestone(_ milestoneId: Milestone.Id, completionHandler: @escaping (Outcome<Milestone, GetError>) -> Void) {
         getMilestone(milestoneId) { (outcome) in
             switch outcome {
-            case .failed(let error):
-                completionHandler(.failed(error))
-            case .succeeded(let milestone):
-                completionHandler(.succeeded(milestone))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            case .success(let milestone):
+                completionHandler(.success(milestone))
             }
         }
     }
@@ -2918,14 +2918,14 @@ extension ObjectAPI {
         if let planId = planId {
             getPlan(planId) { (outcome) in
                 switch outcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(let plan):
-                    completionHandler(.succeeded(plan))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(let plan):
+                    completionHandler(.success(plan))
                 }
             }
         } else {
-            completionHandler(.succeeded(nil))
+            completionHandler(.success(nil))
         }
     }
 
@@ -2933,24 +2933,24 @@ extension ObjectAPI {
         if let sectionId = sectionId {
             getSection(sectionId) { (outcome) in
                 switch outcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(let section):
-                    completionHandler(.succeeded(section))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(let section):
+                    completionHandler(.success(section))
                 }
             }
         } else {
-            completionHandler(.succeeded(nil))
+            completionHandler(.success(nil))
         }
     }
 
     private func section(_ sectionId: Section.Id, completionHandler: @escaping (Outcome<Section, GetError>) -> Void) {
         getSection(sectionId) { (outcome) in
             switch outcome {
-            case .failed(let error):
-                completionHandler(.failed(error))
-            case .succeeded(let section):
-                completionHandler(.succeeded(section))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            case .success(let section):
+                completionHandler(.success(section))
             }
         }
     }
@@ -2959,14 +2959,14 @@ extension ObjectAPI {
         if let suiteId = suiteId {
             getSuite(suiteId) { (outcome) in
                 switch outcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(let suite):
-                    completionHandler(.succeeded(suite))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(let suite):
+                    completionHandler(.success(suite))
                 }
             }
         } else {
-            completionHandler(.succeeded(nil))
+            completionHandler(.success(nil))
         }
     }
 
@@ -2991,37 +2991,37 @@ extension ObjectAPI {
         if let ids = configurationIds {
             getConfigurationGroups(inProjectWithId: projectId) { (outcome) in
                 switch outcome {
-                case .failed(let error):
-                    completionHandler(.failed(.otherError(error)))
-                case .succeeded(let configurationGroups):
+                case .failure(let error):
+                    completionHandler(.failure(.otherError(error)))
+                case .success(let configurationGroups):
                     let configurations = configurationGroups.flatMap { $0.configs }
                     let matchesOutcome = ObjectAPI.matches(from: configurations, matchingIds: ids)
                     switch matchesOutcome {
-                    case .failed(let error):
-                        completionHandler(.failed(.matchError(error)))
-                    case .succeeded(let matches):
-                        completionHandler(.succeeded(matches))
+                    case .failure(let error):
+                        completionHandler(.failure(.matchError(error)))
+                    case .success(let matches):
+                        completionHandler(.success(matches))
                     }
                 }
             }
         } else {
-            completionHandler(.succeeded(nil))
+            completionHandler(.success(nil))
         }
     }
 
     private func configurations(inProjectWithId projectId: Project.Id, matching configurationIds: Set<Configuration.Id>, completionHandler: @escaping (Outcome<[Configuration], MatchError<MultipleMatchError<Configuration, Configuration.Id>, GetError>>) -> Void) {
         getConfigurationGroups(inProjectWithId: projectId) { (outcome) in
             switch outcome {
-            case .failed(let error):
-                completionHandler(.failed(.otherError(error)))
-            case .succeeded(let configurationGroups):
+            case .failure(let error):
+                completionHandler(.failure(.otherError(error)))
+            case .success(let configurationGroups):
                 let configurations = configurationGroups.flatMap { $0.configs }
                 let matchesOutcome = ObjectAPI.matches(from: configurations, matchingIds: configurationIds)
                 switch matchesOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(.matchError(error)))
-                case .succeeded(let matches):
-                    completionHandler(.succeeded(matches))
+                case .failure(let error):
+                    completionHandler(.failure(.matchError(error)))
+                case .success(let matches):
+                    completionHandler(.success(matches))
                 }
             }
         }
@@ -3031,24 +3031,24 @@ extension ObjectAPI {
         if let id = id {
             getStatus(matching: id) { (outcome) in
                 switch outcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
-                case .succeeded(let status):
-                    completionHandler(.succeeded(status))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                case .success(let status):
+                    completionHandler(.success(status))
                 }
             }
         } else {
-            completionHandler(.succeeded(nil))
+            completionHandler(.success(nil))
         }
     }
 
     private func status(matching id: Status.Id, completionHandler: @escaping (Outcome<Status, MatchError<SingleMatchError<Status.Id>, GetError>>) -> Void) {
         getStatus(matching: id) { (outcome) in
             switch outcome {
-            case .failed(let error):
-                completionHandler(.failed(error))
-            case .succeeded(let status):
-                completionHandler(.succeeded(status))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            case .success(let status):
+                completionHandler(.success(status))
             }
         }
     }

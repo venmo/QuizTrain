@@ -1,9 +1,8 @@
 /*
- Container for outcomes. For a .succeeded outcome which does not pass an object
+ Container for outcomes. For a .success outcome which does not pass an object
  ensure the Succeeded generic is an optional (e.g. Void?) and use
- Outcome.succeeded(nil).
+ Outcome.success(nil).
+
+ A typealias is used to allow "Result" to be used as a TestRail model.
  */
-public enum Outcome<Succeeded, Failed: Error> {
-    case succeeded(Succeeded)
-    case failed(Failed)
-}
+public typealias Outcome = Swift.Result
