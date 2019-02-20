@@ -31,9 +31,9 @@ This shows both simple and advanced error handling when adding a new Case to a S
 
     objectAPI.addCase(newCase, toSectionWithId: 5) { (outcome) in
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             print(error.debugDescription)
-        case .succeeded(let `case`):
+        case .success(let `case`):
             print(`case`.title) // Do something with the newly created `case`.
         }
     }
@@ -42,7 +42,7 @@ This shows both simple and advanced error handling when adding a new Case to a S
 
     objectAPI.addCase(newCase, toSectionWithId: 5) { (outcome) in
         switch outcome {
-        case .failed(let error):
+        case .failure(let error):
             switch error {
             case .apiError(let apiError): // API.RequestError
                 switch apiError {
@@ -97,7 +97,7 @@ This shows both simple and advanced error handling when adding a new Case to a S
                     print(serverError.requestResult.data)
                 }
             }
-        case .succeeded(let `case`):
+        case .success(let `case`):
             print(`case`.title) // Do something with the newly created `case`.
         }
     }

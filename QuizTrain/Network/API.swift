@@ -140,23 +140,23 @@ final public class API {
             }
 
             guard error == nil else {
-                outcome = .failed(.error(request: request, error: error!))
+                outcome = .failure(.error(request: request, error: error!))
                 return
             }
 
             guard let response = response else {
-                outcome = .failed(.nilResponse(request: request))
+                outcome = .failure(.nilResponse(request: request))
                 return
             }
 
             guard let urlResponse = response as? HTTPURLResponse else {
-                outcome = .failed(.invalidResponse(request: request, response: response))
+                outcome = .failure(.invalidResponse(request: request, response: response))
                 return
             }
 
             let data = data ?? Data()
 
-            outcome = .succeeded(RequestResult(request: request, response: urlResponse, data: data))
+            outcome = .success(RequestResult(request: request, response: urlResponse, data: data))
         }
 
         task.resume()
