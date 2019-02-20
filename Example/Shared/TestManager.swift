@@ -27,10 +27,10 @@ final class TestManager: NSObject {
             #error("Replace the projectId below with one from your TestRail instance. Then comment out this macro.")
             QuizTrainProject.populatedProject(forProjectId: 99999, objectAPI: objectAPI) { (outcome) in
                 switch outcome {
-                case .failed(let error):
+                case .failure(let error):
                     print("QuizTrainManager setup failed: \(error)")
                     fatalError(error.localizedDescription)
-                case .succeeded(let project):
+                case .success(let project):
                     quizTrainManager = QuizTrainManager(objectAPI: objectAPI, project: project)
                 }
                 group.leave()

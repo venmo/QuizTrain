@@ -16,13 +16,6 @@ final class QuizTrainManager: NSObject {
         super.init()
     }
 
-    // MARK: - Outcome
-
-    enum Outcome<Succeeded, Failed: Error> {
-        case succeeded(Succeeded)
-        case failed(Failed)
-    }
-
     // MARK: - Testing
 
     enum Result: String {
@@ -279,10 +272,10 @@ extension QuizTrainManager {
         group.enter()
         objectAPI.addPlan(newPlan, to: project.project) { (outcome) in
             switch outcome {
-            case .failed(let error):
+            case .failure(let error):
                 print("Plan creation failed: \(error.debugDescription)")
                 return
-            case .succeeded(let aPlan):
+            case .success(let aPlan):
                 plan = aPlan
             }
             group.leave()
@@ -322,9 +315,9 @@ extension QuizTrainManager {
                 group.enter()
                 objectAPI.addResultsForCases(newCaseResults, to: run) { (outcome) in
                     switch outcome {
-                    case .failed(let error):
+                    case .failure(let error):
                         errors.append(error)
-                    case .succeeded(let someResults):
+                    case .success(let someResults):
                         results.append(contentsOf: someResults)
                     }
                     group.leave()
@@ -348,9 +341,9 @@ extension QuizTrainManager {
             group.enter()
             objectAPI.closePlan(plan) { (outcome) in
                 switch outcome {
-                case .failed(let error):
+                case .failure(let error):
                     print("Closing plan failed: \(error)")
-                case .succeeded(_):
+                case .success(_):
                     break
                 }
                 group.leave()

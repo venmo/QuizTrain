@@ -136,15 +136,10 @@ struct QuizTrainProject {
 
     // MARK: - Creation
 
-    enum Outcome<Succeeded, Failed: Error> {
-        case succeeded(Succeeded)
-        case failed(Failed)
-    }
-
     /*
      Asynchronously calls the ObjectAPI and populates a QuizTrainProject.
      */
-    static func populatedProject(forProjectId projectId: QuizTrain.Project.Id, objectAPI: QuizTrain.ObjectAPI, completionHandler: @escaping (Outcome<QuizTrainProject, QuizTrain.ObjectAPI.GetError>) -> Void) {
+    static func populatedProject(forProjectId projectId: QuizTrain.Project.Id, objectAPI: QuizTrain.ObjectAPI, completionHandler: @escaping (Swift.Result<QuizTrainProject, QuizTrain.ObjectAPI.GetError>) -> Void) {
         DispatchQueue.global().async {
 
             let group = DispatchGroup()
@@ -183,37 +178,37 @@ struct QuizTrainProject {
 
             let project: QuizTrain.Project
             switch projectOutcome! {
-            case .failed(let error):
-                completionHandler(.failed(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 return
-            case .succeeded(let aProject):
+            case .success(let aProject):
                 project = aProject
             }
 
             let suites: [QuizTrain.Suite]
             switch suitesOutcome! {
-            case .failed(let error):
-                completionHandler(.failed(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 return
-            case .succeeded(let someSuites):
+            case .success(let someSuites):
                 suites = someSuites
             }
 
             let statuses: [QuizTrain.Status]
             switch statusesOutcome! {
-            case .failed(let error):
-                completionHandler(.failed(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 return
-            case .succeeded(let someStatuses):
+            case .success(let someStatuses):
                 statuses = someStatuses
             }
 
             let users: [QuizTrain.User]
             switch usersOutcome! {
-            case .failed(let error):
-                completionHandler(.failed(error))
+            case .failure(let error):
+                completionHandler(.failure(error))
                 return
-            case .succeeded(let someUsers):
+            case .success(let someUsers):
                 users = someUsers
             }
 
@@ -242,10 +237,10 @@ struct QuizTrainProject {
             var cases = [QuizTrain.Case]()
             for casesOutcome in casesOutcomes {
                 switch casesOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
+                case .failure(let error):
+                    completionHandler(.failure(error))
                     return
-                case .succeeded(let someCases):
+                case .success(let someCases):
                     cases.append(contentsOf: someCases)
                 }
             }
@@ -253,10 +248,10 @@ struct QuizTrainProject {
             var sections = [QuizTrain.Section]()
             for sectionsOutcome in sectionsOutcomes {
                 switch sectionsOutcome {
-                case .failed(let error):
-                    completionHandler(.failed(error))
+                case .failure(let error):
+                    completionHandler(.failure(error))
                     return
-                case .succeeded(let someSections):
+                case .success(let someSections):
                     sections.append(contentsOf: someSections)
                 }
             }
@@ -264,7 +259,7 @@ struct QuizTrainProject {
             // Assemble the QuizTrainProject with all data.
 
             let quizTrainProject = QuizTrainProject(project: project, suites: suites, sections: sections, cases: cases, statuses: statuses, users: users)
-            completionHandler(.succeeded(quizTrainProject))
+            completionHandler(.success(quizTrainProject))
         }
     }
 
