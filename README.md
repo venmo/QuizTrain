@@ -12,7 +12,7 @@ QuizTrain is open source software released under the MIT License. See the [LICEN
 
 [Carthage](https://github.com/Carthage/Carthage) is the recommended way to install QuizTrain. Add the following to your `Cartfile` or `Cartfile.private` file:
 
-    github "venmo/QuizTrain" ~> 1.3.0
+    github "venmo/QuizTrain" ~> 2.0.0
 
 See [Adding frameworks to an application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) for further instructions. Once complete `import QuizTrain` in any Swift files you wish to use QuizTrain in.
 
@@ -24,9 +24,13 @@ Create an `ObjectAPI` to get, add, update, delete, and close items on your TestR
 
 Alternatively you can use `API` directly if you would rather work with basic Swift types. Generally it is better to use `ObjectAPI` as `API` is a lower level of abstraction. For differences see comments in [API.swift](QuizTrain/Network/API.swift) and [ObjectAPI.swift](QuizTrain/Network/ObjectAPI.swift).
 
-## Examples
+## Example Project
 
-Below shows a limited number of examples. For all examples see [ObjectAPITests.swift](QuizTrainTests/Network/ObjectAPITests.swift). There is also an [example project](Example/) in this repository.
+See the [QuizTrain Example](https://github.com/venmo/QuizTrainExample) project to view how you can integrate QuizTrain with your unit tests and UI tests on iOS.
+
+## Example Code
+
+Below shows a limited number of examples. For all examples see [ObjectAPITests.swift](QuizTrainTests/Network/ObjectAPITests.swift).
 
 #### Get all Cases in a Project
 
