@@ -44,6 +44,7 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
 
 #### Get all Cases in a Project
 
+```swift
     objectAPI.getCases(inProjectWithId: 5) { (outcome) in
         switch outcome {
         case .failure(let error):
@@ -52,9 +53,11 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
             print(cases) // Do something with cases.
         }
     }
+```
 
 #### Add a Case
 
+```swift
     let section: Section = ...
     let newCase = NewCase(estimate: nil, milestoneId: nil, priorityId: nil, refs: nil, templateId: nil, title: "New Case Title", typeId: nil, customFields: nil)
     
@@ -66,9 +69,11 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
             print(`case`.title) // Do something with the newly created `case`.
         }
     }
+```
 
 #### Update a Suite
 
+```swift
     var suite: Suite = ...
     suite.description = "Updated description for this suite."
     suite.name = "Updated name of this suite."
@@ -82,9 +87,11 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
             print(updatedSuite.name) // "Updated name of this suite."
         }
     }
+```
 
 #### Delete a Section
 
+```swift
     let section: Section = ...
     
     objectAPI.deleteSection(section) { (outcome) in
@@ -95,9 +102,11 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
             print("The section has been successfully deleted.")
         }
     }
+```
 
 #### Close a Plan
 
+```swift
     let plan: Plan = ...
     
     objectAPI.closePlan(plan) { (outcome) in
@@ -109,9 +118,11 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
             print(closedPlan.completedOn) // timestamp
         }
     }
+```
 
 #### Get a Relationship
 
+```swift
     let milestone: Milestone = ...
     
     milestone.parent(objectAPI) { (outcome) in
@@ -126,9 +137,11 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
             }
         }
     }
+```
 
 #### Get Completed Runs in a Project using a single Filter
 
+```swift
     let filters = [Filter(named: "is_completed", matching: true)]
     
     objectAPI.getRuns(inProjectWithId: 3, filteredBy: filters) { (outcome) in
@@ -141,9 +154,11 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
             }
         }
     }
+```
 
 #### Get Plans in a Project using multiple Filters
 
+```swift
     let project: Project = ...
     let filters = [Filter(named: "offset", matching: 3),
                    Filter(named: "limit", matching: 5)]
@@ -158,6 +173,7 @@ Below shows a limited number of examples. For all examples see [ObjectAPITests.s
             }
         }
     }
+```
 
 ## Errors
 
