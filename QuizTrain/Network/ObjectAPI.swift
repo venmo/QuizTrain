@@ -59,8 +59,8 @@ final public class ObjectAPI {
         self.retryQueue = DispatchQueue(label: "ObjectAPI.retryQueue", qos: retryQueueQoS)
     }
 
-    public convenience init(username: String, secret: String, hostname: String, port: Int = 443, scheme: String = "https", retryQueueQoS: DispatchQoS = .`default`) {
-        let api = API(username: username, secret: secret, hostname: hostname, port: port, scheme: scheme)
+    public convenience init(username: String, secret: String, hostname: String, port: Int = 443, scheme: String = "https", retryQueueQoS: DispatchQoS = .`default`, path: String = "/index.php", skipSSL: Bool = false) {
+        let api = API(username: username, secret: secret, hostname: hostname, port: port, scheme: scheme, path: path, skipSSL: skipSSL)
         self.init(api: api, retryQueueQoS: retryQueueQoS)
     }
 
