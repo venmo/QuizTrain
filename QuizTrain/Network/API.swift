@@ -13,7 +13,8 @@ import Foundation
 
  For a higher level of abstraction use ObjectAPI.
  */
-final public class API {
+final public class API: NSObject, URLSessionDelegate {
+
 
     // MARK: - Properties
 
@@ -22,16 +23,21 @@ final public class API {
     public var hostname: String                                                 // yourinstance.testrail.net
     public var port: Int                                                        // 443, 80, 8080, etc
     public var scheme: String                                                   // "https" or "http"
+    public var path: String
+            // /index.php
+    public var skipSSL: Bool
     private let session = URLSession(configuration: .`default`)
 
     // MARK: - Init
 
-    public init(username: String, secret: String, hostname: String, port: Int = 443, scheme: String = "https") {
+    public init(username: String, secret: String, hostname: String, port: Int = 443, scheme: String = "https", path: String = "/index.php", skipSSL: Bool = false) {
         self.username = username
         self.secret = secret
         self.hostname = hostname
         self.port = port
         self.scheme = scheme
+        self.path = path
+        self.skipSSL = skipSSL
     }
 
     // MARK: - Deinit
@@ -53,7 +59,7 @@ final public class API {
         var components = URLComponents()
         components.scheme = scheme
         components.host = hostname
-        components.path = "/index.php"
+        components.path = self.path
         components.port = port
         return components
     }
@@ -131,7 +137,10 @@ final public class API {
         var request = testRailRequest(url: url)
         request.httpMethod = httpMethod.rawValue
         request.httpBody = data
-
+        let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+        if !self.skipSSL {
+            let session = URLSession(configuration: .`default`)
+        }
         let task = session.dataTask(with: request) { (data, response, error) in
 
             var outcome: RequestOutcome
@@ -680,4 +689,14 @@ final public class API {
         return get("get_users", completionHandler: completionHandler)
     }
 
+}
+
+extension API {
+    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if let trust = challenge.protectionSpace.serverTrust {
+            completionHandler(.useCredential, URLCredential(trust: trust))
+            return
+        }
+        completionHandler(.cancelAuthenticationChallenge, nil)
+    }
 }
