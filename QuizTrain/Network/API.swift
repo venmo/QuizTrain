@@ -676,8 +676,8 @@ final public class API {
     /*
      http://docs.gurock.com/testrail-api2/reference-users#get_users
      */
-    @discardableResult public func getUsers(completionHandler: @escaping (RequestOutcome) -> Void) -> URLSessionDataTask {
-        return get("get_users", completionHandler: completionHandler)
+    @discardableResult public func getUsers(_ projectId: Int, completionHandler: @escaping (RequestOutcome) -> Void) -> URLSessionDataTask {
+        return get("get_users/\(projectId)", completionHandler: completionHandler)
     }
 
 }
