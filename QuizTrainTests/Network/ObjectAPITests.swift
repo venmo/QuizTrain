@@ -2062,7 +2062,7 @@ extension ObjectAPITests {
     func testGetUser() {
 
         continueAfterFailure = false
-        guard let user = assertGetUsers()?.first else { return }
+        guard let user = assertGetUsers(projectId: testProject.project.id)?.first else { return }
         continueAfterFailure = true
 
         assertGetUser(user.id)
@@ -2071,14 +2071,14 @@ extension ObjectAPITests {
     func testGetUserByEmail() {
 
         continueAfterFailure = false
-        guard let user = assertGetUsers()?.first else { return }
+        guard let user = assertGetUsers(projectId: testProject.project.id)?.first else { return }
         continueAfterFailure = true
 
         assertGetUserByEmail(user.email)
     }
 
     func testGetUsers() {
-        if let users = assertGetUsers() {
+        if let users = assertGetUsers(projectId: testProject.project.id) {
             XCTAssertEqual(users.filter({ $0.email == objectAPI.api.username }).count, 1, "User \(objectAPI.api.username) was not returned when getting all users: \(users)")
         }
     }
@@ -2189,9 +2189,9 @@ extension ObjectAPITests {
 
 extension ObjectAPITests {
 
-	// MARK: Case
+    // MARK: Case
 
-	func testGetCaseToCreatedByRelationship() {
+    func testGetCaseToCreatedByRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.cases.count, 0, "This test cannot continue because there are no Cases.")
@@ -2201,9 +2201,9 @@ extension ObjectAPITests {
             assertGetCaseToCreatedByRelationship(`case`)
             assertGetCaseToCreatedByRelationship(`case`, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetCaseToMilestoneRelationship() {
+    func testGetCaseToMilestoneRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.cases.count, 0, "This test cannot continue because there are no Cases.")
@@ -2213,9 +2213,9 @@ extension ObjectAPITests {
             assertGetCaseToMilestoneRelationship(`case`)
             assertGetCaseToMilestoneRelationship(`case`, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetCaseToPriorityRelationship() {
+    func testGetCaseToPriorityRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.cases.count, 0, "This test cannot continue because there are no Cases.")
@@ -2225,9 +2225,9 @@ extension ObjectAPITests {
             assertGetCaseToPriorityRelationship(`case`)
             assertGetCaseToPriorityRelationship(`case`, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetCaseToSectionRelationship() {
+    func testGetCaseToSectionRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.cases.count, 0, "This test cannot continue because there are no Cases.")
@@ -2237,9 +2237,9 @@ extension ObjectAPITests {
             assertGetCaseToSectionRelationship(`case`)
             assertGetCaseToSectionRelationship(`case`, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetCaseToSuiteRelationship() {
+    func testGetCaseToSuiteRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.cases.count, 0, "This test cannot continue because there are no Cases.")
@@ -2249,9 +2249,9 @@ extension ObjectAPITests {
             assertGetCaseToSuiteRelationship(`case`)
             assertGetCaseToSuiteRelationship(`case`, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetCaseToTemplateRelationship() {
+    func testGetCaseToTemplateRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.cases.count, 0, "This test cannot continue because there are no Cases.")
@@ -2261,9 +2261,9 @@ extension ObjectAPITests {
             assertGetCaseToTemplateRelationship(`case`)
             assertGetCaseToTemplateRelationship(`case`, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetCaseToTypeRelationship() {
+    func testGetCaseToTypeRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.cases.count, 0, "This test cannot continue because there are no Cases.")
@@ -2273,9 +2273,9 @@ extension ObjectAPITests {
             assertGetCaseToTypeRelationship(`case`)
             assertGetCaseToTypeRelationship(`case`, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetCaseToUpdatedByRelationship() {
+    func testGetCaseToUpdatedByRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.cases.count, 0, "This test cannot continue because there are no Cases.")
@@ -2285,11 +2285,11 @@ extension ObjectAPITests {
             assertGetCaseToUpdatedByRelationship(`case`)
             assertGetCaseToUpdatedByRelationship(`case`, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	// MARK: CaseField
+    // MARK: CaseField
 
-	func testGetCaseFieldToTemplatesRelationship() {
+    func testGetCaseFieldToTemplatesRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.caseFields.count, 0, "This test cannot continue because there are no CaseFields.")
@@ -2299,7 +2299,7 @@ extension ObjectAPITests {
             assertGetCaseFieldToTemplatesRelationship(caseField)
             assertGetCaseFieldToTemplatesRelationship(caseField, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
     // MARK: CaseField.Config
 
@@ -2331,9 +2331,9 @@ extension ObjectAPITests {
         }
     }
 
-	// MARK: Configuration
+    // MARK: Configuration
 
-	func testGetConfigurationToConfigurationGroupRelationship() {
+    func testGetConfigurationToConfigurationGroupRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.configurations.count, 0, "This test cannot continue because there are no Configurations.")
@@ -2343,11 +2343,11 @@ extension ObjectAPITests {
             assertGetConfigurationToConfigurationGroupRelationship(configuration)
             assertGetConfigurationToConfigurationGroupRelationship(configuration, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	// MARK: ConfigurationGroup
+    // MARK: ConfigurationGroup
 
-	func testGetConfigurationGroupToProjectRelationship() {
+    func testGetConfigurationGroupToProjectRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.configurationGroups.count, 0, "This test cannot continue because there are no ConfigurationGroups.")
@@ -2357,11 +2357,11 @@ extension ObjectAPITests {
             assertGetConfigurationGroupToProjectRelationship(configurationGroup)
             assertGetConfigurationGroupToProjectRelationship(configurationGroup, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	// MARK: Milestone
+    // MARK: Milestone
 
-	func testGetMilestoneToParentRelationship() {
+    func testGetMilestoneToParentRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.milestones.count, 0, "This test cannot continue because there are no Milestones.")
@@ -2371,9 +2371,9 @@ extension ObjectAPITests {
             assertGetMilestoneToParentRelationship(milestone)
             assertGetMilestoneToParentRelationship(milestone, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetMilestoneToProjectRelationship() {
+    func testGetMilestoneToProjectRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.milestones.count, 0, "This test cannot continue because there are no Milestones.")
@@ -2383,11 +2383,11 @@ extension ObjectAPITests {
             assertGetMilestoneToProjectRelationship(milestone)
             assertGetMilestoneToProjectRelationship(milestone, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	// MARK: Plan
+    // MARK: Plan
 
-	func testGetPlanToAssignedtoRelationship() {
+    func testGetPlanToAssignedtoRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.plans.count, 0, "This test cannot continue because there are no Plans.")
@@ -2397,9 +2397,9 @@ extension ObjectAPITests {
             assertGetPlanToAssignedtoRelationship(plan)
             assertGetPlanToAssignedtoRelationship(plan, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetPlanToCreatedByRelationship() {
+    func testGetPlanToCreatedByRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.plans.count, 0, "This test cannot continue because there are no Plans.")
@@ -2409,9 +2409,9 @@ extension ObjectAPITests {
             assertGetPlanToCreatedByRelationship(plan)
             assertGetPlanToCreatedByRelationship(plan, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetPlanToMilestoneRelationship() {
+    func testGetPlanToMilestoneRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.plans.count, 0, "This test cannot continue because there are no Plans.")
@@ -2421,9 +2421,9 @@ extension ObjectAPITests {
             assertGetPlanToMilestoneRelationship(plan)
             assertGetPlanToMilestoneRelationship(plan, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetPlanToProjectRelationship() {
+    func testGetPlanToProjectRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.plans.count, 0, "This test cannot continue because there are no Plans.")
@@ -2433,11 +2433,11 @@ extension ObjectAPITests {
             assertGetPlanToProjectRelationship(plan)
             assertGetPlanToProjectRelationship(plan, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	// MARK: Plan.Entry
+    // MARK: Plan.Entry
 
-	func testGetPlanEntryToSuiteRelationship() {
+    func testGetPlanEntryToSuiteRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.plans.count, 0, "This test cannot continue because there are no Plans.")
@@ -2451,11 +2451,11 @@ extension ObjectAPITests {
                 }
             }
         }
-	}
+    }
 
-	// MARK: Result
+    // MARK: Result
 
-	func testGetResultToAssignedtoRelationship() {
+    func testGetResultToAssignedtoRelationship() {
 
         continueAfterFailure = false
         let newTestResults = self.newTestResults(with: .requiredAndOptionalProperties)
@@ -2466,9 +2466,9 @@ extension ObjectAPITests {
             assertGetResultToAssignedtoRelationship(result)
             assertGetResultToAssignedtoRelationship(result, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetResultToCreatedByRelationship() {
+    func testGetResultToCreatedByRelationship() {
 
         continueAfterFailure = false
         let newTestResults = self.newTestResults(with: .requiredAndOptionalProperties)
@@ -2479,9 +2479,9 @@ extension ObjectAPITests {
             assertGetResultToCreatedByRelationship(result)
             assertGetResultToCreatedByRelationship(result, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetResultToStatusRelationship() {
+    func testGetResultToStatusRelationship() {
 
         continueAfterFailure = false
         let newTestResults = self.newTestResults(with: .requiredAndOptionalProperties)
@@ -2492,9 +2492,9 @@ extension ObjectAPITests {
             assertGetResultToStatusRelationship(result)
             assertGetResultToStatusRelationship(result, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetResultToTestRelationship() {
+    func testGetResultToTestRelationship() {
 
         continueAfterFailure = false
         let newTestResults = self.newTestResults(with: .requiredAndOptionalProperties)
@@ -2505,11 +2505,11 @@ extension ObjectAPITests {
             assertGetResultToTestRelationship(result)
             assertGetResultToTestRelationship(result, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	// MARK: ResultField
+    // MARK: ResultField
 
-	func testGetResultFieldToTemplatesRelationship() {
+    func testGetResultFieldToTemplatesRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.resultFields.count, 0, "This test cannot continue because there are no ResultFields.")
@@ -2519,7 +2519,7 @@ extension ObjectAPITests {
             assertGetResultFieldToTemplatesRelationship(resultField)
             assertGetResultFieldToTemplatesRelationship(resultField, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
     // MARK: ResultField.Config
 
@@ -2551,9 +2551,9 @@ extension ObjectAPITests {
         }
     }
 
-	// MARK: Run
+    // MARK: Run
 
-	func testGetRunToAssignedtoRelationship() {
+    func testGetRunToAssignedtoRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.runs.count, 0, "This test cannot continue because there are no Runs.")
@@ -2563,9 +2563,9 @@ extension ObjectAPITests {
             assertGetRunToAssignedtoRelationship(run)
             assertGetRunToAssignedtoRelationship(run, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetRunToConfigurationsRelationship() {
+    func testGetRunToConfigurationsRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.runs.count, 0, "This test cannot continue because there are no Runs.")
@@ -2575,9 +2575,9 @@ extension ObjectAPITests {
             assertGetRunToConfigurationsRelationship(run)
             assertGetRunToConfigurationsRelationship(run, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetRunToCreatedByRelationship() {
+    func testGetRunToCreatedByRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.runs.count, 0, "This test cannot continue because there are no Runs.")
@@ -2587,9 +2587,9 @@ extension ObjectAPITests {
             assertGetRunToCreatedByRelationship(run)
             assertGetRunToCreatedByRelationship(run, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetRunToMilestoneRelationship() {
+    func testGetRunToMilestoneRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.runs.count, 0, "This test cannot continue because there are no Runs.")
@@ -2599,9 +2599,9 @@ extension ObjectAPITests {
             assertGetRunToMilestoneRelationship(run)
             assertGetRunToMilestoneRelationship(run, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetRunToPlanRelationship() {
+    func testGetRunToPlanRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.runs.count, 0, "This test cannot continue because there are no Runs.")
@@ -2611,9 +2611,9 @@ extension ObjectAPITests {
             assertGetRunToPlanRelationship(run)
             assertGetRunToPlanRelationship(run, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetRunToProjectRelationship() {
+    func testGetRunToProjectRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.runs.count, 0, "This test cannot continue because there are no Runs.")
@@ -2623,9 +2623,9 @@ extension ObjectAPITests {
             assertGetRunToProjectRelationship(run)
             assertGetRunToProjectRelationship(run, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetRunToSuiteRelationship() {
+    func testGetRunToSuiteRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.runs.count, 0, "This test cannot continue because there are no Runs.")
@@ -2635,11 +2635,11 @@ extension ObjectAPITests {
             assertGetRunToSuiteRelationship(run)
             assertGetRunToSuiteRelationship(run, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	// MARK: Section
+    // MARK: Section
 
-	func testGetSectionToParentRelationship() {
+    func testGetSectionToParentRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.sections.count, 0, "This test cannot continue because there are no Sections.")
@@ -2649,9 +2649,9 @@ extension ObjectAPITests {
             assertGetSectionToParentRelationship(section)
             assertGetSectionToParentRelationship(section, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetSectionToSuiteRelationship() {
+    func testGetSectionToSuiteRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.sections.count, 0, "This test cannot continue because there are no Sections.")
@@ -2661,11 +2661,11 @@ extension ObjectAPITests {
             assertGetSectionToSuiteRelationship(section)
             assertGetSectionToSuiteRelationship(section, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	// MARK: Suite
+    // MARK: Suite
 
-	func testGetSuiteToProjectRelationship() {
+    func testGetSuiteToProjectRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.suites.count, 0, "This test cannot continue because there are no Suites.")
@@ -2675,11 +2675,11 @@ extension ObjectAPITests {
             assertGetSuiteToProjectRelationship(suite)
             assertGetSuiteToProjectRelationship(suite, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	// MARK: Test
+    // MARK: Test
 
-	func testGetTestToAssignedtoRelationship() {
+    func testGetTestToAssignedtoRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.tests.count, 0, "This test cannot continue because there are no Tests.")
@@ -2689,9 +2689,9 @@ extension ObjectAPITests {
             assertGetTestToAssignedtoRelationship(test)
             assertGetTestToAssignedtoRelationship(test, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetTestToCaseRelationship() {
+    func testGetTestToCaseRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.tests.count, 0, "This test cannot continue because there are no Tests.")
@@ -2701,9 +2701,9 @@ extension ObjectAPITests {
             assertGetTestToCaseRelationship(test)
             assertGetTestToCaseRelationship(test, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetTestToMilestoneRelationship() {
+    func testGetTestToMilestoneRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.tests.count, 0, "This test cannot continue because there are no Tests.")
@@ -2713,9 +2713,9 @@ extension ObjectAPITests {
             assertGetTestToMilestoneRelationship(test)
             assertGetTestToMilestoneRelationship(test, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetTestToPriorityRelationship() {
+    func testGetTestToPriorityRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.tests.count, 0, "This test cannot continue because there are no Tests.")
@@ -2725,9 +2725,9 @@ extension ObjectAPITests {
             assertGetTestToPriorityRelationship(test)
             assertGetTestToPriorityRelationship(test, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetTestToRunRelationship() {
+    func testGetTestToRunRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.tests.count, 0, "This test cannot continue because there are no Tests.")
@@ -2737,9 +2737,9 @@ extension ObjectAPITests {
             assertGetTestToRunRelationship(test)
             assertGetTestToRunRelationship(test, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetTestToStatusRelationship() {
+    func testGetTestToStatusRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.tests.count, 0, "This test cannot continue because there are no Tests.")
@@ -2749,9 +2749,9 @@ extension ObjectAPITests {
             assertGetTestToStatusRelationship(test)
             assertGetTestToStatusRelationship(test, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetTestToTemplateRelationship() {
+    func testGetTestToTemplateRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.tests.count, 0, "This test cannot continue because there are no Tests.")
@@ -2761,9 +2761,9 @@ extension ObjectAPITests {
             assertGetTestToTemplateRelationship(test)
             assertGetTestToTemplateRelationship(test, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
-	func testGetTestToTypeRelationship() {
+    func testGetTestToTypeRelationship() {
 
         continueAfterFailure = false
         XCTAssertGreaterThan(testProject.tests.count, 0, "This test cannot continue because there are no Tests.")
@@ -2773,7 +2773,7 @@ extension ObjectAPITests {
             assertGetTestToTypeRelationship(test)
             assertGetTestToTypeRelationship(test, usingObjectToRelationshipMethod: true)
         }
-	}
+    }
 
 }
 
@@ -4396,12 +4396,12 @@ extension ObjectAPITests {
         return user
     }
 
-    @discardableResult func assertGetUsers() -> [User]? {
+    @discardableResult func assertGetUsers(projectId: Int) -> [User]? {
 
         let expectation = XCTestExpectation(description: "Get Users")
 
         var users: [User]?
-        objectAPI.getUsers { (outcome) in
+        objectAPI.getUsers(projectId) { (outcome) in
             users = self.assertOutcomeSucceeded(outcome)
             expectation.fulfill()
         }
@@ -4569,7 +4569,7 @@ extension ObjectAPITests {
 
 extension ObjectAPITests {
 
-	// MARK: Case
+    // MARK: Case
 
     @discardableResult func assertGetCaseToCreatedByRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> User? {
 
@@ -4597,9 +4597,9 @@ extension ObjectAPITests {
         }
 
         return createdBy
-	}
+    }
 
-	@discardableResult func assertGetCaseToMilestoneRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> Milestone? {
+    @discardableResult func assertGetCaseToMilestoneRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> Milestone? {
 
         let expectation = XCTestExpectation(description: "Get Case to Milestone Relationship")
 
@@ -4629,9 +4629,9 @@ extension ObjectAPITests {
         }
 
         return milestone
-	}
+    }
 
-	@discardableResult func assertGetCaseToPriorityRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> Priority? {
+    @discardableResult func assertGetCaseToPriorityRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> Priority? {
 
         let expectation = XCTestExpectation(description: "Get Case to Priority Relationship")
 
@@ -4657,9 +4657,9 @@ extension ObjectAPITests {
         }
 
         return priority
-	}
+    }
 
-	@discardableResult func assertGetCaseToSectionRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> Section? {
+    @discardableResult func assertGetCaseToSectionRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> Section? {
 
         let expectation = XCTestExpectation(description: "Get Case to Section Relationship")
 
@@ -4688,9 +4688,9 @@ extension ObjectAPITests {
         }
 
         return section
-	}
+    }
 
-	@discardableResult func assertGetCaseToSuiteRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> Suite? {
+    @discardableResult func assertGetCaseToSuiteRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> Suite? {
 
         let expectation = XCTestExpectation(description: "Get Case to Suite Relationship")
 
@@ -4719,9 +4719,9 @@ extension ObjectAPITests {
         }
 
         return suite
-	}
+    }
 
-	@discardableResult func assertGetCaseToTemplateRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> Template? {
+    @discardableResult func assertGetCaseToTemplateRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> Template? {
 
         let expectation = XCTestExpectation(description: "Get Case to Template Relationship")
 
@@ -4747,9 +4747,9 @@ extension ObjectAPITests {
         }
 
         return template
-	}
+    }
 
-	@discardableResult func assertGetCaseToTypeRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> CaseType? {
+    @discardableResult func assertGetCaseToTypeRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> CaseType? {
 
         let expectation = XCTestExpectation(description: "Get Case to Type (CaseType) Relationship")
 
@@ -4775,9 +4775,9 @@ extension ObjectAPITests {
         }
 
         return type
-	}
+    }
 
-	@discardableResult func assertGetCaseToUpdatedByRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> User? {
+    @discardableResult func assertGetCaseToUpdatedByRelationship(_ `case`: Case, usingObjectToRelationshipMethod: Bool = false) -> User? {
 
         let expectation = XCTestExpectation(description: "Get Case to UpdatedBy (User) Relationship")
 
@@ -4803,7 +4803,7 @@ extension ObjectAPITests {
         }
 
         return updatedBy
-	}
+    }
 
     // MARK: Config
 
@@ -4893,9 +4893,9 @@ extension ObjectAPITests {
         return projects
     }
 
-	// MARK: CaseField
+    // MARK: CaseField
 
-	@discardableResult func assertGetCaseFieldToTemplatesRelationship(_ caseField: CaseField, usingObjectToRelationshipMethod: Bool = false) -> [Template]? {
+    @discardableResult func assertGetCaseFieldToTemplatesRelationship(_ caseField: CaseField, usingObjectToRelationshipMethod: Bool = false) -> [Template]? {
 
         let expectation = XCTestExpectation(description: "Get CaseField to Templates Relationship")
 
@@ -4924,11 +4924,11 @@ extension ObjectAPITests {
         }
 
         return templates
-	}
+    }
 
-	// MARK: Configuration
+    // MARK: Configuration
 
-	@discardableResult func assertGetConfigurationToConfigurationGroupRelationship(_ configuration: Configuration, usingObjectToRelationshipMethod: Bool = false) -> ConfigurationGroup? {
+    @discardableResult func assertGetConfigurationToConfigurationGroupRelationship(_ configuration: Configuration, usingObjectToRelationshipMethod: Bool = false) -> ConfigurationGroup? {
 
         let expectation = XCTestExpectation(description: "Get Configuration to ConfigurationGroup Relationship")
 
@@ -4954,11 +4954,11 @@ extension ObjectAPITests {
         }
 
         return configurationGroup
-	}
+    }
 
-	// MARK: ConfigurationGroup
+    // MARK: ConfigurationGroup
 
-	@discardableResult func assertGetConfigurationGroupToProjectRelationship(_ configurationGroup: ConfigurationGroup, usingObjectToRelationshipMethod: Bool = false) -> Project? {
+    @discardableResult func assertGetConfigurationGroupToProjectRelationship(_ configurationGroup: ConfigurationGroup, usingObjectToRelationshipMethod: Bool = false) -> Project? {
 
         let expectation = XCTestExpectation(description: "Get ConfigurationGroup to Project Relationship")
 
@@ -4984,11 +4984,11 @@ extension ObjectAPITests {
         }
 
         return project
-	}
+    }
 
-	// MARK: Milestone
+    // MARK: Milestone
 
-	@discardableResult func assertGetMilestoneToParentRelationship(_ milestone: Milestone, usingObjectToRelationshipMethod: Bool = false) -> Milestone? {
+    @discardableResult func assertGetMilestoneToParentRelationship(_ milestone: Milestone, usingObjectToRelationshipMethod: Bool = false) -> Milestone? {
 
         let expectation = XCTestExpectation(description: "Get Milestone to Parent (Milestone) Relationship")
 
@@ -5017,9 +5017,9 @@ extension ObjectAPITests {
         }
 
         return parent
-	}
+    }
 
-	@discardableResult func assertGetMilestoneToProjectRelationship(_ milestone: Milestone, usingObjectToRelationshipMethod: Bool = false) -> Project? {
+    @discardableResult func assertGetMilestoneToProjectRelationship(_ milestone: Milestone, usingObjectToRelationshipMethod: Bool = false) -> Project? {
 
         let expectation = XCTestExpectation(description: "Get Milestone to Project Relationship")
 
@@ -5045,9 +5045,9 @@ extension ObjectAPITests {
         }
 
         return project
-	}
+    }
 
-	// MARK: Plan
+    // MARK: Plan
 
     @discardableResult func assertGetPlanToAssignedtoRelationship(_ plan: Plan, usingObjectToRelationshipMethod: Bool = false) -> User? {
 
@@ -5078,9 +5078,9 @@ extension ObjectAPITests {
         }
 
         return assignedto
-	}
+    }
 
-	@discardableResult func assertGetPlanToCreatedByRelationship(_ plan: Plan, usingObjectToRelationshipMethod: Bool = false) -> User? {
+    @discardableResult func assertGetPlanToCreatedByRelationship(_ plan: Plan, usingObjectToRelationshipMethod: Bool = false) -> User? {
 
         let expectation = XCTestExpectation(description: "Get Plan to CreatedBy (User) Relationship")
 
@@ -5106,9 +5106,9 @@ extension ObjectAPITests {
         }
 
         return createdBy
-	}
+    }
 
-	@discardableResult func assertGetPlanToMilestoneRelationship(_ plan: Plan, usingObjectToRelationshipMethod: Bool = false) -> Milestone? {
+    @discardableResult func assertGetPlanToMilestoneRelationship(_ plan: Plan, usingObjectToRelationshipMethod: Bool = false) -> Milestone? {
 
         let expectation = XCTestExpectation(description: "Get Plan to Milestone Relationship")
 
@@ -5137,9 +5137,9 @@ extension ObjectAPITests {
         }
 
         return milestone
-	}
+    }
 
-	@discardableResult func assertGetPlanToProjectRelationship(_ plan: Plan, usingObjectToRelationshipMethod: Bool = false) -> Project? {
+    @discardableResult func assertGetPlanToProjectRelationship(_ plan: Plan, usingObjectToRelationshipMethod: Bool = false) -> Project? {
 
         let expectation = XCTestExpectation(description: "Get Plan to Project Relationship")
 
@@ -5165,9 +5165,9 @@ extension ObjectAPITests {
         }
 
         return project
-	}
+    }
 
-	// MARK: Plan.Entry
+    // MARK: Plan.Entry
 
     @discardableResult func assertGetPlanEntryToSuiteRelationship(_ planEntry: Plan.Entry, usingObjectToRelationshipMethod: Bool = false) -> Suite? {
 
@@ -5194,9 +5194,9 @@ extension ObjectAPITests {
         }
 
         return suite
-	}
+    }
 
-	// MARK: Result
+    // MARK: Result
 
     @discardableResult func assertGetResultToAssignedtoRelationship(_ result: Result, usingObjectToRelationshipMethod: Bool = false) -> User? {
 
@@ -5227,9 +5227,9 @@ extension ObjectAPITests {
         }
 
         return assignedto
-	}
+    }
 
-	@discardableResult func assertGetResultToCreatedByRelationship(_ result: Result, usingObjectToRelationshipMethod: Bool = false) -> User? {
+    @discardableResult func assertGetResultToCreatedByRelationship(_ result: Result, usingObjectToRelationshipMethod: Bool = false) -> User? {
 
         let expectation = XCTestExpectation(description: "Get Result to CreatedBy (User) Relationship")
 
@@ -5255,9 +5255,9 @@ extension ObjectAPITests {
         }
 
         return createdBy
-	}
+    }
 
-	@discardableResult func assertGetResultToStatusRelationship(_ result: Result, usingObjectToRelationshipMethod: Bool = false) -> Status? {
+    @discardableResult func assertGetResultToStatusRelationship(_ result: Result, usingObjectToRelationshipMethod: Bool = false) -> Status? {
 
         let expectation = XCTestExpectation(description: "Get Result to Status Relationship")
 
@@ -5286,9 +5286,9 @@ extension ObjectAPITests {
         }
 
         return status
-	}
+    }
 
-	@discardableResult func assertGetResultToTestRelationship(_ result: Result, usingObjectToRelationshipMethod: Bool = false) -> Test? {
+    @discardableResult func assertGetResultToTestRelationship(_ result: Result, usingObjectToRelationshipMethod: Bool = false) -> Test? {
 
         let expectation = XCTestExpectation(description: "Get Result to Test Relationship")
 
@@ -5314,11 +5314,11 @@ extension ObjectAPITests {
         }
 
         return test
-	}
+    }
 
-	// MARK: ResultField
+    // MARK: ResultField
 
-	@discardableResult func assertGetResultFieldToTemplatesRelationship(_ resultField: ResultField, usingObjectToRelationshipMethod: Bool = false) -> [Template]? {
+    @discardableResult func assertGetResultFieldToTemplatesRelationship(_ resultField: ResultField, usingObjectToRelationshipMethod: Bool = false) -> [Template]? {
 
         let expectation = XCTestExpectation(description: "Get ResultField to Templates Relationship")
 
@@ -5347,9 +5347,9 @@ extension ObjectAPITests {
         }
 
         return templates
-	}
+    }
 
-	// MARK: Run
+    // MARK: Run
 
     @discardableResult func assertGetRunToAssignedtoRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> User? {
 
@@ -5380,9 +5380,9 @@ extension ObjectAPITests {
         }
 
         return assignedto
-	}
+    }
 
-	@discardableResult func assertGetRunToConfigurationsRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> [Configuration]? {
+    @discardableResult func assertGetRunToConfigurationsRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> [Configuration]? {
 
         let expectation = XCTestExpectation(description: "Get Run to Configurations Relationship")
 
@@ -5414,9 +5414,9 @@ extension ObjectAPITests {
         }
 
         return configurations
-	}
+    }
 
-	@discardableResult func assertGetRunToCreatedByRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> User? {
+    @discardableResult func assertGetRunToCreatedByRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> User? {
 
         let expectation = XCTestExpectation(description: "Get Run to CreatedBy (User) Relationship")
 
@@ -5442,9 +5442,9 @@ extension ObjectAPITests {
         }
 
         return createdBy
-	}
+    }
 
-	@discardableResult func assertGetRunToMilestoneRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> Milestone? {
+    @discardableResult func assertGetRunToMilestoneRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> Milestone? {
 
         let expectation = XCTestExpectation(description: "Get Run to Milestone Relationship")
 
@@ -5473,9 +5473,9 @@ extension ObjectAPITests {
         }
 
         return milestone
-	}
+    }
 
-	@discardableResult func assertGetRunToPlanRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> Plan? {
+    @discardableResult func assertGetRunToPlanRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> Plan? {
 
         let expectation = XCTestExpectation(description: "Get Run to Plan Relationship")
 
@@ -5504,9 +5504,9 @@ extension ObjectAPITests {
         }
 
         return plan
-	}
+    }
 
-	@discardableResult func assertGetRunToProjectRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> Project? {
+    @discardableResult func assertGetRunToProjectRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> Project? {
 
         let expectation = XCTestExpectation(description: "Get Run to Project Relationship")
 
@@ -5532,9 +5532,9 @@ extension ObjectAPITests {
         }
 
         return project
-	}
+    }
 
-	@discardableResult func assertGetRunToSuiteRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> Suite? {
+    @discardableResult func assertGetRunToSuiteRelationship(_ run: Run, usingObjectToRelationshipMethod: Bool = false) -> Suite? {
 
         let expectation = XCTestExpectation(description: "Get Run to Suite Relationship")
 
@@ -5563,9 +5563,9 @@ extension ObjectAPITests {
         }
 
         return suite
-	}
+    }
 
-	// MARK: Section
+    // MARK: Section
 
     @discardableResult func assertGetSectionToParentRelationship(_ section: Section, usingObjectToRelationshipMethod: Bool = false) -> Section? {
 
@@ -5596,9 +5596,9 @@ extension ObjectAPITests {
         }
 
         return parent
-	}
+    }
 
-	@discardableResult func assertGetSectionToSuiteRelationship(_ section: Section, usingObjectToRelationshipMethod: Bool = false) -> Suite? {
+    @discardableResult func assertGetSectionToSuiteRelationship(_ section: Section, usingObjectToRelationshipMethod: Bool = false) -> Suite? {
 
         let expectation = XCTestExpectation(description: "Get Section to Suite Relationship")
 
@@ -5627,9 +5627,9 @@ extension ObjectAPITests {
         }
 
         return suite
-	}
+    }
 
-	// MARK: Suite
+    // MARK: Suite
 
     @discardableResult func assertGetSuiteToProjectRelationship(_ suite: Suite, usingObjectToRelationshipMethod: Bool = false) -> Project? {
 
@@ -5657,11 +5657,11 @@ extension ObjectAPITests {
         }
 
         return project
-	}
+    }
 
-	// MARK: Test
+    // MARK: Test
 
-	@discardableResult func assertGetTestToAssignedtoRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> User? {
+    @discardableResult func assertGetTestToAssignedtoRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> User? {
 
         let expectation = XCTestExpectation(description: "Get Test to Assignedto (User) Relationship")
 
@@ -5690,9 +5690,9 @@ extension ObjectAPITests {
         }
 
         return assignedto
-	}
+    }
 
-	@discardableResult func assertGetTestToCaseRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Case? {
+    @discardableResult func assertGetTestToCaseRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Case? {
 
         let expectation = XCTestExpectation(description: "Get Test to Case Relationship")
 
@@ -5718,9 +5718,9 @@ extension ObjectAPITests {
         }
 
         return `case`
-	}
+    }
 
-	@discardableResult func assertGetTestToMilestoneRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Milestone? {
+    @discardableResult func assertGetTestToMilestoneRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Milestone? {
 
         let expectation = XCTestExpectation(description: "Get Test to Milestone Relationship")
 
@@ -5749,9 +5749,9 @@ extension ObjectAPITests {
         }
 
         return milestone
-	}
+    }
 
-	@discardableResult func assertGetTestToPriorityRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Priority? {
+    @discardableResult func assertGetTestToPriorityRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Priority? {
 
         let expectation = XCTestExpectation(description: "Get Test to Priority Relationship")
 
@@ -5777,9 +5777,9 @@ extension ObjectAPITests {
         }
 
         return priority
-	}
+    }
 
-	@discardableResult func assertGetTestToRunRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Run? {
+    @discardableResult func assertGetTestToRunRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Run? {
 
         let expectation = XCTestExpectation(description: "Get Test to Run Relationship")
 
@@ -5805,9 +5805,9 @@ extension ObjectAPITests {
         }
 
         return run
-	}
+    }
 
-	@discardableResult func assertGetTestToStatusRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Status? {
+    @discardableResult func assertGetTestToStatusRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Status? {
 
         let expectation = XCTestExpectation(description: "Get Test to Status Relationship")
 
@@ -5832,9 +5832,9 @@ extension ObjectAPITests {
         }
 
         return status
-	}
+    }
 
-	@discardableResult func assertGetTestToTemplateRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Template? {
+    @discardableResult func assertGetTestToTemplateRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> Template? {
 
         let expectation = XCTestExpectation(description: "Get Test to Template Relationship")
 
@@ -5860,9 +5860,9 @@ extension ObjectAPITests {
         }
 
         return template
-	}
+    }
 
-	@discardableResult func assertGetTestToTypeRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> CaseType? {
+    @discardableResult func assertGetTestToTypeRelationship(_ test: Test, usingObjectToRelationshipMethod: Bool = false) -> CaseType? {
 
         let expectation = XCTestExpectation(description: "Get Test to Type (CaseType) Relationship")
 
@@ -5888,6 +5888,6 @@ extension ObjectAPITests {
         }
 
         return type
-	}
+    }
 
 }

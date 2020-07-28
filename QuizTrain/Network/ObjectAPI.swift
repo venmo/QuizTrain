@@ -2376,10 +2376,10 @@ extension ObjectAPI {
     /**
      [API Reference](http://docs.gurock.com/testrail-api2/reference-users#get_users)
      */
-    public func getUsers(completionHandler: @escaping (Outcome<[User], GetError>) -> Void) {
-        api.getUsers { [weak self] (apiRequestOutcome) in
+    public func getUsers(_ projectId: Int, completionHandler: @escaping (Outcome<[User], GetError>) -> Void) {
+        api.getUsers(projectId) { [weak self] (apiRequestOutcome) in
             self?.process(apiRequestOutcome, retryHandler: {
-                self?.getUsers(completionHandler: completionHandler)
+                self?.getUsers(projectId, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 completionHandler(processedOutcome)
             })
