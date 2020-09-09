@@ -1,3 +1,5 @@
+import Foundation
+
 public struct CaseField: Identifiable, Equatable {
     public typealias Id = Int
     public let configs: [Config]

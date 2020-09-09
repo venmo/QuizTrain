@@ -1,3 +1,4 @@
+import Foundation
 /*
  Conforming objects can return a URLQueryItem representation of themselves.
  */
