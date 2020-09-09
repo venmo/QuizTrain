@@ -1,3 +1,5 @@
+import Foundation
+
 /*
  Filter results returned by the TestRail API.
 

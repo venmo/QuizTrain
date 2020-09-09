@@ -1,3 +1,5 @@
+import Foundation
+
 public struct Case: Identifiable, MutableCustomFields, Equatable {
     public typealias Id = Int
     public let createdBy: User.Id

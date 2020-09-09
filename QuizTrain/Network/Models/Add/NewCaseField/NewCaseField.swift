@@ -1,3 +1,5 @@
+import Foundation
+
 // MARK: - Models
 
 public struct NewCaseField<DataType: NewCaseFieldData>: Hashable {
