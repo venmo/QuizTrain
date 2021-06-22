@@ -1,3 +1,5 @@
+import Foundation
+
 extension URLRequest {
 
     public var httpBodyAsUTF8: String? {

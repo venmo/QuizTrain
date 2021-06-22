@@ -1,3 +1,5 @@
+import Foundation
+
 public struct Result: CustomFields, Identifiable, Equatable {
     public typealias Id = Int
     public let assignedtoId: User.Id?

@@ -1,3 +1,5 @@
+import Foundation
+
 public struct NewMilestone: Equatable {
 
     public var description: String?
