@@ -8,6 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "QuizTrain",
+            type: .dynamic,
             targets: ["QuizTrain"]),
     ],
     targets: [
