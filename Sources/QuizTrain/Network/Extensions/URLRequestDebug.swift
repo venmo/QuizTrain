@@ -1,5 +1,6 @@
-extension URLRequest {
+import Foundation
 
+extension URLRequest {
     public var httpBodyAsUTF8: String? {
         guard let httpBody = self.httpBody else {
             return nil

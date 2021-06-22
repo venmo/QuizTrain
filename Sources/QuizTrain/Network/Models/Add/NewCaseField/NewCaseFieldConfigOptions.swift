@@ -1,5 +1,6 @@
-// MARK: - Models
+import Foundation
 
+// MARK: - Models
 public struct NewCaseFieldConfigStringOptions: Hashable {
     public var isRequired: Bool
     public var defaultValue: String?

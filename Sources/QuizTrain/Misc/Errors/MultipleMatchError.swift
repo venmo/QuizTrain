@@ -10,7 +10,7 @@ extension MultipleMatchError: CustomDebugStringConvertible {
         switch self {
         case .noMatchesFound:
             description += ".noMatchesFound:\n\n\(debugDetails)\n"
-        case .partialMatchesFound(_):
+        case .partialMatchesFound(_, _):
             description += ".partialMatchesFound:\n\n\(debugDetails)\n"
         }
         return description

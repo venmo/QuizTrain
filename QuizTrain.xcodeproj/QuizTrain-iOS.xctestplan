@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "6173A1E4-5045-4B5C-83D1-79D92DFB0603",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:QuizTrain.xcodeproj",
+      "identifier" : "FE23A91B1F59F39F007E946D",
+      "name" : "QuizTrain-iOS"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:QuizTrain.xcodeproj",
+        "identifier" : "FE23A9241F59F3A0007E946D",
+        "name" : "QuizTrainTests-iOS"
+      }
+    }
+  ],
+  "version" : 1
+}
