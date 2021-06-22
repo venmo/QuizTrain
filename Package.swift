@@ -14,7 +14,6 @@ let package = Package(
         .target(
             name: "QuizTrain",
             dependencies: [],
-            path: "Sources"),
         .testTarget(
             name: "QuizTrainTests",
             dependencies: ["QuizTrain"],
