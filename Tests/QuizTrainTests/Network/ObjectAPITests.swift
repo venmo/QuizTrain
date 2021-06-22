@@ -105,7 +105,7 @@ extension ObjectAPITests {
         }
 
         do {
-            let bundle =  Bundle(for: type(of: self))
+            let bundle = Bundle(for: type(of: self))
             testCredentials = try TestCredentials.load(from: bundle)
         } catch {
             XCTFail("FAILED: \(#file):\(#line):\(#function): \(error)")
