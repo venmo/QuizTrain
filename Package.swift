@@ -19,7 +19,6 @@ let package = Package(
             dependencies: ["QuizTrain"],
             resources: [
                 .copy("Tests/QuizTrainTests/Testing\ Misc/TestCredentials.json"),
-            ],
-            path: "Tests"),
+            ]),
     ]
 )
