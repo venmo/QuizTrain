@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41837128270356A3009521BD /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41837127270356A3009521BD /* Links.swift */; };
+		41837129270356A3009521BD /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41837127270356A3009521BD /* Links.swift */; };
+		4183712A270356A3009521BD /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41837127270356A3009521BD /* Links.swift */; };
+		4183712B270356A3009521BD /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41837127270356A3009521BD /* Links.swift */; };
+		4183712D270356EF009521BD /* BulkCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183712C270356EF009521BD /* BulkCases.swift */; };
+		4183712E270356EF009521BD /* BulkCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183712C270356EF009521BD /* BulkCases.swift */; };
+		4183712F270356EF009521BD /* BulkCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183712C270356EF009521BD /* BulkCases.swift */; };
+		41837130270356EF009521BD /* BulkCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183712C270356EF009521BD /* BulkCases.swift */; };
+		418371322703578D009521BD /* QuizTrainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418371312703578D009521BD /* QuizTrainData.swift */; };
+		418371332703578D009521BD /* QuizTrainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418371312703578D009521BD /* QuizTrainData.swift */; };
+		418371342703578D009521BD /* QuizTrainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418371312703578D009521BD /* QuizTrainData.swift */; };
+		418371352703578D009521BD /* QuizTrainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418371312703578D009521BD /* QuizTrainData.swift */; };
+		4183713727035887009521BD /* BulkSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183713627035887009521BD /* BulkSections.swift */; };
+		4183713827035887009521BD /* BulkSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183713627035887009521BD /* BulkSections.swift */; };
+		4183713927035887009521BD /* BulkSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183713627035887009521BD /* BulkSections.swift */; };
+		4183713A27035887009521BD /* BulkSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183713627035887009521BD /* BulkSections.swift */; };
+		4183713C270365B9009521BD /* BulkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183713B270365B9009521BD /* BulkTests.swift */; };
+		4183713D270365B9009521BD /* BulkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183713B270365B9009521BD /* BulkTests.swift */; };
+		4183713E270365B9009521BD /* BulkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183713B270365B9009521BD /* BulkTests.swift */; };
+		4183713F270365B9009521BD /* BulkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4183713B270365B9009521BD /* BulkTests.swift */; };
 		FE018DC71F85708C001A2FEF /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE018DC61F85708C001A2FEF /* ModelTests.swift */; };
 		FE11181C1F6C3A4B00D24A5F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11181B1F6C3A4B00D24A5F /* Config.swift */; };
 		FE12A9CD21822A570010D407 /* ObjectAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A6D4F1F75956C00DF1039 /* ObjectAPITests.swift */; };
@@ -660,6 +680,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41837127270356A3009521BD /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
+		4183712C270356EF009521BD /* BulkCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkCases.swift; sourceTree = "<group>"; };
+		418371312703578D009521BD /* QuizTrainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTrainData.swift; sourceTree = "<group>"; };
+		4183713627035887009521BD /* BulkSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkSections.swift; sourceTree = "<group>"; };
+		4183713B270365B9009521BD /* BulkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkTests.swift; sourceTree = "<group>"; };
 		FE018DC61F85708C001A2FEF /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		FE09FFB31FE320CA0009FB2F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		FE09FFCF1FE325CE0009FB2F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -1110,6 +1135,10 @@
 				FE23A96E1F59F4D9007E946D /* Template.swift */,
 				FE23A9701F59F4E2007E946D /* Test.swift */,
 				FE23A9721F59F4EB007E946D /* User.swift */,
+				4183712C270356EF009521BD /* BulkCases.swift */,
+				418371312703578D009521BD /* QuizTrainData.swift */,
+				4183713627035887009521BD /* BulkSections.swift */,
+				4183713B270365B9009521BD /* BulkTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1185,6 +1214,7 @@
 			children = (
 				FE331C1B1F6B406300F9A653 /* CustomFieldType.swift */,
 				FEAF0BFD1F7D9F15001D4F10 /* Project.SuiteMode.swift */,
+				41837127270356A3009521BD /* Links.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -1887,6 +1917,7 @@
 				FEDFF2751FE1B09000AEB3D6 /* SingleMatchError.swift in Sources */,
 				FEDCBEF31F96BF020083AD46 /* NewMilestone.swift in Sources */,
 				FE30F11F1F6AEDF600AA7761 /* Configuration.swift in Sources */,
+				4183713727035887009521BD /* BulkSections.swift in Sources */,
 				FE1474E51FAA6A0D0049DA84 /* ObjectAPI.ServerErrorDebug.swift in Sources */,
 				FE2245851F75AC82009F2B2B /* CustomFieldsContainer.swift in Sources */,
 				FE2F61A1217691DE0002A705 /* NewCaseFieldData.swift in Sources */,
@@ -1906,6 +1937,7 @@
 				FE5E1A301F8804E3001E479B /* JSONDictionaryContainer.swift in Sources */,
 				FE30F11E1F6AED8100AA7761 /* ConfigurationGroup.swift in Sources */,
 				FE1FB1041F9131B200383724 /* UpdateRequestJSON.swift in Sources */,
+				41837128270356A3009521BD /* Links.swift in Sources */,
 				FE23A96F1F59F4D9007E946D /* Template.swift in Sources */,
 				FE5A24F21FE092D300198848 /* UniqueSelection.swift in Sources */,
 				FE208DEF1FBB6B920065BE88 /* NewTestResults.swift in Sources */,
@@ -1948,10 +1980,13 @@
 				FE8C2D5A1FBA391F005A4150 /* Date+Seconds.swift in Sources */,
 				FE1474E81FAA6A270049DA84 /* ObjectAPI.StatusCodeErrorDebug.swift in Sources */,
 				FE6989211FA39B99006CC783 /* UpdatePlanEntryRuns.swift in Sources */,
+				4183712D270356EF009521BD /* BulkCases.swift in Sources */,
 				FE23A96B1F59F4C3007E946D /* Section.swift in Sources */,
 				FE978CED1F9532BA0005D181 /* URLRequestDebug.swift in Sources */,
 				FE331C1A1F6B3C0200F9A653 /* Case.swift in Sources */,
 				FEB546881F9170A900AA6DA5 /* Outcome.swift in Sources */,
+				4183713C270365B9009521BD /* BulkTests.swift in Sources */,
+				418371322703578D009521BD /* QuizTrainData.swift in Sources */,
 				FE208DEB1FBB69B80065BE88 /* NewTestResults.Result.swift in Sources */,
 				FE23A96D1F59F4CE007E946D /* Suite.swift in Sources */,
 				FEDFF2771FE1B0A000AEB3D6 /* MultipleMatchError.swift in Sources */,
@@ -2077,6 +2112,7 @@
 				FEAE9A5A1FEC4F1400B52CA9 /* NewMilestone.swift in Sources */,
 				FEAE9A151FEC4EFA00B52CA9 /* ResultField.swift in Sources */,
 				FEAE9A871FEC4F1800B52CA9 /* UpdatePlanEntryRuns.swift in Sources */,
+				4183713A27035887009521BD /* BulkSections.swift in Sources */,
 				FEAE99D71FEC431900B52CA9 /* UpdateRequestJSONKeys.swift in Sources */,
 				FEAE9A3B1FEC4F0A00B52CA9 /* ObjectAPI.UpdateRequestErrorDebug.swift in Sources */,
 				FE2F61A4217691DE0002A705 /* NewCaseFieldData.swift in Sources */,
@@ -2096,6 +2132,7 @@
 				FEAE99FC1FEC4EC900B52CA9 /* CaseType.swift in Sources */,
 				FEAE99F61FEC4EC200B52CA9 /* Case.swift in Sources */,
 				FEAE9A121FEC4EF600B52CA9 /* Result.swift in Sources */,
+				4183712B270356A3009521BD /* Links.swift in Sources */,
 				FEAE99F01FEC433800B52CA9 /* Config.Context.swift in Sources */,
 				FEAE9A8D1FEC4F1D00B52CA9 /* API.swift in Sources */,
 				FEAE9A5B1FEC4F1400B52CA9 /* NewPlan.swift in Sources */,
@@ -2138,10 +2175,13 @@
 				FEAE99C21FEC42FE00B52CA9 /* Identifiable.swift in Sources */,
 				FEAE9A631FEC4F1400B52CA9 /* NewTestResults.Result.swift in Sources */,
 				FEAE9A1E1FEC4EFF00B52CA9 /* User.swift in Sources */,
+				41837130270356EF009521BD /* BulkCases.swift in Sources */,
 				FEAE9A2D1FEC4F0600B52CA9 /* API.RequestErrorDebug.swift in Sources */,
 				FEAE9A021FEC4ED100B52CA9 /* ConfigurationGroup.swift in Sources */,
 				FEAE9A1B1FEC4EFF00B52CA9 /* Suite.swift in Sources */,
 				FEAE99D11FEC431200B52CA9 /* AsyncOperation.swift in Sources */,
+				4183713F270365B9009521BD /* BulkTests.swift in Sources */,
+				418371352703578D009521BD /* QuizTrainData.swift in Sources */,
 				FEAE9A1A1FEC4EFF00B52CA9 /* Status.swift in Sources */,
 				FEAE9A081FEC4ED900B52CA9 /* Plan.swift in Sources */,
 				FEAE9A621FEC4F1400B52CA9 /* NewTestResults.swift in Sources */,
@@ -2172,6 +2212,7 @@
 				FEAE9A6A1FEC4F1500B52CA9 /* NewMilestone.swift in Sources */,
 				FEAE9A161FEC4EFB00B52CA9 /* ResultField.swift in Sources */,
 				FEAE9A881FEC4F1900B52CA9 /* UpdatePlanEntryRuns.swift in Sources */,
+				4183713927035887009521BD /* BulkSections.swift in Sources */,
 				FEAE99D81FEC431900B52CA9 /* UpdateRequestJSONKeys.swift in Sources */,
 				FEAE9A451FEC4F0B00B52CA9 /* ObjectAPI.UpdateRequestErrorDebug.swift in Sources */,
 				FE2F61A3217691DE0002A705 /* NewCaseFieldData.swift in Sources */,
@@ -2191,6 +2232,7 @@
 				FEAE99FB1FEC4EC800B52CA9 /* CaseType.swift in Sources */,
 				FEAE99F51FEC4EC200B52CA9 /* Case.swift in Sources */,
 				FEAE9A131FEC4EF700B52CA9 /* Result.swift in Sources */,
+				4183712A270356A3009521BD /* Links.swift in Sources */,
 				FEAE99F31FEC433B00B52CA9 /* Config.Context.swift in Sources */,
 				FEAE9A921FEC4F1E00B52CA9 /* API.swift in Sources */,
 				FEAE9A6B1FEC4F1500B52CA9 /* NewPlan.swift in Sources */,
@@ -2233,10 +2275,13 @@
 				FEAE99C31FEC42FF00B52CA9 /* Identifiable.swift in Sources */,
 				FEAE9A731FEC4F1500B52CA9 /* NewTestResults.Result.swift in Sources */,
 				FEAE9A251FEC4F0000B52CA9 /* User.swift in Sources */,
+				4183712F270356EF009521BD /* BulkCases.swift in Sources */,
 				FEAE9A2F1FEC4F0600B52CA9 /* API.RequestErrorDebug.swift in Sources */,
 				FEAE9A011FEC4ED100B52CA9 /* ConfigurationGroup.swift in Sources */,
 				FEAE9A221FEC4F0000B52CA9 /* Suite.swift in Sources */,
 				FEAE99D21FEC431300B52CA9 /* AsyncOperation.swift in Sources */,
+				4183713E270365B9009521BD /* BulkTests.swift in Sources */,
+				418371342703578D009521BD /* QuizTrainData.swift in Sources */,
 				FEAE9A211FEC4F0000B52CA9 /* Status.swift in Sources */,
 				FEAE9A071FEC4ED900B52CA9 /* Plan.swift in Sources */,
 				FEAE9A721FEC4F1500B52CA9 /* NewTestResults.swift in Sources */,
@@ -2362,6 +2407,7 @@
 				FEAE9A7A1FEC4F1500B52CA9 /* NewMilestone.swift in Sources */,
 				FEAE9A171FEC4EFB00B52CA9 /* ResultField.swift in Sources */,
 				FEAE9A891FEC4F1A00B52CA9 /* UpdatePlanEntryRuns.swift in Sources */,
+				4183713827035887009521BD /* BulkSections.swift in Sources */,
 				FEAE99DA1FEC431B00B52CA9 /* UpdateRequestJSONKeys.swift in Sources */,
 				FEAE9A4F1FEC4F0B00B52CA9 /* ObjectAPI.UpdateRequestErrorDebug.swift in Sources */,
 				FE2F61A2217691DE0002A705 /* NewCaseFieldData.swift in Sources */,
@@ -2381,6 +2427,7 @@
 				FEAE99FA1FEC4EC800B52CA9 /* CaseType.swift in Sources */,
 				FEAE99F41FEC4EC100B52CA9 /* Case.swift in Sources */,
 				FEAE9A141FEC4EF700B52CA9 /* Result.swift in Sources */,
+				41837129270356A3009521BD /* Links.swift in Sources */,
 				FEAE99F21FEC433B00B52CA9 /* Config.Context.swift in Sources */,
 				FEAE9A971FEC4F1E00B52CA9 /* API.swift in Sources */,
 				FEAE9A7B1FEC4F1500B52CA9 /* NewPlan.swift in Sources */,
@@ -2423,10 +2470,13 @@
 				FEAE99C41FEC430000B52CA9 /* Identifiable.swift in Sources */,
 				FEAE9A831FEC4F1500B52CA9 /* NewTestResults.Result.swift in Sources */,
 				FEAE9A2C1FEC4F0000B52CA9 /* User.swift in Sources */,
+				4183712E270356EF009521BD /* BulkCases.swift in Sources */,
 				FEAE9A311FEC4F0700B52CA9 /* API.RequestErrorDebug.swift in Sources */,
 				FEAE9A001FEC4ED000B52CA9 /* ConfigurationGroup.swift in Sources */,
 				FEAE9A291FEC4F0000B52CA9 /* Suite.swift in Sources */,
 				FEAE99D31FEC431300B52CA9 /* AsyncOperation.swift in Sources */,
+				4183713D270365B9009521BD /* BulkTests.swift in Sources */,
+				418371332703578D009521BD /* QuizTrainData.swift in Sources */,
 				FEAE9A281FEC4F0000B52CA9 /* Status.swift in Sources */,
 				FEAE9A061FEC4ED800B52CA9 /* Plan.swift in Sources */,
 				FEAE9A821FEC4F1500B52CA9 /* NewTestResults.swift in Sources */,

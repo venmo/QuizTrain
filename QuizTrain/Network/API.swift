@@ -582,8 +582,16 @@ final public class API: NSObject, URLSessionDelegate {
     /*
      http://docs.gurock.com/testrail-api2/reference-sections#get_sections
      */
-    @discardableResult public func getSections(projectId: Int, suiteId: Int? = nil, completionHandler: @escaping (RequestOutcome) -> Void) -> URLSessionDataTask {
-        let queryItems = suiteId != nil ? [URLQueryItem(name: "suite_id", value: String(suiteId!))] : nil
+    @discardableResult public func getSections(projectId: Int, suiteId: Int? = nil, filters: [Filter]? = nil, completionHandler: @escaping (RequestOutcome) -> Void) -> URLSessionDataTask {
+        var queryItems = [URLQueryItem]()
+
+        if let suiteId = suiteId {
+            queryItems.append(URLQueryItem(name: "suite_id", value: String(suiteId)))
+        }
+        
+        if let filters = filters {
+            _ = filters.compactMap { queryItems.append($0.queryItem) }
+        }
         return get("get_sections/\(projectId)", queryItems: queryItems, completionHandler: completionHandler)
     }
 

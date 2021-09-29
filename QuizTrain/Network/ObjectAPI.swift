@@ -802,6 +802,16 @@ extension ObjectAPI {
     public func getCases(in project: Project, in suite: Suite? = nil, in section: Section? = nil, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<[Case], GetError>) -> Void) {
         getCases(inProjectWithId: project.id, inSuiteWithId: suite?.id, inSectionWithId: section?.id, filteredBy: filters, completionHandler: completionHandler)
     }
+    
+    public func getBulkCases(in project: Project, in suite: Suite? = nil, in section: Section? = nil, with offset: Int, with limit: Int = 250, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<BulkCases, GetError>) -> Void) {
+        var filteredBy = [Filter]()
+        filteredBy.append(Filter.init(named: "offset", matching: offset))
+        filteredBy.append(Filter.init(named: "limit", matching: limit))
+        if let filters = filters {
+            filteredBy.append(contentsOf: filters)
+        }
+        getBulkCases(inProjectWithId: project.id, inSuiteWithId: suite?.id, inSectionWithId: section?.id, filteredBy: filteredBy, completionHandler: completionHandler)
+    }
 
     /**
      [API Reference](http://docs.gurock.com/testrail-api2/reference-cases#get_cases)
@@ -812,6 +822,16 @@ extension ObjectAPI {
         api.getCases(projectId: projectId, suiteId: suiteId, sectionId: sectionId, filters: filters) { [weak self] (apiRequestOutcome) in
             self?.process(apiRequestOutcome, retryHandler: {
                 self?.getCases(inProjectWithId: projectId, inSuiteWithId: suiteId, inSectionWithId: sectionId, filteredBy: filters, completionHandler: completionHandler)
+            }, completionHandler: { (processedOutcome) in
+                completionHandler(processedOutcome)
+            })
+        }
+    }
+    
+    public func getBulkCases(inProjectWithId projectId: Project.Id, inSuiteWithId suiteId: Suite.Id? = nil, inSectionWithId sectionId: Section.Id? = nil, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<BulkCases, GetError>) -> Void) {
+        api.getCases(projectId: projectId, suiteId: suiteId, sectionId: sectionId, filters: filters) { [weak self] (apiRequestOutcome) in
+            self?.process(apiRequestOutcome, retryHandler: {
+                self?.getBulkCases(inProjectWithId: projectId, inSuiteWithId: suiteId, inSectionWithId: sectionId, filteredBy: filters, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 completionHandler(processedOutcome)
             })
@@ -2068,6 +2088,10 @@ extension ObjectAPI {
     public func getSections(in project: Project, in suite: Suite? = nil, completionHandler: @escaping (Outcome<[Section], GetError>) -> Void) {
         getSections(inProjectWithId: project.id, inSuiteWithId: suite?.id, completionHandler: completionHandler)
     }
+    
+    public func getBulkSections(in project: Project, in suite: Suite? = nil, with offset: Int, with limit: Int = 250, completionHandler: @escaping (Outcome<BulkSections, GetError>) -> Void) {
+        getBulkSections(inProjectWithId: project.id, inSuiteWithId: suite?.id, filteredBy: [Filter.init(named: "offset", matching: offset), Filter.init(named: "limit", matching: limit)], completionHandler: completionHandler)
+    }
 
     /**
      [API Reference](http://docs.gurock.com/testrail-api2/reference-sections#get_sections)
@@ -2076,6 +2100,16 @@ extension ObjectAPI {
         api.getSections(projectId: projectId, suiteId: suiteId) { [weak self] (apiRequestOutcome) in
             self?.process(apiRequestOutcome, retryHandler: {
                 self?.getSections(inProjectWithId: projectId, inSuiteWithId: suiteId, completionHandler: completionHandler)
+            }, completionHandler: { (processedOutcome) in
+                completionHandler(processedOutcome)
+            })
+        }
+    }
+    
+    public func getBulkSections(inProjectWithId projectId: Project.Id, inSuiteWithId suiteId: Suite.Id? = nil, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<BulkSections, GetError>) -> Void) {
+        api.getSections(projectId: projectId, suiteId: suiteId, filters: filters) { [weak self] (apiRequestOutcome) in
+            self?.process(apiRequestOutcome, retryHandler: {
+                self?.getBulkSections(inProjectWithId: projectId, inSuiteWithId: suiteId, filteredBy: filters, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 completionHandler(processedOutcome)
             })
@@ -2331,6 +2365,16 @@ extension ObjectAPI {
     public func getTests(in run: Run, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<[Test], GetError>) -> Void) {
         getTests(inRunWithId: run.id, filteredBy: filters, completionHandler: completionHandler)
     }
+    
+    public func getBulkTests(in run: Run, with offset: Int, with limit: Int = 250, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<BulkTests, GetError>) -> Void) {
+        var filteredBy = [Filter]()
+        filteredBy.append(Filter.init(named: "offset", matching: offset))
+        filteredBy.append(Filter.init(named: "limit", matching: limit))
+        if let filters = filters {
+            filteredBy.append(contentsOf: filters)
+        }
+        getBulkTests(inRunWithId: run.id, filteredBy: filteredBy, completionHandler: completionHandler)
+    }
 
     /**
      [API Reference](http://docs.gurock.com/testrail-api2/reference-tests#get_tests)
@@ -2339,6 +2383,16 @@ extension ObjectAPI {
         api.getTests(runId: runId, filters: filters) { [weak self] (apiRequestOutcome) in
             self?.process(apiRequestOutcome, retryHandler: {
                 self?.getTests(inRunWithId: runId, filteredBy: filters, completionHandler: completionHandler)
+            }, completionHandler: { (processedOutcome) in
+                completionHandler(processedOutcome)
+            })
+        }
+    }
+    
+    public func getBulkTests(inRunWithId runId: Run.Id, filteredBy filters: [Filter]? = nil, completionHandler: @escaping (Outcome<BulkTests, GetError>) -> Void) {
+        api.getTests(runId: runId, filters: filters) { [weak self] (apiRequestOutcome) in
+            self?.process(apiRequestOutcome, retryHandler: {
+                self?.getBulkTests(inRunWithId: runId, filteredBy: filters, completionHandler: completionHandler)
             }, completionHandler: { (processedOutcome) in
                 completionHandler(processedOutcome)
             })
