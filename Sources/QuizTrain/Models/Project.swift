@@ -1,3 +1,5 @@
+import Foundation
+
 public struct Project: Identifiable, Equatable {
     public typealias Id = Int
     public var announcement: String?
