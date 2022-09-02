@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		390B6DDC28B8159C00EEED63 /* QuizTrain.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* QuizTrain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		OBJ_251 /* AddRequestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* AddRequestJSON.swift */; };
 		OBJ_252 /* AddRequestJSONKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* AddRequestJSONKeys.swift */; };
 		OBJ_253 /* CustomFieldsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* CustomFieldsContainer.swift */; };
@@ -406,7 +407,7 @@
 		OBJ_97 /* NewCaseField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCaseField.swift; sourceTree = "<group>"; };
 		OBJ_98 /* NewCaseFieldConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCaseFieldConfig.swift; sourceTree = "<group>"; };
 		OBJ_99 /* NewCaseFieldConfigContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCaseFieldConfigContext.swift; sourceTree = "<group>"; };
-		"QuizTrain::QuizTrain::Product" /* QuizTrain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QuizTrain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"QuizTrain::QuizTrain::Product" /* QuizTrain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QuizTrain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"QuizTrain::QuizTrainTests::Product" /* QuizTrainTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuizTrainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1044,11 +1045,23 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		390B6DDB28B8159700EEED63 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				390B6DDC28B8159C00EEED63 /* QuizTrain.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		"QuizTrain::QuizTrain" /* QuizTrain */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = OBJ_247 /* Build configuration list for PBXNativeTarget "QuizTrain" */;
 			buildPhases = (
+				390B6DDB28B8159700EEED63 /* Headers */,
 				OBJ_250 /* Sources */,
 				OBJ_339 /* Frameworks */,
 			);
